@@ -13,8 +13,8 @@ import javax.ws.rs.core.Response;
 @Path("/biometria")
 public class BiometriaRS {
 
-  @EJB
-  INumeroBusiness numeroBusiness;
+  //@EJB
+  //INumeroBusiness numeroBusiness;
 
 
   @POST
@@ -22,7 +22,7 @@ public class BiometriaRS {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public Response verify(HuellaDTO huella) {
-    Boolean estado = usuarioBusiness.crearUsuario(huella);
-    return Response.status(200).entity(estado).build();
+    //Boolean estado = usuarioBusiness.crearUsuario(huella);
+    return Response.status(200).entity(true).build();
   }
 }
