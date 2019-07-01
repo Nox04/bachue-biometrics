@@ -16,6 +16,14 @@ public class BiometriaRS {
   //@EJB
   //INumeroBusiness numeroBusiness;
 
+  @POST
+  @Path("/enroll")
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response enroll(HuellaDTO huella) {
+    //Boolean estado = usuarioBusiness.crearUsuario(huella);
+    return Response.status(200).entity(true).build();
+  }
 
   @POST
   @Path("/verificacion")
