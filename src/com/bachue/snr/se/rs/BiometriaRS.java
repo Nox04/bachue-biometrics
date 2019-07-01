@@ -15,14 +15,14 @@ import javax.ws.rs.core.Response;
 @Path("/biometria")
 public class BiometriaRS extends Application {
 
-  @EJB
+  @EJB(mappedName = "ejb/BiometriaBusiness")
   IBiometriaBusiness biometriaBusiness;
 
   @POST
   @Path("/enrolar")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response enroll(HuellaDTO huella) {
+  public Response enrolar(HuellaDTO huella) {
     Boolean estado = biometriaBusiness.enrolarHuella(huella);
     return Response.status(200).entity(estado).build();
   }
@@ -31,7 +31,7 @@ public class BiometriaRS extends Application {
   @Path("/verificar")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response verify(HuellaDTO huella) {
+  public Response verificar(HuellaDTO huella) {
     Boolean estado = biometriaBusiness.verificarHuella(huella);
     return Response.status(200).entity(estado).build();
   }
