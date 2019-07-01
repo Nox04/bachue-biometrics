@@ -1,6 +1,6 @@
 package com.bachue.snr.se.rs;
 
-import com.bachue.snr.se.libraries.shared.business.interfaces.INumeroBusiness;
+import com.bachue.snr.se.libraries.shared.business.interfaces.IBiometriaBusiness;
 import com.bachue.snr.se.libraries.shared.dtos.HuellaDTO;
 
 import javax.ejb.EJB;
@@ -13,24 +13,24 @@ import javax.ws.rs.core.Response;
 @Path("/biometria")
 public class BiometriaRS {
 
-  //@EJB
-  //INumeroBusiness numeroBusiness;
+  @EJB
+  IBiometriaBusiness biometriaBusiness;
 
   @POST
-  @Path("/enroll")
+  @Path("/enrolar")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public Response enroll(HuellaDTO huella) {
-    //Boolean estado = usuarioBusiness.crearUsuario(huella);
-    return Response.status(200).entity(true).build();
+    Boolean estado = biometriaBusiness.enrolarHuella(huella);
+    return Response.status(200).entity(estado).build();
   }
 
   @POST
-  @Path("/verificacion")
+  @Path("/verificar")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public Response verify(HuellaDTO huella) {
-    //Boolean estado = usuarioBusiness.crearUsuario(huella);
-    return Response.status(200).entity(true).build();
+    Boolean estado = biometriaBusiness.verificarHuella(huella);
+    return Response.status(200).entity(estado).build();
   }
 }
