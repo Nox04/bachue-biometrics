@@ -17,4 +17,13 @@ public class BiometriaDAOImpl implements IBiometriaDAO {
 
 	@EJB
 	private IEntityManagerFactory entityFactory;
+
+	@Override
+	public Usuario consultarUsuario(Integer idUsuario) {
+		EntityManager em = entityFactory.getEntityManager();
+		em.getTransaction().begin();
+		Usuario user = em.find(Usuario.class, idUsuario);
+		em.close();
+		return user;
+	}
 }
