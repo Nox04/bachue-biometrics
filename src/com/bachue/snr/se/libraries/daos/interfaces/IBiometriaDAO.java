@@ -4,5 +4,5 @@ import javax.ejb.Local;
 
 @Local
 public interface IBiometriaDAO {
-  public Usuario consultarHuella(Integer idUsuario);
+  public Boolean consultarHuella(Integer idUsuario);
 }

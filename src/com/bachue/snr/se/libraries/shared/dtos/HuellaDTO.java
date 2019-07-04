@@ -9,8 +9,8 @@ public class HuellaDTO implements Serializable{
   private static final long serialVersionUID = 1L;
 
   private Integer id;
-  private DedosEnum huella;
-  private Integer posicion;
+  private DedosEnum position;
+  private String template;
 
   public Integer getId() {
     return id;
@@ -20,19 +20,19 @@ public class HuellaDTO implements Serializable{
     this.id = id;
   }
 
-  public DedosEnum getHuella() {
-    return huella;
+  public DedosEnum getPosition() {
+    return position;
   }
 
-  public void setHuella(DedosEnum huella) {
-    this.huella = huella;
+  public void setPosition(DedosEnum position) {
+    this.position = position;
   }
 
-  public Integer getPosicion() {
-    return posicion;
+  public String getTemplate() {
+    return template;
   }
 
-  public void setPosicion(Integer posicion) {
-    this.posicion = posicion;
+  public void setTemplate(String template) {
+    this.template = template;
   }
 }

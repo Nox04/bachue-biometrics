@@ -1,7 +1,9 @@
 package com.bachue.snr.se.rs;
 
 import com.bachue.snr.se.libraries.shared.business.interfaces.IBiometriaBusiness;
+import com.bachue.snr.se.libraries.shared.business.interfaces.IBiometriaLogBusiness;
 import com.bachue.snr.se.libraries.shared.dtos.HuellaDTO;
+import com.bachue.snr.se.libraries.shared.dtos.LogDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -18,6 +20,9 @@ public class BiometriaRS extends Application {
   @EJB(mappedName = "ejb/BiometriaBusiness")
   IBiometriaBusiness biometriaBusiness;
 
+  @EJB(mappedName = "ejb/BiometriaLogBusiness")
+  IBiometriaLogBusiness biometriaLogBusiness;
+
   @POST
   @Path("/enrolar")
   @Produces(MediaType.APPLICATION_JSON)
@@ -33,6 +38,15 @@ public class BiometriaRS extends Application {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response verificar(HuellaDTO huella) {
     Boolean estado = biometriaBusiness.verificarHuella(huella);
+    return Response.status(200).entity(estado).build();
+  }
+
+  @POST
+  @Path("/log")
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response verificar(LogDTO log) {
+    Boolean estado = biometriaLogBusiness.registrarEvento(log);
     return Response.status(200).entity(estado).build();
   }
 }
