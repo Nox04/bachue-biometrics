@@ -4,7 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="SE-ARQ-DEMO">
+<project basedir="." default="build" name="BACHUE-BIOMETRIA">
 	<property environment="env" />
 	<property name="ECLIPSE_HOME" value="../../../eclipse/jee-2018-122/eclipse/" />
 	<property name="WEBLOGIC_HOME" value="E:/WeblogicServer/" />
@@ -24,6 +24,7 @@
 		<pathelement location="WebContent/WEB-INF/lib/jsf-impl-2.2.18.jar" />
 		<pathelement location="WebContent/WEB-INF/lib/log4j-1.2.17.jar" />
 		<pathelement location="WebContent/WEB-INF/lib/numberconversion.wsdl.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/org.eclipse.persistence.jpa-2.5.0.jar" />
 		<pathelement location="WebContent/WEB-INF/lib/primefaces-6.2.jar" />
 		<pathelement location="WebContent/WEB-INF/lib/spring-aop-5.1.4.RELEASE.jar" />
 		<pathelement location="WebContent/WEB-INF/lib/spring-beans-5.1.4.RELEASE.jar" />
@@ -663,7 +664,7 @@
 		<pathelement location="${WEBLOGIC_HOME}coherence/lib/coherence.jar" />
 		<pathelement location="${WEBLOGIC_HOME}coherence/lib/coherence-rest.jar" />
 	</path>
-	<path id="SE-ARQ-DEMO.classpath">
+	<path id="BACHUE-BIOMETRIA.classpath">
 		<pathelement location="out/production/bachue-biometrics" />
 		<path refid="Web App Libraries.libraryclasspath" />
 		<path refid="EAR Libraries.libraryclasspath" />
@@ -686,7 +687,7 @@
 		<echo message="${ant.project.name}: ${ant.file}" />
 		<javac debug="true" debuglevel="${debuglevel}" destdir="out/production/bachue-biometrics" includeantruntime="false" source="${source}" target="${target}">
 			<src path="src" />
-			<classpath refid="SE-ARQ-DEMO.classpath" />
+			<classpath refid="BACHUE-BIOMETRIA.classpath" />
 		</javac>
 	</target>
 	<target name="war" description="Bundles the application as a WAR file" depends="clean, build">
@@ -696,7 +697,7 @@
 				<include name="**/*.class" />
 			</fileset>
 		</copy>
-		<war destfile="SE-ARQ-DEMO.war" basedir="WebContent" webxml="WebContent/WEB-INF/web.xml" needxmlfile="false">
+		<war destfile="BACHUE-BIOMETRIA.war" basedir="WebContent" webxml="WebContent/WEB-INF/web.xml" needxmlfile="false">
 			<lib dir="WebContent/WEB-INF/lib" />
 			<classes dir="out/production/bachue-biometrics" />
 		</war>
