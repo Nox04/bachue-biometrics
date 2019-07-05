@@ -3,11 +3,12 @@
 	<persistence-unit name="ant-project-snr" transaction-type="RESOURCE_LOCAL">
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 	<jta-data-source>jdbc/ds_snr-sede-local</jta-data-source>
+	<class>com.bachue.snr.se.libraries.shared.persistence.model.Log</class>
 	<properties>
 		<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-		<property name="javax.persistence.jdbc.user" value="soporte"/>
-		<property name="javax.persistence.jdbc.password" value="soporte"/>
+		<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="javax.persistence.jdbc.user" value="system"/>
+		<property name="javax.persistence.jdbc.password" value="welcome1"/>
 		<property name="eclipselink.ddl-generation" value="create-tables"/>
 		<property name="eclipselink.ddl-generation.output-mode" value="database"/>
 	</properties>
