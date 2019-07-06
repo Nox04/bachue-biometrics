@@ -13,6 +13,7 @@ public class BiometriaLogHelper {
 
       log.setId(entidad.getIdLog());
       log.setEvento(entidad.getEvento());
+      log.setDetalle(entidad.getDetalle());
 
       return log;
     }
@@ -23,6 +24,7 @@ public class BiometriaLogHelper {
 
       log.setIdLog(modelo.getId());
       log.setEvento(modelo.getEvento());
+      log.setDetalle(modelo.getDetalle());
 
       return log;
     }

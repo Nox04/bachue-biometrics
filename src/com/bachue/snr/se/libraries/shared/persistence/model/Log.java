@@ -18,6 +18,17 @@ public class Log extends BiometriaBase implements Serializable {
   @Column(name = "EVENTO")
   private String evento;
 
+  @Column(name = "DETALLE")
+  private String detalle;
+
+  public String getDetalle() {
+    return detalle;
+  }
+
+  public void setDetalle(String detalle) {
+    this.detalle = detalle;
+  }
+
   public String getIdLog() {
     return idLog;
   }
