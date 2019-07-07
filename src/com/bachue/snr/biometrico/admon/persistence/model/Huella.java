@@ -29,7 +29,7 @@ public class Huella extends BaseModel implements Serializable {
   private int posicion;
 
   @ManyToOne(optional = false)
-  @JoinColumn(name="ID_USUARIO", foreignKey = @ForeignKey(name = "FK_HUELLA_USUARIO"))
+  @JoinColumn(name="ID_USUARIO", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_HUELLA_USUARIO"))
   private Usuario usuario;
 
   public String getIdHuella() {
