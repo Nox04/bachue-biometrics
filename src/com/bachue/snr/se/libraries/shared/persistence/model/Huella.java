@@ -22,6 +22,7 @@ public class Huella extends BiometriaBase implements Serializable {
   private int posicion;
 
   @ManyToOne(optional = false)
+  @JoinColumn(name="ID_USUARIO", foreignKey = @ForeignKey(name = "FK_HUELLA_USUARIO"))
   private Usuario usuario;
 
   public String getIdHuella() {

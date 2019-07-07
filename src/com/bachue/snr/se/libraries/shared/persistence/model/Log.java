@@ -15,7 +15,7 @@ public class Log extends BiometriaBase implements Serializable {
   @GeneratedValue
   private String idLog;
 
-  @Column(name = "EVENTO", nullable = false)
+  @Column(name = "EVENTO", nullable = false, length = 50)
   private String evento;
 
   @Column(name = "DETALLE", nullable = false)
