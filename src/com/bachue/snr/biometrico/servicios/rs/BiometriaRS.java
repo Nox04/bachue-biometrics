@@ -1,9 +1,9 @@
 package com.bachue.snr.biometrico.servicios.rs;
 
-import com.bachue.snr.biometrico.libraries.shared.business.interfaces.IBiometriaBusiness;
-import com.bachue.snr.biometrico.libraries.shared.business.interfaces.IBiometriaLogBusiness;
-import com.bachue.snr.biometrico.libraries.shared.dtos.HuellaDTO;
-import com.bachue.snr.biometrico.libraries.shared.dtos.LogDTO;
+import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IBiometriaBusiness;
+import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IBiometriaLogBusiness;
+import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

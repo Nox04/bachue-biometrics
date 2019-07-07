@@ -3,7 +3,7 @@
 	<persistence-unit name="biometria-bachue" transaction-type="RESOURCE_LOCAL">
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 	<jta-data-source>jdbc/ds_snr-sede-local</jta-data-source>
-	<class>com.bachue.snr.biometrico.libraries.shared.persistence.model.Log</class>
+	<class>com.bachue.snr.biometrico.admon.persistence.model.Log</class>
 	<properties>
 		<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
