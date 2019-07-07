@@ -19,38 +19,38 @@ public enum DedosEnum {
   ANULAR_IZQUIERDO("9", "anular izquierdo"),
   MENIQUE_IZQUIERDO("10", "meñique izquierdo");
 
-  private final String nombre;
-  private final String posicion;
+  private final String cs_nombre;
+  private final String cs_posicion;
 
-  DedosEnum(final String posicion, String nombre) {
-    this.nombre = nombre;
-    this.posicion = posicion;
+  DedosEnum(final String as_posicion, String as_nombre) {
+    this.cs_nombre = as_nombre;
+    this.cs_posicion = as_posicion;
   }
 
   /**
    * Método que retorna el nombre del dedo.
    * @return el nombre del dedo.
    */
-  public String obtenerNombre() {
-    return nombre;
+  public String consultarNombre() {
+    return cs_nombre;
   }
 
   /**
    * Método que retorna la posición del dedo.
    * @return la posición del dedo.
    */
-  public String obtenerPosicion() {
-    return posicion;
+  public String consultarPosicion() {
+    return cs_posicion;
   }
 
   /**
-   * Método que retorna el nombre del dedo al darle una posición específica.
-   * @return el nombre del dedo.
+   * Método que retorna el cs_nombre del dedo al darle una posición específica.
+   * @return el cs_nombre del dedo.
    */
-  public static String obtenerDedoPorPosicion(String posicion) {
-    for (DedosEnum dedo : DedosEnum.values()) {
-      if (posicion.equals(dedo.posicion)) {
-        return dedo.nombre;
+  public static String consultarDedoPorPosicion(String as_posicion) {
+    for (DedosEnum l_dedo : DedosEnum.values()) {
+      if (as_posicion.equals(l_dedo.cs_posicion)) {
+        return l_dedo.cs_nombre;
       }
     }
     return null;

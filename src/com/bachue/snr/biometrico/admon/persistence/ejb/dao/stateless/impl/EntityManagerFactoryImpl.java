@@ -20,10 +20,10 @@ import javax.persistence.PersistenceUnit;
 public class EntityManagerFactoryImpl implements IEntityManagerFactory {
 	
 	@PersistenceUnit(name="biometria-bachue")
-	EntityManagerFactory factory;
+	EntityManagerFactory iemf_factory;
 
 	@Override
 	public EntityManager getEntityManager(){
-		return 	 factory.createEntityManager();
+		return 	 iemf_factory.createEntityManager();
 	}
 }

@@ -20,10 +20,10 @@ import javax.ejb.Stateless;
 @LocalBean
 public class LogBusiness implements ILogBusiness {
   @EJB
-  private ILogDAO biometriaLogDao;
+  private ILogDAO iild_logDao;
 
   @Override
-  public Boolean registrarEvento(LogDTO log) {
-    return biometriaLogDao.registrarEvento(LogHelper.toEntity(log));
+  public Boolean registrarEvento(LogDTO ald_log) {
+    return iild_logDao.crearEvento(LogHelper.toEntity(ald_log));
   }
 }

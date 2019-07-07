@@ -13,43 +13,43 @@ public class LogDTO extends BaseDTO implements Serializable{
 
   private static final long serialVersionUID = 1L;
 
-  private String id;
+  private String is_id;
 
-  private String evento;
+  private String is_detalle;
 
-  private String detalle;
+  private String is_evento;
 
-  private String userId;
+  private String is_userId;
 
   public String getId() {
-    return id;
+    return is_id;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setId(String as_id) {
+    this.is_id = as_id;
   }
 
   public String getDetalle() {
-    return detalle;
+    return is_detalle;
   }
 
-  public void setDetalle(String detalle) {
-    this.detalle = detalle;
+  public void setDetalle(String as_detalle) {
+    this.is_detalle = as_detalle;
   }
 
   public String getEvento() {
-    return evento;
+    return is_evento;
   }
 
-  public void setEvento(String evento) {
-    this.evento = evento;
+  public void setEvento(String as_evento) {
+    this.is_evento = as_evento;
   }
 
   public String getUserId() {
-    return userId;
+    return is_userId;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  public void setUserId(String as_userId) {
+    this.is_userId = as_userId;
   }
 }

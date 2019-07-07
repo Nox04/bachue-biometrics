@@ -15,8 +15,8 @@ import javax.ejb.Local;
 public interface ILogDAO {
   /**
    * Método que registra el evento en la tabla de logs.
-   * @param log Modelo que será almacenado en la base de datos.
+   * @param al_log Modelo que será almacenado en la base de datos.
    * @return true si el evento es registrado con éxito.
    */
-  Boolean registrarEvento(Log log);
+  Boolean crearEvento(Log al_log);
 }

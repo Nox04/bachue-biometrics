@@ -29,53 +29,53 @@ import java.util.Map;
 public class BiometriaRS extends Application {
 
   @EJB(mappedName = "ejb/HuellaBusiness")
-  IHuellaBusiness biometriaBusiness;
+  IHuellaBusiness iihb_huellaBusiness;
 
   @EJB(mappedName = "ejb/LogBusiness")
-  ILogBusiness biometriaLogBusiness;
+  ILogBusiness iilb_logBusiness;
 
   /**
    * Método que recibe la petición HTTP de enrolamiento y la mapea al DTO.
-   * @param huella DTO con la información de la huella.
+   * @param ahd_huella DTO con la información de la huella.
    * @return respuesta HTTP con el resultado del enrolamiento
    */
   @POST
   @Path("/enrolar")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response enrolar(HuellaDTO huella) {
-    Boolean estado = biometriaBusiness.enrolarHuella(huella);
-    return Response.status(200).entity(estado).build();
+  public Response enrolar(HuellaDTO ahd_huella) {
+    Boolean lb_estado = iihb_huellaBusiness.enrolarHuella(ahd_huella);
+    return Response.status(200).entity(lb_estado).build();
   }
 
   /**
    * Método que recibe la petición HTTP de verificación y la mapea al DTO.
-   * @param huella DTO con la información de la huella.
+   * @param ahd_huella DTO con la información de la huella.
    * @return respuesta HTTP con el resultado de la verificación.
    */
   @POST
   @Path("/verificar")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response verificar(HuellaDTO huella) {
-    Boolean estado = biometriaBusiness.verificarHuella(huella);
-    return Response.status(200).entity(estado).build();
+  public Response verificar(HuellaDTO ahd_huella) {
+    Boolean lb_estado = iihb_huellaBusiness.verificarHuella(ahd_huella);
+    return Response.status(200).entity(lb_estado).build();
   }
 
   /**
    * Método que recibe la petición HTTP de log y la mapea al DTO.
-   * @param log DTO con la información del evento a loguear.
-   * @param req Request con la información HTTP de la petición recibida.
+   * @param ald_log DTO con la información del evento a loguear.
+   * @param ahsr_req Request con la información HTTP de la petición recibida.
    * @return respuesta HTTP con el resultado de la operación.
    */
   @POST
   @Path("/log")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response registrar(LogDTO log, @Context HttpServletRequest req) {
-    log.agregarValoresAuditoria(req);
-    Boolean estado = biometriaLogBusiness.registrarEvento(log);
-    return Response.status(200).entity(estado).build();
+  public Response registrar(LogDTO ald_log, @Context HttpServletRequest ahsr_req) {
+    ald_log.agregarValoresAuditoria(ahsr_req);
+    Boolean lb_estado = iilb_logBusiness.registrarEvento(ald_log);
+    return Response.status(200).entity(lb_estado).build();
   }
 
   /**

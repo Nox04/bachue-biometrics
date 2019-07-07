@@ -19,10 +19,10 @@ import javax.ejb.Stateless;
 public class HuellaDAOImpl implements IHuellaDAO {
 
 	@EJB
-	private IEntityManagerFactory entityFactory;
+	private IEntityManagerFactory iiemf_entityFactory;
 
 	@Override
-	public Boolean consultarHuella(Integer idUsuario) {
+	public Boolean consultarHuella(Integer ai_idUsuario) {
 		return true;
 	}
 }

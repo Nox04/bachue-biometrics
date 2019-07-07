@@ -19,15 +19,15 @@ import javax.ejb.Stateless;
 @LocalBean
 public class HuellaBusiness implements IHuellaBusiness {
   @EJB
-  private IHuellaDAO biometriaDao;
+  private IHuellaDAO iihd_huellaDao;
 
   @Override
-  public Boolean verificarHuella(HuellaDTO huella) {
-    return true; //UsuarioHelper.toDto(usuarioDao.consultarUsuario(idUsuario));
+  public Boolean enrolarHuella(HuellaDTO ahd_huella) {
+    return true /*usuarioDao.crearUsuario(UsuarioHelper.toEntity(usuario))*/;
   }
 
   @Override
-  public Boolean enrolarHuella(HuellaDTO huella) {
-    return true /*usuarioDao.crearUsuario(UsuarioHelper.toEntity(usuario))*/;
+  public Boolean verificarHuella(HuellaDTO ahd_huella) {
+    return true; //UsuarioHelper.toDto(usuarioDao.consultarUsuario(idUsuario));
   }
 }

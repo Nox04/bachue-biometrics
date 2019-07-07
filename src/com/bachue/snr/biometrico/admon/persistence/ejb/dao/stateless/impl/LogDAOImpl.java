@@ -21,17 +21,17 @@ import javax.persistence.EntityManager;
 public class LogDAOImpl implements ILogDAO {
 
 	@EJB
-	private IEntityManagerFactory entityFactory;
+	private IEntityManagerFactory iiemf_entityFactory;
 
 	@Override
-	public Boolean registrarEvento(Log log) {
+	public Boolean crearEvento(Log al_log) {
 		try {
-			EntityManager em = entityFactory.getEntityManager();
-			em.getTransaction().begin();
-			em.persist(log);
-			em.getTransaction().commit();
-			em.close();
-		}catch (Exception e) {
+			EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
+			lem_entityManager.getTransaction().begin();
+			lem_entityManager.persist(al_log);
+			lem_entityManager.getTransaction().commit();
+			lem_entityManager.close();
+		}catch (Exception le_e) {
 			return false;
 		}
 		return true;

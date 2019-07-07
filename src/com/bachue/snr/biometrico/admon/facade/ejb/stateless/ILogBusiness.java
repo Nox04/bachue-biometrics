@@ -12,8 +12,8 @@ import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 public interface ILogBusiness {
   /**
    * Método que envía los datos del evento logueado al DAO para ser almacenado.
-   * @param log DTO con la información del evento.
+   * @param ald_log DTO con la información del evento.
    * @return true si el evento es registrado con éxito.
    */
-  Boolean registrarEvento(LogDTO log);
+  Boolean registrarEvento(LogDTO ald_log);
 }

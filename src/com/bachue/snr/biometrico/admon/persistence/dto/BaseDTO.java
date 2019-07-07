@@ -13,32 +13,32 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class BaseDTO {
 
-  protected String ip;
+  protected String is_ip;
 
-  protected Timestamp time;
+  protected Timestamp it_time;
 
   public String getIp() {
-    return ip;
+    return is_ip;
   }
 
-  public void setIp(String ip) {
-    this.ip = ip;
+  public void setIp(String as_ip) {
+    this.is_ip = as_ip;
   }
 
   public Timestamp getTime() {
-    return time;
+    return it_time;
   }
 
-  public void setTime(Timestamp time) {
-    this.time = time;
+  public void setTime(Timestamp at_time) {
+    this.it_time = at_time;
   }
 
   /**
    * Método que agrega los campos de auditoria que son obtenibles desde el request.
-   * @param req Request con la información HTTP de la petición recibida.
+   * @param ahsr_req Request con la información HTTP de la petición recibida.
    */
-  public void agregarValoresAuditoria(HttpServletRequest req) {
-    this.setIp(req.getRemoteAddr());
+  public void agregarValoresAuditoria(HttpServletRequest ahsr_req) {
+    this.setIp(ahsr_req.getRemoteAddr());
     this.setTime(new Timestamp(new Date().getTime()));
   }
 }

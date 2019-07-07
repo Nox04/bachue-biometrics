@@ -16,36 +16,36 @@ public class LogHelper {
 
   /**
    * Método que recibe la petición HTTP de enrolamiento y la mapea al DTO.
-   * @param entidad que será convertida a DTO.
+   * @param al_entidad que será convertida a DTO.
    * @return DTO mapeado desde la entidad.
    */
-    public static LogDTO toDto(Log entidad) {
+    public static LogDTO toDto(Log al_entidad) {
 
-      LogDTO log = new LogDTO();
+      LogDTO lld_log = new LogDTO();
 
-      log.setId(entidad.getIdLog());
-      log.setEvento(entidad.getEvento());
-      log.setDetalle(entidad.getDetalle());
+      lld_log.setId(al_entidad.getIdLog());
+      lld_log.setEvento(al_entidad.getEvento());
+      lld_log.setDetalle(al_entidad.getDetalle());
 
-      return log;
+      return lld_log;
     }
 
   /**
    * Método que recibe la petición HTTP de enrolamiento y la mapea al DTO.
-   * @param logDTO que será convertido a la entidad correspondiente.
+   * @param ald_logDTO que será convertido a la entidad correspondiente.
    * @return entidad mapeada desde el DTO recibido.
    */
-    public static Log toEntity(LogDTO logDTO) {
+    public static Log toEntity(LogDTO ald_logDTO) {
 
-      Log log = new Log();
+      Log ll_log = new Log();
 
-      log.setIdLog(logDTO.getId());
-      log.setEvento(logDTO.getEvento());
-      log.setDetalle(logDTO.getDetalle());
-      log.setIdUsuarioCreacion(logDTO.getUserId());
-      log.setIpCreacion(logDTO.getIp());
-      log.setFechaCreacion(logDTO.getTime());
+      ll_log.setIdLog(ald_logDTO.getId());
+      ll_log.setEvento(ald_logDTO.getEvento());
+      ll_log.setDetalle(ald_logDTO.getDetalle());
+      ll_log.setIdUsuarioCreacion(ald_logDTO.getUserId());
+      ll_log.setIpCreacion(ald_logDTO.getIp());
+      ll_log.setFechaCreacion(ald_logDTO.getTime());
 
-      return log;
+      return ll_log;
     }
 }
