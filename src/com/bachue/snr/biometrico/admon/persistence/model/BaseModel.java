@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  *
  */
 @MappedSuperclass
-public class BiometriaBase {
+public class BaseModel {
 
   @Column(name = "FECHA_CREACION", length = 6, nullable = false)
   protected Timestamp fechaCreacion;

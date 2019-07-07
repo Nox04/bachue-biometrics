@@ -9,7 +9,7 @@ import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
  * Nota: Interface de lógica de operaciones biométricas.
  *
  */
-public interface IBiometriaBusiness {
+public interface IHuellaBusiness {
   /**
    * Método que extrae y envía los datos de la huella al DAO para ser almacenada.
    * @param huella DTO con la información de la huella.

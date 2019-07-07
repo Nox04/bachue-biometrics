@@ -10,7 +10,7 @@ import javax.ejb.Local;
  *
  */
 @Local
-public interface IBiometriaDAO {
+public interface IHuellaDAO {
   /**
    * Método que agrega los campos de auditoria que son obtenibles desde el request.
    * @param idUsuario Request con la información HTTP de la petición recibida.

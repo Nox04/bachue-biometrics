@@ -1,6 +1,6 @@
 package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl;
 
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IBiometriaDAO;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IEntityManagerFactory;
 
 import javax.ejb.EJB;
@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 @LocalBean
-public class BiometriaDAOImpl implements IBiometriaDAO {
+public class HuellaDAOImpl implements IHuellaDAO {
 
 	@EJB
 	private IEntityManagerFactory entityFactory;

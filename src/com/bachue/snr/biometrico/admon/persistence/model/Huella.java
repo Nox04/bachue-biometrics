@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "SDB_BGN_HUELLA")
-public class Huella extends BiometriaBase implements Serializable {
+public class Huella extends BaseModel implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public Huella() {}

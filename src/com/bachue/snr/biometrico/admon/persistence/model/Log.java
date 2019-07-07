@@ -11,8 +11,8 @@ import java.io.Serializable;
  *
  */
 @Entity
-@Table(name = "SDB_BGN_BIOMETRIA_LOG")
-public class Log extends BiometriaBase implements Serializable {
+@Table(name = "SDB_BGN_LOG")
+public class Log extends BaseModel implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public Log() {}

@@ -12,7 +12,7 @@ import javax.ejb.Local;
  *
  */
 @Local
-public interface IBiometriaLogDAO {
+public interface ILogDAO {
   /**
    * Método que registra el evento en la tabla de logs.
    * @param log Modelo que será almacenado en la base de datos.

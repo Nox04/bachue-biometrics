@@ -12,7 +12,10 @@ import javax.ejb.Local;
  */
 @Local
 public interface IEntityManagerFactory {
-	
+
+  /**
+   * Método que accede al singleton del entity manager.
+   */
 	EntityManager getEntityManager();
 
 }

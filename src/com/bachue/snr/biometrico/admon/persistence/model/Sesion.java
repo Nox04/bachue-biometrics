@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "SDB_BGN_SESION")
-public class Sesion extends BiometriaBase implements Serializable {
+public class Sesion extends BaseModel implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public Sesion() {}

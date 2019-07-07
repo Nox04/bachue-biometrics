@@ -1,7 +1,7 @@
 package com.bachue.snr.biometrico.servicios.rs;
 
-import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IBiometriaBusiness;
-import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IBiometriaLogBusiness;
+import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
+import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ILogBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 
@@ -28,11 +28,11 @@ import java.util.Map;
 @Path("/biometria")
 public class BiometriaRS extends Application {
 
-  @EJB(mappedName = "ejb/BiometriaBusiness")
-  IBiometriaBusiness biometriaBusiness;
+  @EJB(mappedName = "ejb/HuellaBusiness")
+  IHuellaBusiness biometriaBusiness;
 
-  @EJB(mappedName = "ejb/BiometriaLogBusiness")
-  IBiometriaLogBusiness biometriaLogBusiness;
+  @EJB(mappedName = "ejb/LogBusiness")
+  ILogBusiness biometriaLogBusiness;
 
   /**
    * Método que recibe la petición HTTP de enrolamiento y la mapea al DTO.

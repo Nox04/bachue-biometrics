@@ -1,6 +1,6 @@
 package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl;
 
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IBiometriaLogDAO;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IEntityManagerFactory;
 import com.bachue.snr.biometrico.admon.persistence.model.Log;
 
@@ -18,7 +18,7 @@ import javax.persistence.EntityManager;
  */
 @Stateless
 @LocalBean
-public class BiometriaLogDAOImpl implements IBiometriaLogDAO {
+public class LogDAOImpl implements ILogDAO {
 
 	@EJB
 	private IEntityManagerFactory entityFactory;

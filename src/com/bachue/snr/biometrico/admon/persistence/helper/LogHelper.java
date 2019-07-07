@@ -10,9 +10,9 @@ import com.bachue.snr.biometrico.admon.persistence.model.Log;
  * Nota: Helper de conversión entre DTO y DAO de log.
  *
  */
-public class BiometriaLogHelper {
+public class LogHelper {
 
-    private BiometriaLogHelper() {}
+    private LogHelper() {}
 
   /**
    * Método que recibe la petición HTTP de enrolamiento y la mapea al DTO.

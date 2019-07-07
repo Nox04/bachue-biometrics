@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "SDB_BGN_USUARIO")
-public class Usuario extends BiometriaBase implements Serializable {
+public class Usuario extends BaseModel implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public Usuario() {}

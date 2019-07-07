@@ -9,7 +9,7 @@ import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
  * Nota: Interface de lógica de negocio de logs.
  *
  */
-public interface IBiometriaLogBusiness {
+public interface ILogBusiness {
   /**
    * Método que envía los datos del evento logueado al DAO para ser almacenado.
    * @param log DTO con la información del evento.
