@@ -15,7 +15,7 @@ import javax.ejb.Stateless;
  * Nota: Implementación de lógica de negocio de operaciones biométricas.
  *
  */
-@Stateless(name="BiometriaBusiness", mappedName="ejb/HuellaBusiness")
+@Stateless(name="HuellaBusiness", mappedName="ejb/HuellaBusiness")
 @LocalBean
 public class HuellaBusiness implements IHuellaBusiness {
   @EJB
