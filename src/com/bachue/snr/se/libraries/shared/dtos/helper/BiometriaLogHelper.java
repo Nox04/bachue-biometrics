@@ -25,6 +25,7 @@ public class BiometriaLogHelper {
       log.setIdLog(modelo.getId());
       log.setEvento(modelo.getEvento());
       log.setDetalle(modelo.getDetalle());
+      log.setIdUsuarioCreacion(modelo.getUserId());
 
       return log;
     }

@@ -12,6 +12,8 @@ public class LogDTO implements Serializable{
 
   private String detalle;
 
+  private String userId;
+
   public String getId() {
     return id;
   }
@@ -34,5 +36,13 @@ public class LogDTO implements Serializable{
 
   public void setEvento(String evento) {
     this.evento = evento;
+  }
+
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 }
