@@ -1,6 +1,6 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl.IBiometriaLogDAO;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IBiometriaLogDAO;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IBiometriaLogBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 import com.bachue.snr.biometrico.admon.persistence.helper.BiometriaLogHelper;
@@ -12,7 +12,7 @@ import javax.ejb.Stateless;
 /**
  *
  * @version 1.0
- * @author Barras y Recaudos
+ * @author Barras y Recaudos.
  * Nota: Implementación de lógica de negocio de logs.
  *
  */

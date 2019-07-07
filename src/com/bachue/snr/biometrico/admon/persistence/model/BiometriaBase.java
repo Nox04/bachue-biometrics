@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 /**
  *
  * @version 1.0
- * @author Barras y Recaudos
+ * @author Barras y Recaudos.
  * Nota: Modelo de base con los campos de auditoría.
  *
  */

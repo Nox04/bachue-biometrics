@@ -1,6 +1,6 @@
-package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless;
+package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl;
 
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl.IEntityManagerFactory;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IEntityManagerFactory;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
@@ -11,7 +11,7 @@ import javax.persistence.PersistenceUnit;
 /**
  *
  * @version 1.0
- * @author Barras y Recaudos
+ * @author Barras y Recaudos.
  * Nota: Implementación del EntityManagerFactory para el acceso a datos.
  *
  */

@@ -1,6 +1,6 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl.IBiometriaDAO;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IBiometriaDAO;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IBiometriaBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
 
@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
 /**
  *
  * @version 1.0
- * @author Barras y Recaudos
+ * @author Barras y Recaudos.
  * Nota: Implementación de lógica de negocio de operaciones biométricas.
  *
  */

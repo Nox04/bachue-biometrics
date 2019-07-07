@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  *
  * @version 1.0
- * @author Barras y Recaudos
+ * @author Barras y Recaudos.
  * Nota: DTO de logs.
  *
  */

@@ -3,7 +3,7 @@ package com.bachue.snr.biometrico.admon.enums;
 /**
  *
  * @version 1.0
- * @author Barras y Recaudos
+ * @author Barras y Recaudos.
  * Nota: Enum que relaciona dedos y su posición en la mano.
  *
  */
@@ -27,14 +27,26 @@ public enum DedosEnum {
     this.posicion = posicion;
   }
 
+  /**
+   * Método que retorna el nombre del dedo.
+   * @return el nombre del dedo.
+   */
   public String obtenerNombre() {
     return nombre;
   }
 
+  /**
+   * Método que retorna la posición del dedo.
+   * @return la posición del dedo.
+   */
   public String obtenerPosicion() {
     return posicion;
   }
 
+  /**
+   * Método que retorna el nombre del dedo al darle una posición específica.
+   * @return el nombre del dedo.
+   */
   public static String obtenerDedoPorPosicion(String posicion) {
     for (DedosEnum dedo : DedosEnum.values()) {
       if (posicion.equals(dedo.posicion)) {
