@@ -7,19 +7,19 @@ import java.sql.Timestamp;
 @MappedSuperclass
 public class BiometriaBase {
 
-  @Column(name = "FECHA_CREACION", length = 6)
+  @Column(name = "FECHA_CREACION", length = 6, nullable = false)
   protected Timestamp fechaCreacion;
 
   @Column(name = "FECHA_MODIFICACION", length = 6)
   protected Timestamp fechaModificacion;
 
-  @Column(name = "IP_CREACION", length = 100)
+  @Column(name = "IP_CREACION", length = 100, nullable = false)
   protected String ipCreacion;
 
   @Column(name = "IP_MODIFICACION", length = 100)
   protected String ipModificacion;
 
-  @Column(name = "ID_USUARIO_CREACION", length = 30)
+  @Column(name = "ID_USUARIO_CREACION", length = 30, nullable = false)
   protected String idUsuarioCreacion;
 
   @Column(name = "ID_USUARIO_MODIFICACION", length = 30)

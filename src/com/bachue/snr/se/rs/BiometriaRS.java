@@ -7,8 +7,10 @@ import com.bachue.snr.se.libraries.shared.dtos.LogDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
@@ -47,7 +49,8 @@ public class BiometriaRS extends Application {
   @Path("/log")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response registrar(LogDTO log) {
+  public Response registrar(LogDTO log, @Context HttpServletRequest req) {
+    log.agregarValoresAuditoria(req);
     Boolean estado = biometriaLogBusiness.registrarEvento(log);
     return Response.status(200).entity(estado).build();
   }

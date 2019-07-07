@@ -15,9 +15,44 @@ public class Huella extends BiometriaBase implements Serializable {
   @GeneratedValue
   private String idHuella;
 
-  @Column(name = "TEMPLATE")
-  private String template;
+  @Column(name = "TEMPLATE", nullable = false)
+  private byte[] template;
 
-  @Column(name = "POSICION", length = 2)
+  @Column(name = "POSICION", length = 2, nullable = false)
   private int posicion;
+
+  @ManyToOne(optional = false)
+  private Usuario usuario;
+
+  public String getIdHuella() {
+    return idHuella;
+  }
+
+  public void setIdHuella(String idHuella) {
+    this.idHuella = idHuella;
+  }
+
+  public byte[] getTemplate() {
+    return template;
+  }
+
+  public void setTemplate(byte[] template) {
+    this.template = template;
+  }
+
+  public int getPosicion() {
+    return posicion;
+  }
+
+  public void setPosicion(int posicion) {
+    this.posicion = posicion;
+  }
+
+  public Usuario getUsuario() {
+    return usuario;
+  }
+
+  public void setUsuario(Usuario usuario) {
+    this.usuario = usuario;
+  }
 }

@@ -2,7 +2,7 @@ package com.bachue.snr.se.libraries.shared.dtos;
 
 import java.io.Serializable;
 
-public class LogDTO implements Serializable{
+public class LogDTO extends BaseDTO implements Serializable{
 
   private static final long serialVersionUID = 1L;
 
