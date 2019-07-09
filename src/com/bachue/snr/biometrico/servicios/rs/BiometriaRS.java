@@ -40,7 +40,7 @@ public class BiometriaRS extends Application {
    * @return respuesta HTTP con el resultado del enrolamiento.
    */
   @POST
-  @Path("/enrolar")
+  @Path("/huella")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public Response enrolar(HuellaDTO ahd_huella) {
