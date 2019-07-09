@@ -5,7 +5,7 @@
 
 	<persistence-unit name="biometria-bachue" transaction-type="JTA">
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-	<jta-data-source>jdbc/ds_snr-sede-local</jta-data-source>
+	<jta-data-source>jdbc/ds_bachue-biometria</jta-data-source>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-tables"/>
 			<property name="eclipselink.ddl-generation.output-mode"
