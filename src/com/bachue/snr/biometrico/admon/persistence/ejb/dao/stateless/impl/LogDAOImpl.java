@@ -34,7 +34,6 @@ public class LogDAOImpl implements ILogDAO {
 			iem_entityManager.persist(al_log);
 			iem_entityManager.close();
 		}catch (Exception le_e) {
-			System.out.println(le_e);
 			return false;
 		}
 		return true;

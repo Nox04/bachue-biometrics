@@ -15,7 +15,7 @@ public class LogHelper {
     private LogHelper() {}
 
   /**
-   * Método que recibe la petición HTTP de enrolamiento y la mapea al DTO.
+   * Método que mapea una entidad a su DTO correspondiente.
    * @param al_entidad que será convertida a DTO.
    * @return DTO mapeado desde la entidad.
    */
@@ -31,7 +31,7 @@ public class LogHelper {
     }
 
   /**
-   * Método que recibe la petición HTTP de enrolamiento y la mapea al DTO.
+   * Método que mapea un DTO a su entidad correspondiente.
    * @param ald_logDTO que será convertido a la entidad correspondiente.
    * @return entidad mapeada desde el DTO recibido.
    */
