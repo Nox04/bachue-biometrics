@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="biometria-bachue" transaction-type="RESOURCE_LOCAL">
+<persistence version="2.1"
+			 xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+	<persistence-unit name="biometria-bachue" transaction-type="JTA">
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 	<jta-data-source>jdbc/ds_snr-sede-local</jta-data-source>
-	<class>com.bachue.snr.biometrico.admon.persistence.model.Log</class>
-	<properties>
-		<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="javax.persistence.jdbc.user" value="system"/>
-		<property name="javax.persistence.jdbc.password" value="welcome1"/>
-		<property name="eclipselink.ddl-generation" value="create-tables"/>
-		<property name="eclipselink.ddl-generation.output-mode" value="database"/>
-	</properties>
+		<properties>
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="eclipselink.ddl-generation.output-mode"
+					  value="database" />
+			<property name="eclipselink.target-database"
+					  value="org.eclipse.persistence.platform.database.oracle.Oracle12Platform" />
+			<property name="eclipselink.target-server" value="Weblogic" />
+			<property name="eclipselink.logging.level" value="FINEST" />
+		</properties>
 	</persistence-unit>
 </persistence>

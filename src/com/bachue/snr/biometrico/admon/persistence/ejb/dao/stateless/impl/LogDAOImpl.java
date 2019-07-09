@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -22,16 +23,18 @@ public class LogDAOImpl implements ILogDAO {
 
 	@EJB
 	private IEntityManagerFactory iiemf_entityFactory;
+	
+	@PersistenceContext
+	private EntityManager iem_entityManager;
 
 	@Override
 	public Boolean crearEvento(Log al_log) {
 		try {
-			EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
-			lem_entityManager.getTransaction().begin();
-			lem_entityManager.persist(al_log);
-			lem_entityManager.getTransaction().commit();
-			lem_entityManager.close();
+			iem_entityManager = iiemf_entityFactory.getEntityManager();
+			iem_entityManager.persist(al_log);
+			iem_entityManager.close();
 		}catch (Exception le_e) {
+			System.out.println(le_e);
 			return false;
 		}
 		return true;

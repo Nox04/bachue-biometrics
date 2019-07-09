@@ -73,7 +73,7 @@ public class BiometriaRS extends Application {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public Response registrar(LogDTO ald_log, @Context HttpServletRequest ahsr_req) {
-    ald_log.agregarValoresAuditoria(ahsr_req);
+	ald_log.agregarValoresAuditoria(ahsr_req);
     Boolean lb_estado = iilb_logBusiness.registrarEvento(ald_log);
     return Response.status(200).entity(lb_estado).build();
   }
