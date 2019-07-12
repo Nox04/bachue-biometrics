@@ -23,16 +23,13 @@ public class LogDAOImpl implements ILogDAO {
 
 	@EJB
 	private IEntityManagerFactory iiemf_entityFactory;
-	
-	@PersistenceContext
-	private EntityManager iem_entityManager;
 
 	@Override
 	public Boolean crearEvento(Log al_log) {
 		try {
-			iem_entityManager = iiemf_entityFactory.getEntityManager();
-			iem_entityManager.persist(al_log);
-			iem_entityManager.close();
+			EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
+			lem_entityManager.persist(al_log);
+			lem_entityManager.close();
 		}catch (Exception le_e) {
 			return false;
 		}

@@ -26,6 +26,7 @@ public class LogHelper {
       lld_log.setId(al_entidad.getIdLog());
       lld_log.setEvento(al_entidad.getEvento());
       lld_log.setDetalle(al_entidad.getDetalle());
+      lld_log.setIdEntidad(al_entidad.getIdEntidad());
 
       return lld_log;
     }
@@ -42,7 +43,8 @@ public class LogHelper {
       ll_log.setIdLog(ald_logDTO.getId());
       ll_log.setEvento(ald_logDTO.getEvento());
       ll_log.setDetalle(ald_logDTO.getDetalle());
-      ll_log.setIdUsuarioCreacion(ald_logDTO.getUserId());
+      ll_log.setIdEntidad(ald_logDTO.getIdEntidad());
+      ll_log.setIdUsuarioCreacion(ald_logDTO.getIdEntidad());
       ll_log.setIpCreacion(ald_logDTO.getIp());
       ll_log.setFechaCreacion(ald_logDTO.getTime());
 

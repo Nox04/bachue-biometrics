@@ -26,18 +26,15 @@ public class SesionDAOImpl implements ISesionDAO {
 
 	@EJB
 	private IEntityManagerFactory iiemf_entityFactory;
-	
-	@PersistenceContext
-	private EntityManager iem_entityManager;
 
 	@Override
 	public Sesion consultarSesion(String as_sesion) {
-		iem_entityManager = iiemf_entityFactory.getEntityManager();
+		EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
 		String ls_query = "SELECT u FROM Sesion u WHERE u.sesion =:sesion ";
-		TypedQuery<Sesion> itq_querySesion = iem_entityManager.createQuery(ls_query, Sesion.class);
+		TypedQuery<Sesion> itq_querySesion = lem_entityManager.createQuery(ls_query, Sesion.class);
 		itq_querySesion.setParameter("sesion", as_sesion);
 		Sesion is_sesion = itq_querySesion.getSingleResult();
-		iem_entityManager.close();
+		lem_entityManager.close();
 		return is_sesion;
 	}
 }

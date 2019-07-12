@@ -25,6 +25,9 @@ public class Log extends BaseModel implements Serializable {
   @Column(name = "EVENTO", nullable = false, length = 50)
   private String evento;
 
+  @Column(name = "ID_ENTIDAD", nullable = false)
+  private String idEntidad;
+
   @Column(name = "DETALLE", nullable = false)
   private String detalle;
 
@@ -50,5 +53,13 @@ public class Log extends BaseModel implements Serializable {
 
   public void setEvento(String evento) {
     this.evento = evento;
+  }
+
+  public String getIdEntidad() {
+    return idEntidad;
+  }
+
+  public void setIdEntidad(String idEntidad) {
+    this.idEntidad = idEntidad;
   }
 }

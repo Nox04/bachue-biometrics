@@ -21,7 +21,7 @@ public class Sesion extends BaseModel implements Serializable {
   public Sesion() {}
 
   @Id()
-  @Column(name = "SESION", length = 200, nullable = false)
+  @Column(name = "ID_SESION", length = 200, nullable = false)
   private String sesion;
 
   @Column(name = "RESULTADO", nullable = false)
