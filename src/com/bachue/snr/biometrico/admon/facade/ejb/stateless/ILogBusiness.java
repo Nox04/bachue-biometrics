@@ -16,4 +16,12 @@ public interface ILogBusiness {
    * @return true si el evento es registrado con éxito.
    */
   Boolean registrarEvento(LogDTO ald_log);
+
+  /**
+   * Método que envía los datos de la petición de stat al DAO para ser consultado.
+   * @param as_tipo tipo de peticicion a consultar.
+   * @param as_id id de la entidad a consultar.
+   * @return int con el conteo de la entidad consultada.
+   */
+  int consultarStats(String as_tipo, String as_id);
 }

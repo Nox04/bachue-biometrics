@@ -3,12 +3,15 @@ package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IEntityManagerFactory;
 import com.bachue.snr.biometrico.admon.persistence.model.Log;
+import com.bachue.snr.biometrico.admon.persistence.model.Sesion;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -34,5 +37,18 @@ public class LogDAOImpl implements ILogDAO {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public int consultarStats(String as_tipo, String as_id) {
+		EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
+		Query iq_query = lem_entityManager.createNativeQuery(
+						"SELECT COUNT(*) FROM SDB_BGN_LOG WHERE EVENTO =:tipo AND ID_ENTIDAD =:id"
+		);
+		iq_query.setParameter("tipo", as_tipo);
+		iq_query.setParameter("id", as_id);
+		int ii_conteo = ((Number) iq_query.getSingleResult()).intValue();
+		lem_entityManager.close();
+		return ii_conteo;
 	}
 }

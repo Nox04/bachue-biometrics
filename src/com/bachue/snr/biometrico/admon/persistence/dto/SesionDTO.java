@@ -1,7 +1,5 @@
 package com.bachue.snr.biometrico.admon.persistence.dto;
 
-import com.bachue.snr.biometrico.admon.enums.DedosEnum;
-
 import java.io.Serializable;
 
 /**

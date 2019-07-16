@@ -26,4 +26,9 @@ public class LogBusiness implements ILogBusiness {
   public Boolean registrarEvento(LogDTO ald_log) {
     return iild_logDao.crearEvento(LogHelper.toEntity(ald_log));
   }
+
+  @Override
+  public int consultarStats(String as_tipo, String as_id) {
+    return iild_logDao.consultarStats(as_tipo, as_id);
+  }
 }
