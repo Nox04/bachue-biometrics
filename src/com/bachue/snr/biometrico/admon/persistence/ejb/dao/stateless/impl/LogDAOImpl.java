@@ -42,8 +42,8 @@ public class LogDAOImpl implements ILogDAO {
 	@Override
 	public int consultarStats(String as_tipo, String as_id) {
 		EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
-		Query iq_query = lem_entityManager.createNativeQuery(
-						"SELECT COUNT(*) FROM SDB_BGN_LOG WHERE EVENTO =:tipo AND ID_ENTIDAD =:id"
+		Query iq_query = lem_entityManager.createQuery(
+						"SELECT COUNT(p) FROM Log p WHERE p.evento =:tipo AND p.idEntidad =:id"
 		);
 		iq_query.setParameter("tipo", as_tipo);
 		iq_query.setParameter("id", as_id);
