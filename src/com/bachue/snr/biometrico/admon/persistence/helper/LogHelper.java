@@ -44,7 +44,7 @@ public class LogHelper {
       ll_log.setEvento(ald_logDTO.getEvento());
       ll_log.setDetalle(ald_logDTO.getDetalle());
       ll_log.setIdEntidad(ald_logDTO.getIdEntidad());
-      ll_log.setIdUsuarioCreacion(ald_logDTO.getIdEntidad());
+      ll_log.setIdUsuarioCreacion(ald_logDTO.getIdUsuario());
       ll_log.setIpCreacion(ald_logDTO.getIp());
       ll_log.setFechaCreacion(ald_logDTO.getTime());
 

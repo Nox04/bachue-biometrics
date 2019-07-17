@@ -21,6 +21,8 @@ public class LogDTO extends BaseDTO implements Serializable{
 
   private String is_idEntidad;
 
+  private String is_idUsuario;
+
   public String getId() {
     return is_id;
   }
@@ -51,5 +53,13 @@ public class LogDTO extends BaseDTO implements Serializable{
 
   public void setIdEntidad(String as_idEntidad) {
     this.is_idEntidad = as_idEntidad;
+  }
+
+  public String getIdUsuario() {
+    return is_idUsuario;
+  }
+
+  public void setIdUsuario(String as_idUsuario) {
+    is_idUsuario = as_idUsuario;
   }
 }
