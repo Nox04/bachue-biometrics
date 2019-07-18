@@ -6,7 +6,7 @@ import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ISesionDAO;
 import com.bachue.snr.biometrico.admon.persistence.helper.SesionHelper;
 
 import javax.ejb.EJB;
-import javax.ejb.LocalBean;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 /**
