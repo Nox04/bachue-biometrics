@@ -14,7 +14,7 @@ import javax.jws.WebService;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Servicio SOAP con endpoints para el proyecto de biometría.
+ * Nota: Servicio SOAP con endpoints para el proyecto de biometria.
  *
  */
 @Stateless
@@ -25,9 +25,9 @@ public class SesionWS {
   ISesionBusiness iisb_sesionBusiness;
 
   /**
-   * Método que recibe la petición de verificación de sesión.
-   * @param as_sesion sesión que será validada.
-   * @return DTO con la sesión y su estado.
+   * Metodo que recibe la peticion de verificacion de sesion.
+   * @param as_sesion sesion que sera validada.
+   * @return DTO con la sesion y su estado.
    */
   @WebMethod(action = "consultarSesion")
   @WebResult(name = "sesion")

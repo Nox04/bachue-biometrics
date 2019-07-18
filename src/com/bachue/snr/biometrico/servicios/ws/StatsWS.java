@@ -13,7 +13,7 @@ import javax.jws.WebService;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Servicio SOAP con endpoints para el proyecto de biometría.
+ * Nota: Servicio SOAP con endpoints para el proyecto de biometria.
  *
  */
 @Stateless
@@ -24,10 +24,10 @@ public class StatsWS {
   ILogBusiness iilb_logBusiness;
 
   /**
-   * Método que recibe la petición de estadísticas.
+   * Metodo que recibe la peticion de estadisticas.
    * @param as_tipo tipo de stat consultada.
    * @param as_id id de la entidad asociada.
-   * @return DTO con la sesión y su estado.
+   * @return DTO con la sesion y su estado.
    */
   @WebMethod(action = "consultarStats")
   @WebResult(name = "stats")

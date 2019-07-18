@@ -7,7 +7,7 @@ import com.bachue.snr.biometrico.admon.persistence.model.Log;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Helper de conversión entre DTO y DAO de log.
+ * Nota: Helper de conversion entre DTO y DAO de log.
  *
  */
 public class LogHelper {
@@ -15,8 +15,8 @@ public class LogHelper {
     private LogHelper() {}
 
   /**
-   * Método que mapea una entidad a su DTO correspondiente.
-   * @param al_entidad que será convertida a DTO.
+   * Metodo que mapea una entidad a su DTO correspondiente.
+   * @param al_entidad que sera convertida a DTO.
    * @return DTO mapeado desde la entidad.
    */
     public static LogDTO toDto(Log al_entidad) {
@@ -32,8 +32,8 @@ public class LogHelper {
     }
 
   /**
-   * Método que mapea un DTO a su entidad correspondiente.
-   * @param ald_logDTO que será convertido a la entidad correspondiente.
+   * Metodo que mapea un DTO a su entidad correspondiente.
+   * @param ald_logDTO que sera convertido a la entidad correspondiente.
    * @return entidad mapeada desde el DTO recibido.
    */
     public static Log toEntity(LogDTO ald_logDTO) {

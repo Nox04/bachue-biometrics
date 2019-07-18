@@ -34,8 +34,8 @@ public class BaseDTO {
   }
 
   /**
-   * Método que agrega los campos de auditoria que son obtenibles desde el request.
-   * @param ahsr_req Request con la información HTTP de la petición recibida.
+   * Metodo que agrega los campos de auditoria que son obtenibles desde el request.
+   * @param ahsr_req Request con la informacion HTTP de la peticion recibida.
    */
   public void agregarValoresAuditoria(HttpServletRequest ahsr_req) {
     this.setIp(ahsr_req.getRemoteAddr());

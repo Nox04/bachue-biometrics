@@ -20,7 +20,7 @@ import java.util.Map;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Servicio REST con endpoints para el proyecto de biometría.
+ * Nota: Servicio REST con endpoints para el proyecto de biometria.
  *
  */
 @Stateless
@@ -35,8 +35,8 @@ public class BiometriaRS extends Application {
   ILogBusiness iilb_logBusiness;
 
   /**
-   * Método que recibe la petición HTTP de enrolamiento y la mapea al DTO.
-   * @param ahd_huella DTO con la información de la huella.
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param ahd_huella DTO con la informacion de la huella.
    * @return respuesta HTTP con el resultado del enrolamiento.
    */
   @POST
@@ -49,9 +49,9 @@ public class BiometriaRS extends Application {
   }
 
   /**
-   * Método que recibe la petición HTTP de verificación y la mapea al DTO.
-   * @param ahd_huella DTO con la información de la huella.
-   * @return respuesta HTTP con el resultado de la verificación.
+   * Metodo que recibe la peticion HTTP de verificacion y la mapea al DTO.
+   * @param ahd_huella DTO con la informacion de la huella.
+   * @return respuesta HTTP con el resultado de la verificacion.
    */
   @POST
   @Produces(MediaType.APPLICATION_JSON)
@@ -62,10 +62,10 @@ public class BiometriaRS extends Application {
   }
 
   /**
-   * Método que recibe la petición HTTP de log y la mapea al DTO.
-   * @param ald_log DTO con la información del evento a loguear.
-   * @param ahsr_req Request con la información HTTP de la petición recibida.
-   * @return respuesta HTTP con el resultado de la operación.
+   * Metodo que recibe la peticion HTTP de log y la mapea al DTO.
+   * @param ald_log DTO con la informacion del evento a loguear.
+   * @param ahsr_req Request con la informacion HTTP de la peticion recibida.
+   * @return respuesta HTTP con el resultado de la operacion.
    */
   @POST
   @Path("/log")
@@ -78,8 +78,8 @@ public class BiometriaRS extends Application {
   }
 
   /**
-   * Método que mapea las clases con peticiones rest a través de jersey.
-   * @return mapa hash con la información de los métodos REST que se mapearán.
+   * Metodo que mapea las clases con peticiones rest a traves de jersey.
+   * @return mapa hash con la informacion de los metodos REST que se mapearan.
    */
   @Override
   public Map<String, Object> getProperties() {

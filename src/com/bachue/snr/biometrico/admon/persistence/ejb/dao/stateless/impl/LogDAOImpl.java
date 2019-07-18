@@ -17,7 +17,7 @@ import javax.persistence.TypedQuery;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Implementación de interface de DAO que permite la gestión de logs.
+ * Nota: Implementacion de interface de DAO que permite la gestion de logs.
  *
  */
 @Stateless

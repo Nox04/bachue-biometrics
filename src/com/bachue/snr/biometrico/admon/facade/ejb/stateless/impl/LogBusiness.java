@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Implementación de lógica de negocio de logs.
+ * Nota: Implementacion de logica de negocio de logs.
  *
  */
 @Stateless(name="LogBusiness")

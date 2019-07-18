@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Implementación de interface de DAO que permite la gestión de operaciones biométricas.
+ * Nota: Implementacion de interface de DAO que permite la gestion de operaciones biometricas.
  *
  */
 @Stateless

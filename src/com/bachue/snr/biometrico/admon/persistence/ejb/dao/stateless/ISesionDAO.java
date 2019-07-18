@@ -14,9 +14,9 @@ import javax.ejb.Local;
 @Local
 public interface ISesionDAO {
   /**
-   * Método que consulta la sesión en la tabla de sesiones.
-   * @param as_sesion Sesión que será consultada en la base de datos.
-   * @return Sesión consultada en la base de datos.
+   * Metodo que consulta la sesion en la tabla de sesiones.
+   * @param as_sesion Sesion que sera consultada en la base de datos.
+   * @return Sesion consultada en la base de datos.
    */
   Sesion consultarSesion(String as_sesion);
 }

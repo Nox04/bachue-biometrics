@@ -7,14 +7,14 @@ import javax.ejb.Local;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Interface con los métodos del singleton del EntityManagerFactory.
+ * Nota: Interface con los metodos del singleton del EntityManagerFactory.
  *
  */
 @Local
 public interface IEntityManagerFactory {
 
   /**
-   * Método que accede al singleton del entity manager.
+   * Metodo que accede al singleton del entity manager.
    */
 	EntityManager getEntityManager();
 

@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Modelo de persistencia de sesión.
+ * Nota: Modelo de persistencia de sesion.
  *
  */
 @Entity

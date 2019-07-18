@@ -7,7 +7,7 @@ import com.bachue.snr.biometrico.admon.persistence.model.Sesion;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Helper de conversión entre DTO y DAO de sesión.
+ * Nota: Helper de conversion entre DTO y DAO de sesion.
  *
  */
 public class SesionHelper {
@@ -15,8 +15,8 @@ public class SesionHelper {
     private SesionHelper() {}
 
   /**
-   * Método que mapea una entidad a su DTO correspondiente.
-   * @param as_entidad que será convertida a DTO.
+   * Metodo que mapea una entidad a su DTO correspondiente.
+   * @param as_entidad que sera convertida a DTO.
    * @return DTO mapeado desde la entidad.
    */
     public static SesionDTO toDto(Sesion as_entidad) {
@@ -30,8 +30,8 @@ public class SesionHelper {
     }
 
   /**
-   * Método que recibe la petición HTTP de enrolamiento y la mapea al DTO.
-   * @param asd_sesionDTO que será convertido a la entidad correspondiente.
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param asd_sesionDTO que sera convertido a la entidad correspondiente.
    * @return entidad mapeada desde el DTO recibido.
    */
     public static Sesion toEntity(SesionDTO asd_sesionDTO) {

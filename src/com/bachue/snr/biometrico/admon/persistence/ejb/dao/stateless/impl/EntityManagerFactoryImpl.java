@@ -12,7 +12,7 @@ import javax.persistence.PersistenceUnit;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Implementación del EntityManagerFactory para el acceso a datos.
+ * Nota: Implementacion del EntityManagerFactory para el acceso a datos.
  *
  */
 @Singleton

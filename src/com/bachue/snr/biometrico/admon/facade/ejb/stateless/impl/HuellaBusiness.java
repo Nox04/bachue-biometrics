@@ -12,7 +12,7 @@ import javax.ejb.Stateless;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Implementación de lógica de negocio de operaciones biométricas.
+ * Nota: Implementacion de logica de negocio de operaciones biometricas.
  *
  */
 @Stateless(name="HuellaBusiness")
