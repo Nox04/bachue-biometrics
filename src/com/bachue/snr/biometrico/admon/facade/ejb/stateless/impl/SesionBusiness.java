@@ -16,8 +16,8 @@ import javax.ejb.Stateless;
  * Nota: Implementación de lógica de negocio de sesiones.
  *
  */
-@Stateless(name="SesionBusiness", mappedName="ejb/SesionBusiness")
-@LocalBean
+@Stateless(name="SesionBusiness")
+@Local
 public class SesionBusiness implements ISesionBusiness {
   @EJB
   private ISesionDAO iisd_sesionDao;

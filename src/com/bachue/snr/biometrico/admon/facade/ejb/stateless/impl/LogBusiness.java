@@ -16,8 +16,8 @@ import javax.ejb.Stateless;
  * Nota: Implementación de lógica de negocio de logs.
  *
  */
-@Stateless(name="LogBusiness", mappedName="ejb/LogBusiness")
-@LocalBean
+@Stateless(name="LogBusiness")
+@Local
 public class LogBusiness implements ILogBusiness {
   @EJB
   private ILogDAO iild_logDao;

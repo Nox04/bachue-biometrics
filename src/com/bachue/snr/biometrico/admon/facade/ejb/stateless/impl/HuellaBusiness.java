@@ -5,7 +5,7 @@ import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
 
 import javax.ejb.EJB;
-import javax.ejb.LocalBean;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 /**
@@ -15,8 +15,8 @@ import javax.ejb.Stateless;
  * Nota: Implementación de lógica de negocio de operaciones biométricas.
  *
  */
-@Stateless(name="HuellaBusiness", mappedName="ejb/HuellaBusiness")
-@LocalBean
+@Stateless(name="HuellaBusiness")
+@Local
 public class HuellaBusiness implements IHuellaBusiness {
   @EJB
   private IHuellaDAO iihd_huellaDao;

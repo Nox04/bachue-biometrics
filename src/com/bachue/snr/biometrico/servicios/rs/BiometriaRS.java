@@ -28,10 +28,10 @@ import java.util.Map;
 @Path("/biometria")
 public class BiometriaRS extends Application {
 
-  @EJB(mappedName = "ejb/HuellaBusiness")
+  @EJB
   IHuellaBusiness iihb_huellaBusiness;
 
-  @EJB(mappedName = "ejb/LogBusiness")
+  @EJB
   ILogBusiness iilb_logBusiness;
 
   /**
