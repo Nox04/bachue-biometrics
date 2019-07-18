@@ -11,21 +11,21 @@ import java.io.Serializable;
  *
  */
 @Entity
-@Table(name = "SDB_BGN_LOG")
+@Table(name = "SDB_AUD_ACCION")
 public class Log extends BaseModel implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public Log() {}
 
   @Id()
-  @Column(name = "ID_LOG", length = 20)
+  @Column(name = "ID_ACCION", length = 20)
   @GeneratedValue
   private String idLog;
 
   @Column(name = "EVENTO", nullable = false, length = 50)
   private String evento;
 
-  @Column(name = "ID_ENTIDAD", nullable = false)
+  @Column(name = "ID_ENTIDAD", nullable = false,  length = 50)
   private String idEntidad;
 
   @Column(name = "DETALLE", nullable = false)

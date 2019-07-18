@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  */
 @Entity
-@Table(name = "SDB_BGN_HUELLA")
+@Table(name = "SDB_AUT_HUELLA")
 public class Huella extends BaseModel implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class Huella extends BaseModel implements Serializable {
   private int posicion;
 
   @ManyToOne(optional = false)
-  @JoinColumn(name="ID_USUARIO")
+  @JoinColumn(name="ID_USUARIO_HASH")
   private Usuario usuario;
 
   public String getIdHuella() {

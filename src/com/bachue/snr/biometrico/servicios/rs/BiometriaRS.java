@@ -54,7 +54,6 @@ public class BiometriaRS extends Application {
    * @return respuesta HTTP con el resultado de la verificación.
    */
   @POST
-  @Path("/")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public Response verificar(HuellaDTO ahd_huella) {

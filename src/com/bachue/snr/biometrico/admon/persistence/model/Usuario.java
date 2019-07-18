@@ -2,6 +2,7 @@ package com.bachue.snr.biometrico.admon.persistence.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  *
@@ -11,18 +12,24 @@ import java.io.Serializable;
  *
  */
 @Entity
-@Table(name = "SDB_BGN_USUARIO")
+@Table(name = "SDB_AUT_USUARIO")
 public class Usuario extends BaseModel implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public Usuario() {}
 
   @Id()
-  @Column(name = "ID_USUARIO", length = 200, nullable = false)
+  @Column(name = "ID_USUARIO_HASH", length = 200, nullable = false)
   private String idUsuario;
 
   @Column(name = "CLAVE_HASH", length = 200, nullable = false)
   private String claveHash;
+
+  @Column(name = "FECHA_VENCIMIENTO", length = 6)
+  private Timestamp fechaVencimiento;
+
+  @Column(name = "CLAVE_ACTIVA", length = 1)
+  private char claveActiva;
 
   public String getIdUsuario() {
     return idUsuario;
@@ -38,5 +45,21 @@ public class Usuario extends BaseModel implements Serializable {
 
   public void setClaveHash(String claveHash) {
     this.claveHash = claveHash;
+  }
+
+  public Timestamp getFechaVencimiento() {
+    return fechaVencimiento;
+  }
+
+  public void setFechaVencimiento(Timestamp fechaVencimiento) {
+    this.fechaVencimiento = fechaVencimiento;
+  }
+
+  public char getClaveActiva() {
+    return claveActiva;
+  }
+
+  public void setClaveActiva(char claveActiva) {
+    this.claveActiva = claveActiva;
   }
 }
