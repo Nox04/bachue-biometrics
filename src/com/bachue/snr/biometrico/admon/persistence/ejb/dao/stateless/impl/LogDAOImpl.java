@@ -3,15 +3,12 @@ package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IEntityManagerFactory;
 import com.bachue.snr.biometrico.admon.persistence.model.Log;
-import com.bachue.snr.biometrico.admon.persistence.model.Sesion;
 
 import javax.ejb.EJB;
-import javax.ejb.LocalBean;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -21,7 +18,7 @@ import javax.persistence.TypedQuery;
  *
  */
 @Stateless
-@LocalBean
+@Local
 public class LogDAOImpl implements ILogDAO {
 
 	@EJB

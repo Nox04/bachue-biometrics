@@ -2,8 +2,10 @@ package com.bachue.snr.biometrico.servicios.rs;
 
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ILogBusiness;
+import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IUsuarioBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -34,6 +36,9 @@ public class BiometriaRS extends Application {
   @EJB
   ILogBusiness iilb_logBusiness;
 
+  @EJB
+  IUsuarioBusiness iiub_usuarioBusiness;
+
   /**
    * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
    * @param ahd_huella DTO con la informacion de la huella.
@@ -45,6 +50,20 @@ public class BiometriaRS extends Application {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response enrolar(HuellaDTO ahd_huella) {
     Boolean lb_estado = iihb_huellaBusiness.enrolarHuella(ahd_huella);
+    return Response.status(200).entity(lb_estado).build();
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param aud_usuario DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @POST
+  @Path("/usuario")
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response crearUsuario(UsuarioDTO aud_usuario) {
+    Boolean lb_estado = iiub_usuarioBusiness.crearUsuario(aud_usuario);
     return Response.status(200).entity(lb_estado).build();
   }
 

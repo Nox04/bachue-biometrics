@@ -4,7 +4,7 @@ import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IEntityManagerFactory;
 
 import javax.ejb.EJB;
-import javax.ejb.LocalBean;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 /**
@@ -15,7 +15,7 @@ import javax.ejb.Stateless;
  *
  */
 @Stateless
-@LocalBean
+@Local
 public class HuellaDAOImpl implements IHuellaDAO {
 
 	@EJB

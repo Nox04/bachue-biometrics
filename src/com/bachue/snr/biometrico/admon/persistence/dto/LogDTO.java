@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Nota: DTO de logs.
  *
  */
-public class LogDTO extends BaseDTO implements Serializable{
+public class LogDTO extends BaseDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
