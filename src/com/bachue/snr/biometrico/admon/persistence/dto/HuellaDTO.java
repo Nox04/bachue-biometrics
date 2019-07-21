@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Nota: DTO de huellas.
  *
  */
-public class HuellaDTO implements Serializable{
+public class HuellaDTO extends BaseDTO implements Serializable{
 
   private static final long serialVersionUID = 1L;
 

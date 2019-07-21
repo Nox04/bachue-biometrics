@@ -76,7 +76,8 @@ public class BiometriaRS extends Application {
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response verificar(HuellaDTO ahd_huella) {
+  public Response verificar(HuellaDTO ahd_huella, @Context HttpServletRequest ahsr_req) {
+    ahd_huella.agregarValoresAuditoria(ahsr_req);
     Boolean lb_estado = iihb_huellaBusiness.verificarHuella(ahd_huella);
     return Response.status(200).entity(lb_estado).build();
   }
