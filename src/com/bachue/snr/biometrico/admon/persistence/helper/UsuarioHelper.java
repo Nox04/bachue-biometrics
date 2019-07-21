@@ -46,7 +46,7 @@ public class UsuarioHelper {
       lu_usuario.setClaveHash(aud_usuarioDTO.getClave());
       lu_usuario.setFechaVencimiento(aud_usuarioDTO.getFechaVencimiento());
       lu_usuario.setClaveActiva(aud_usuarioDTO.getClaveActiva());
-      lu_usuario.setIdUsuarioCreacion(aud_usuarioDTO.getIdUsuario());
+      lu_usuario.setIdUsuarioCreacion(aud_usuarioDTO.getIdUsuarioCreacion());
       lu_usuario.setIpCreacion(aud_usuarioDTO.getIp());
       lu_usuario.setFechaCreacion(aud_usuarioDTO.getTime());
 

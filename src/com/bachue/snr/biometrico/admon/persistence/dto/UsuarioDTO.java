@@ -18,6 +18,8 @@ public class UsuarioDTO extends BaseDTO implements Serializable {
   private String is_clave;
   private Timestamp it_fechaVencimiento;
   private char ic_claveActiva;
+  private String is_idUsuarioCreacion;
+
 
   public String getIdUsuario() {
     return is_idUsuario;
@@ -49,5 +51,13 @@ public class UsuarioDTO extends BaseDTO implements Serializable {
 
   public void setClaveActiva(char ac_claveActiva) {
     this.ic_claveActiva = ac_claveActiva;
+  }
+
+  public String getIdUsuarioCreacion() {
+    return is_idUsuarioCreacion;
+  }
+
+  public void setIdUsuarioCreacion(String as_idUsuarioCreacion) {
+    this.is_idUsuarioCreacion = as_idUsuarioCreacion;
   }
 }

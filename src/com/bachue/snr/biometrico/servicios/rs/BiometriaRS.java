@@ -62,7 +62,8 @@ public class BiometriaRS extends Application {
   @Path("/usuario")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response crearUsuario(UsuarioDTO aud_usuario) {
+  public Response crearUsuario(UsuarioDTO aud_usuario, @Context HttpServletRequest ahsr_req) {
+    aud_usuario.agregarValoresAuditoria(ahsr_req);
     Boolean lb_estado = iiub_usuarioBusiness.crearUsuario(aud_usuario);
     return Response.status(200).entity(lb_estado).build();
   }

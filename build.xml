@@ -12,29 +12,9 @@
 	<property name="target" value="1.8" />
 	<property name="source" value="1.8" />
 	<path id="Web App Libraries.libraryclasspath">
-		<pathelement location="WebContent/WEB-INF/lib/ant-launcher.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/commons-codec-1.12.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/commons-logging-1.1.3.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/eclipselink-2.7.4.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/jackson-core-2.9.8.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/jackson-databind-2.9.7.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/javax.persistence-2.2.1.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/jersey-container-servlet-core-2.28.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/jersey-server-2.28.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/log4j-1.2.17.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/org.eclipse.persistence.jpa-2.5.0.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-aop-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-beans-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-context-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-core-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-expression-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-security-acl-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-security-config-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-security-core-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-security-taglibs-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-security-web-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-web-5.1.4.RELEASE.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/spring-webmvc-5.1.4.RELEASE.jar" />
+		<fileset dir="WebContent/WEB-INF/lib">
+			<include name="**/*.jar" />
+		</fileset>
 		<pathelement location="WebContent/WEB-INF/classes" />
 	</path>
 	<path id="EAR Libraries.libraryclasspath" />
