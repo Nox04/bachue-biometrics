@@ -4,6 +4,7 @@ import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.model.Log;
 import com.bachue.snr.biometrico.admon.persistence.model.Usuario;
+import com.bachue.snr.biometrico.biometrics.Criptografia;
 
 /**
  *
@@ -42,8 +43,8 @@ public class UsuarioHelper {
 
       Usuario lu_usuario = new Usuario();
 
-      lu_usuario.setIdUsuario(aud_usuarioDTO.getIdUsuario());
-      lu_usuario.setClaveHash(aud_usuarioDTO.getClave());
+      lu_usuario.setIdUsuario(Criptografia.encrypt(aud_usuarioDTO.getIdUsuario()));
+      lu_usuario.setClaveHash(Criptografia.encrypt(aud_usuarioDTO.getClave()));
       lu_usuario.setFechaVencimiento(aud_usuarioDTO.getFechaVencimiento());
       lu_usuario.setClaveActiva(aud_usuarioDTO.getClaveActiva());
       lu_usuario.setIdUsuarioCreacion(aud_usuarioDTO.getIdUsuarioCreacion());

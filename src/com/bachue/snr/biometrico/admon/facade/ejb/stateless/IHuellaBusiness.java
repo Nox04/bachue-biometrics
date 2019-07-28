@@ -1,6 +1,7 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
 
 /**
  *
@@ -19,8 +20,8 @@ public interface IHuellaBusiness {
 
   /**
    * Metodo que compara los datos de la huella con los registros biometricos almacenados.
-   * @param ahd_huella DTO con la informacion de la huella.
+   * @param avd_verificacion DTO con la informacion de la huella.
    * @return true si la huella es procesada con exito. Incluso si el resultado es negativo.
    */
-  Boolean verificarHuella(HuellaDTO ahd_huella);
+  Boolean verificarHuella(VerificacionDTO avd_verificacion);
 }

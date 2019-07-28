@@ -1,6 +1,7 @@
 package com.bachue.snr.biometrico.biometrics;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
 import com.neurotec.biometrics.*;
 import com.neurotec.io.NBuffer;
 import org.apache.commons.codec.binary.Base64;
@@ -11,16 +12,16 @@ import java.util.EnumSet;
 
 public class Verificador {
 
-  public boolean verificar(HuellaDTO ahd_huella) {
+  public boolean verificar(VerificacionDTO avd_verificacion) {
     NSubject lns_subjectCandidate = new NSubject();
     NSubject lns_subjectProbe = new NSubject();
 
     try {
       crearCarpeta();
-      byte[] data = Base64.decodeBase64(ahd_huella.getTemplate());
-      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + ahd_huella.getUsuarioId()+ ".bmp"), data);
-      NBuffer lnb_bufferCandidate = Extractor.crearTemplate("biometria/cache/" + ahd_huella.getUsuarioId()+ ".bmp");
-      NBuffer lnb_bufferProbe = Extractor.crearTemplate("biometria/huellas/" + ahd_huella.getUsuarioId()+ ".bmp");
+      byte[] data = Base64.decodeBase64(avd_verificacion.getTemplate());
+      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + avd_verificacion.getUsuarioId()+ ".bmp"), data);
+      NBuffer lnb_bufferCandidate = Extractor.crearTemplate("biometria/cache/" + avd_verificacion.getUsuarioId()+ ".bmp");
+      NBuffer lnb_bufferProbe = Extractor.crearTemplate("biometria/huellas/" + avd_verificacion.getUsuarioId()+ ".bmp");
       if(lnb_bufferProbe != null && lnb_bufferCandidate != null){
         lns_subjectCandidate.setTemplateBuffer(lnb_bufferCandidate);
         lns_subjectProbe.setTemplateBuffer(lnb_bufferProbe);

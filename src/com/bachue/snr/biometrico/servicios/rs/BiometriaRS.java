@@ -6,6 +6,7 @@ import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IUsuarioBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
 import com.bachue.snr.biometrico.biometrics.util.ManejadorDeLibrerias;
 
 import javax.ejb.EJB;
@@ -49,7 +50,8 @@ public class BiometriaRS extends Application {
   @Path("/huella")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response enrolar(HuellaDTO ahd_huella) {
+  public Response enrolar(HuellaDTO ahd_huella, @Context HttpServletRequest ahsr_req) {
+    ahd_huella.agregarValoresAuditoria(ahsr_req);
     Boolean lb_estado = iihb_huellaBusiness.enrolarHuella(ahd_huella);
     return Response.status(200).entity(lb_estado).build();
   }
@@ -65,21 +67,21 @@ public class BiometriaRS extends Application {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response crearUsuario(UsuarioDTO aud_usuario, @Context HttpServletRequest ahsr_req) {
     aud_usuario.agregarValoresAuditoria(ahsr_req);
-    Boolean lb_estado = iiub_usuarioBusiness.crearUsuario(aud_usuario);
-    return Response.status(200).entity(lb_estado).build();
+    String ls_resultado = iiub_usuarioBusiness.crearUsuario(aud_usuario);
+    return Response.status(200).entity(ls_resultado).build();
   }
 
   /**
    * Metodo que recibe la peticion HTTP de verificacion y la mapea al DTO.
-   * @param ahd_huella DTO con la informacion de la huella.
+   * @param avd_verificacion DTO con la informacion de la huella.
    * @return respuesta HTTP con el resultado de la verificacion.
    */
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response verificar(HuellaDTO ahd_huella, @Context HttpServletRequest ahsr_req) {
-    ahd_huella.agregarValoresAuditoria(ahsr_req);
-    Boolean lb_estado = iihb_huellaBusiness.verificarHuella(ahd_huella);
+  public Response verificar(VerificacionDTO avd_verificacion, @Context HttpServletRequest ahsr_req) {
+    avd_verificacion.agregarValoresAuditoria(ahsr_req);
+    Boolean lb_estado = iihb_huellaBusiness.verificarHuella(avd_verificacion);
     return Response.status(200).entity(lb_estado).build();
   }
 

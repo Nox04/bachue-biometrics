@@ -1,6 +1,7 @@
 package com.bachue.snr.biometrico.admon.persistence.dto;
 
 import com.bachue.snr.biometrico.admon.enums.DedosEnum;
+import com.bachue.snr.biometrico.biometrics.Criptografia;
 
 import java.io.Serializable;
 
@@ -19,6 +20,7 @@ public class HuellaDTO extends BaseDTO implements Serializable{
   private DedosEnum ide_posicion;
   private String is_template;
   private String is_usuarioId;
+  private String is_usuarioCreacionId;
 
   public Integer getId() {
     return ii_id;
@@ -49,6 +51,14 @@ public class HuellaDTO extends BaseDTO implements Serializable{
   }
 
   public void setUsuarioId(String as_usuarioId) {
-    this.is_usuarioId = as_usuarioId;
+    this.is_usuarioId = Criptografia.encrypt(as_usuarioId);
+  }
+
+  public String getUsuarioCreacionId() {
+    return is_usuarioCreacionId;
+  }
+
+  public void setUsuarioCreacionId(String as_usuarioCreacionId) {
+    this.is_usuarioCreacionId = as_usuarioCreacionId;
   }
 }

@@ -1,6 +1,7 @@
 package com.bachue.snr.biometrico.admon.persistence.helper;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.SesionDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
 import com.bachue.snr.biometrico.admon.persistence.model.Sesion;
 
 /**
@@ -40,7 +41,27 @@ public class SesionHelper {
 
       ls_sesion.setSesion(asd_sesionDTO.getSesion());
       ls_sesion.setResultado(asd_sesionDTO.getResultado());
+      ls_sesion.setFechaCreacion(asd_sesionDTO.getTime());
+      ls_sesion.setIpCreacion(asd_sesionDTO.getIp());
 
       return ls_sesion;
     }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param avd_verificacionDTO que sera convertido a la entidad correspondiente.
+   * @return entidad mapeada desde el DTO recibido.
+   */
+  public static Sesion createSesion(VerificacionDTO avd_verificacionDTO, boolean ab_resultado) {
+
+    Sesion ls_sesion = new Sesion();
+
+    ls_sesion.setSesion(avd_verificacionDTO.getSesion());
+    ls_sesion.setResultado(ab_resultado);
+    ls_sesion.setFechaCreacion(avd_verificacionDTO.getTime());
+    ls_sesion.setIdUsuarioCreacion(avd_verificacionDTO.getUsuarioCreacionId());
+    ls_sesion.setIpCreacion(avd_verificacionDTO.getIp());
+
+    return ls_sesion;
+  }
 }

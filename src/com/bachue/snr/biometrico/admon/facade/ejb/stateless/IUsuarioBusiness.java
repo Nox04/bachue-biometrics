@@ -15,5 +15,5 @@ public interface IUsuarioBusiness {
    * @param aud_usuario DTO con la informacion del usuario.
    * @return true si el usuario es registrado con exito.
    */
-  Boolean crearUsuario(UsuarioDTO aud_usuario);
+  String crearUsuario(UsuarioDTO aud_usuario);
 }

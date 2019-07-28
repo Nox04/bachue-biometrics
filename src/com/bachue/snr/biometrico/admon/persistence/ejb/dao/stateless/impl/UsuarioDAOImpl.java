@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -33,5 +34,13 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public Usuario consultarUsuario(String idUsuario) {
+		EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
+		Usuario lu_usuario = lem_entityManager.find(Usuario.class, idUsuario);
+		lem_entityManager.close();
+		return lu_usuario;
 	}
 }

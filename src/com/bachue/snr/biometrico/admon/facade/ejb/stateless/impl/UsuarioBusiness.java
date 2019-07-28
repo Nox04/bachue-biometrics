@@ -24,10 +24,12 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   private IUsuarioDAO iiud_usuarioDao;
 
   @Override
-  public Boolean crearUsuario(UsuarioDTO aud_usuario) {
-    if(!ValidadorHelper.validarClave(aud_usuario.getClave()).equals("Validado exitosamente")) {
-      return false;
+  public String crearUsuario(UsuarioDTO aud_usuario) {
+    String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave());
+    if(ls_resultado.equals("Validado exitosamente")) {
+      return String.valueOf(iiud_usuarioDao.crearUsuario(UsuarioHelper.toEntity(aud_usuario)));
+    } else {
+      return ls_resultado;
     }
-    return iiud_usuarioDao.crearUsuario(UsuarioHelper.toEntity(aud_usuario));
   }
 }

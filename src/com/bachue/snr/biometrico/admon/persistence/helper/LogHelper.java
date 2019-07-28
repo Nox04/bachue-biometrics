@@ -1,6 +1,9 @@
 package com.bachue.snr.biometrico.admon.persistence.helper;
 
+import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
 import com.bachue.snr.biometrico.admon.persistence.model.Log;
 
 /**
@@ -50,4 +53,44 @@ public class LogHelper {
 
       return ll_log;
     }
+
+  /**
+   * Metodo que mapea un DTO a su entidad correspondiente.
+   * @param avd_verificacionDTO que sera convertido a la entidad correspondiente.
+   * @return entidad mapeada desde el DTO recibido.
+   */
+  public static Log crearLogDeVerificacion(VerificacionDTO avd_verificacionDTO, boolean ab_resultado) {
+
+    Log ll_log = new Log();
+
+    ll_log.setEvento("VERIFICACION");
+    String ls_detalle = ab_resultado ? "Usuario verificado exitosamente" : "El usuario no se pudo verificar";
+    ll_log.setDetalle(ls_detalle);
+    ll_log.setIdEntidad(avd_verificacionDTO.getUsuarioId());
+    ll_log.setIdUsuarioCreacion(avd_verificacionDTO.getUsuarioCreacionId());
+    ll_log.setIpCreacion(avd_verificacionDTO.getIp());
+    ll_log.setFechaCreacion(avd_verificacionDTO.getTime());
+
+    return ll_log;
+  }
+
+  /**
+   * Metodo que mapea un DTO a su entidad correspondiente.
+   * @param ahd_huellaDTO que sera convertido a la entidad correspondiente.
+   * @return entidad mapeada desde el DTO recibido.
+   */
+  public static Log crearLogDeEnrolamiento(HuellaDTO ahd_huellaDTO, boolean ab_resultado) {
+
+    Log ll_log = new Log();
+
+    ll_log.setEvento("ENROLAMIENTO");
+    String ls_detalle = ab_resultado ? "Usuario enrolado exitosamente" : "El usuario no se pudo enrolar";
+    ll_log.setDetalle(ls_detalle);
+    ll_log.setIdEntidad(ahd_huellaDTO.getUsuarioId());
+    ll_log.setIdUsuarioCreacion(ahd_huellaDTO.getUsuarioCreacionId());
+    ll_log.setIpCreacion(ahd_huellaDTO.getIp());
+    ll_log.setFechaCreacion(ahd_huellaDTO.getTime());
+
+    return ll_log;
+  }
 }

@@ -34,4 +34,17 @@ public class SesionDAOImpl implements ISesionDAO {
 		lem_entityManager.close();
 		return is_sesion;
 	}
+
+	@Override
+	public Boolean crearSesion(Sesion as_sesion) {
+		try {
+			EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
+			lem_entityManager.persist(as_sesion);
+			lem_entityManager.close();
+		}catch (Exception le_e) {
+			return false;
+		}
+		return true;
+	}
+
 }

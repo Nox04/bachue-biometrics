@@ -19,4 +19,11 @@ public interface IUsuarioDAO {
    * @return true si el usuario es registrado con exito.
    */
   Boolean crearUsuario(Usuario au_usuario);
+
+  /**
+   * Metodo que consulta un usuario en la tabla de usuarios.
+   * @param idUsuario id del usuario consultado.
+   * @return el usuario consultado
+   */
+  Usuario consultarUsuario(String idUsuario);
 }

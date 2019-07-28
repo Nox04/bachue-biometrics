@@ -19,4 +19,11 @@ public interface ISesionDAO {
    * @return Sesion consultada en la base de datos.
    */
   Sesion consultarSesion(String as_sesion);
+
+  /**
+   * Metodo que crea la sesion en la tabla de sesiones.
+   * @param as_sesion Sesion que sera creada en la base de datos.
+   * @return resultado de la crecion de la sesion.
+   */
+  Boolean crearSesion(Sesion as_sesion);
 }
