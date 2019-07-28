@@ -3,6 +3,10 @@ package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
+import com.bachue.snr.biometrico.biometrics.Enrolador;
+import com.bachue.snr.biometrico.biometrics.MotorBiometrico;
+import com.bachue.snr.biometrico.biometrics.Identificador;
+import com.bachue.snr.biometrico.biometrics.Verificador;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -23,11 +27,19 @@ public class HuellaBusiness implements IHuellaBusiness {
 
   @Override
   public Boolean enrolarHuella(HuellaDTO ahd_huella) {
-    return true /*usuarioDao.crearUsuario(UsuarioHelper.toEntity(usuario))*/;
+    MotorBiometrico.getInstance();
+    Enrolador le_enrolador = new Enrolador(ahd_huella);
+    boolean lb_enrolamiento = le_enrolador.enrolarUsuario();
+    //Guardar huella en la tabla
+    //Identificar antes de enrolar
+    return lb_enrolamiento;
   }
 
   @Override
   public Boolean verificarHuella(HuellaDTO ahd_huella) {
-    return true; //UsuarioHelper.toDto(usuarioDao.consultarUsuario(idUsuario));
+    MotorBiometrico.getInstance();
+    Verificador lv_verificador = new Verificador();
+    //Logs de operaciones
+    return lv_verificador.verificar(ahd_huella);
   }
 }

@@ -18,6 +18,7 @@ public class HuellaDTO extends BaseDTO implements Serializable{
   private Integer ii_id;
   private DedosEnum ide_posicion;
   private String is_template;
+  private String is_usuarioId;
 
   public Integer getId() {
     return ii_id;
@@ -41,5 +42,13 @@ public class HuellaDTO extends BaseDTO implements Serializable{
 
   public void setTemplate(String as_template) {
     this.is_template = as_template;
+  }
+
+  public String getUsuarioId() {
+    return is_usuarioId;
+  }
+
+  public void setUsuarioId(String as_usuarioId) {
+    this.is_usuarioId = as_usuarioId;
   }
 }

@@ -4,6 +4,7 @@ import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IUsuarioBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IUsuarioDAO;
 import com.bachue.snr.biometrico.admon.persistence.helper.UsuarioHelper;
+import com.bachue.snr.biometrico.admon.persistence.helper.ValidadorHelper;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -24,6 +25,9 @@ public class UsuarioBusiness implements IUsuarioBusiness {
 
   @Override
   public Boolean crearUsuario(UsuarioDTO aud_usuario) {
+    if(!ValidadorHelper.validarClave(aud_usuario.getClave()).equals("Validado exitosamente")) {
+      return false;
+    }
     return iiud_usuarioDao.crearUsuario(UsuarioHelper.toEntity(aud_usuario));
   }
 }
