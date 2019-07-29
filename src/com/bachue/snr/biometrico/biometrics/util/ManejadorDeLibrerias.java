@@ -2,6 +2,9 @@ package com.bachue.snr.biometrico.biometrics.util;
 
 import com.sun.jna.Platform;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import java.lang.reflect.Field;
 
 public class ManejadorDeLibrerias {
@@ -43,6 +46,14 @@ public class ManejadorDeLibrerias {
   }
 
   public static String obtenerRutaDelSistema() {
+    String ls_dominio = "biometria";
+    try {
+      Context lc_env = (Context) new InitialContext().lookup("java:comp/env");
+      ls_dominio = (String)lc_env.lookup("dominio");
+    } catch (NamingException lne_excepcion) {
+      lne_excepcion.printStackTrace();
+    }
+
     StringBuilder lsb_path = new StringBuilder();
     int li_index = Utils.obtenerDirectorioActivo().lastIndexOf(Utils.SEPARADOR_DE_ARCHIVOS);
     if (li_index == -1) {
@@ -55,7 +66,7 @@ public class ManejadorDeLibrerias {
         lsb_path.append(Utils.SEPARADOR_DE_ARCHIVOS);
         lsb_path.append(Platform.is64Bit() ? WIN64_X64 : WIN32_X86);
       } else {
-        lsb_path.append(ls_part + Utils.SEPARADOR_DE_ARCHIVOS + "DominioSE" + Utils.SEPARADOR_DE_ARCHIVOS +"bin");
+        lsb_path.append(ls_part).append(Utils.SEPARADOR_DE_ARCHIVOS).append(ls_dominio).append(Utils.SEPARADOR_DE_ARCHIVOS).append("bin");
         lsb_path.append(Utils.SEPARADOR_DE_ARCHIVOS);
         lsb_path.append(Platform.is64Bit() ? WIN64_X64 : WIN32_X86);
       }

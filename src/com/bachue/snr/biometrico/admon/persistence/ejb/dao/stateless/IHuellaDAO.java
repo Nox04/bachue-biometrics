@@ -19,4 +19,6 @@ public interface IHuellaDAO {
    * @return true si la huella es consultada con exito.
    */
   Boolean crearHuella(Huella ah_huella);
+
+  Boolean borrarHuellas(String as_idUsuario);
 }

@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 /**
  *
@@ -29,6 +28,23 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 		try {
 			EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
 			lem_entityManager.persist(au_usuario);
+			lem_entityManager.close();
+		}catch (Exception le_e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean actualizarClave(Usuario au_usuario) {
+		try {
+			EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
+			Usuario lu_usuario = lem_entityManager.find(Usuario.class, au_usuario.getIdUsuario());
+			lu_usuario.setClaveHash(au_usuario.getClaveHash());
+			lu_usuario.setFechaModificacion(au_usuario.getFechaModificacion());
+			lu_usuario.setIpModificacion(au_usuario.getIpModificacion());
+			lu_usuario.setIdUsuarioModificacion(au_usuario.getIdUsuarioModificacion());
+			lem_entityManager.merge(lu_usuario);
 			lem_entityManager.close();
 		}catch (Exception le_e) {
 			return false;

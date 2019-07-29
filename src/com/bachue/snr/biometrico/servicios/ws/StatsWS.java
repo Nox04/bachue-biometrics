@@ -20,7 +20,7 @@ import javax.jws.WebService;
 @WebService(serviceName = "StatsController")
 public class StatsWS {
 
-  @EJB(mappedName = "ejb/LogBusiness")
+  @EJB
   ILogBusiness iilb_logBusiness;
 
   /**

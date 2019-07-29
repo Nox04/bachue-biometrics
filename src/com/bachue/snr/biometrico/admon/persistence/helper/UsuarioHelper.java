@@ -53,4 +53,22 @@ public class UsuarioHelper {
 
       return lu_usuario;
     }
+
+  /**
+   * Metodo que mapea un DTO a su entidad correspondiente.
+   * @param aud_usuarioDTO que sera convertido a la entidad correspondiente.
+   * @return entidad mapeada desde el DTO recibido.
+   */
+  public static Usuario usuarioConClave(UsuarioDTO aud_usuarioDTO) {
+
+    Usuario lu_usuario = new Usuario();
+
+    lu_usuario.setIdUsuario(Criptografia.encrypt(aud_usuarioDTO.getIdUsuario()));
+    lu_usuario.setClaveHash(Criptografia.encrypt(aud_usuarioDTO.getClave()));
+    lu_usuario.setIdUsuarioModificacion(aud_usuarioDTO.getIdUsuarioCreacion());
+    lu_usuario.setIpModificacion(aud_usuarioDTO.getIp());
+    lu_usuario.setFechaModificacion(aud_usuarioDTO.getTime());
+
+    return lu_usuario;
+  }
 }

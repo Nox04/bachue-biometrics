@@ -1,6 +1,7 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
 
 /**
@@ -24,4 +25,18 @@ public interface IHuellaBusiness {
    * @return true si la huella es procesada con exito. Incluso si el resultado es negativo.
    */
   Boolean verificarHuella(VerificacionDTO avd_verificacion);
+
+  /**
+   * Metodo que borra las huellas del usuario.
+   * @param aud_usuario DTO con la informacion del usuario.
+   * @return true si el usuario es registrado con exito.
+   */
+  String borrarHuellas(UsuarioDTO aud_usuario);
+
+  /**
+   * Metodo que crea el megatemplate del usuario.
+   * @param ahd_huella DTO con la informacion del usuario.
+   * @return true si el usuario es registrado con exito.
+   */
+  Boolean crearMegaTemplate(HuellaDTO ahd_huella);
 }

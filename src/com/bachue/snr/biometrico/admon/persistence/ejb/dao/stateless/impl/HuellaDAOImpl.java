@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import java.util.List;
 
 /**
  *
@@ -28,6 +29,20 @@ public class HuellaDAOImpl implements IHuellaDAO {
 		try {
 			EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
 			lem_entityManager.persist(ah_huella);
+			lem_entityManager.close();
+		}catch (Exception le_e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean borrarHuellas(String as_idUsuario) {
+		try {
+			EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
+			String query = "SELECT u FROM Huella u WHERE u.usuario.idUsuario =:usuarioId";
+			List<Huella> llh_huellas = lem_entityManager.createQuery(query, Huella.class).setParameter("usuarioId", as_idUsuario).getResultList();
+			llh_huellas.forEach(lem_entityManager::remove);
 			lem_entityManager.close();
 		}catch (Exception le_e) {
 			return false;

@@ -5,6 +5,7 @@ import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
 import com.bachue.snr.biometrico.admon.persistence.model.Log;
+import com.bachue.snr.biometrico.biometrics.Criptografia;
 
 /**
  *
@@ -66,7 +67,7 @@ public class LogHelper {
     ll_log.setEvento("VERIFICACION");
     String ls_detalle = ab_resultado ? "Usuario verificado exitosamente" : "El usuario no se pudo verificar";
     ll_log.setDetalle(ls_detalle);
-    ll_log.setIdEntidad(avd_verificacionDTO.getUsuarioId());
+    ll_log.setIdEntidad(Criptografia.decrypt(avd_verificacionDTO.getUsuarioId()));
     ll_log.setIdUsuarioCreacion(avd_verificacionDTO.getUsuarioCreacionId());
     ll_log.setIpCreacion(avd_verificacionDTO.getIp());
     ll_log.setFechaCreacion(avd_verificacionDTO.getTime());
@@ -86,10 +87,48 @@ public class LogHelper {
     ll_log.setEvento("ENROLAMIENTO");
     String ls_detalle = ab_resultado ? "Usuario enrolado exitosamente" : "El usuario no se pudo enrolar";
     ll_log.setDetalle(ls_detalle);
-    ll_log.setIdEntidad(ahd_huellaDTO.getUsuarioId());
+    ll_log.setIdEntidad(Criptografia.decrypt(ahd_huellaDTO.getUsuarioId()));
     ll_log.setIdUsuarioCreacion(ahd_huellaDTO.getUsuarioCreacionId());
     ll_log.setIpCreacion(ahd_huellaDTO.getIp());
     ll_log.setFechaCreacion(ahd_huellaDTO.getTime());
+
+    return ll_log;
+  }
+
+  /**
+   * Metodo que mapea un DTO a su entidad correspondiente.
+   * @param aud_usuarioDTO que sera convertido a la entidad correspondiente.
+   * @return entidad mapeada desde el DTO recibido.
+   */
+  public static Log crearLogDeActualizacionDeClave(UsuarioDTO aud_usuarioDTO) {
+
+    Log ll_log = new Log();
+
+    ll_log.setEvento("CLAVE");
+    ll_log.setDetalle("Cambio de clave exitoso");
+    ll_log.setIdEntidad(aud_usuarioDTO.getIdUsuario());
+    ll_log.setIdUsuarioCreacion(aud_usuarioDTO.getIdUsuarioCreacion());
+    ll_log.setIpCreacion(aud_usuarioDTO.getIp());
+    ll_log.setFechaCreacion(aud_usuarioDTO.getTime());
+
+    return ll_log;
+  }
+
+  /**
+   * Metodo que mapea un DTO a su entidad correspondiente.
+   * @param aud_usuarioDTO que sera convertido a la entidad correspondiente.
+   * @return entidad mapeada desde el DTO recibido.
+   */
+  public static Log crearLogDeBorrado(UsuarioDTO aud_usuarioDTO) {
+
+    Log ll_log = new Log();
+
+    ll_log.setEvento("HUELLA");
+    ll_log.setDetalle("Huellas borradas exitosamente");
+    ll_log.setIdEntidad(aud_usuarioDTO.getIdUsuario());
+    ll_log.setIdUsuarioCreacion(aud_usuarioDTO.getIdUsuarioCreacion());
+    ll_log.setIpCreacion(aud_usuarioDTO.getIp());
+    ll_log.setFechaCreacion(aud_usuarioDTO.getTime());
 
     return ll_log;
   }

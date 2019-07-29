@@ -7,7 +7,6 @@ import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
-import com.bachue.snr.biometrico.biometrics.util.ManejadorDeLibrerias;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -43,16 +42,21 @@ public class BiometriaRS extends Application {
 
   /**
    * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
-   * @param ahd_huella DTO con la informacion de la huella.
+   * @param ahd_huellas DTO con la informacion de las huellas.
    * @return respuesta HTTP con el resultado del enrolamiento.
    */
   @POST
   @Path("/huella")
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response enrolar(HuellaDTO ahd_huella, @Context HttpServletRequest ahsr_req) {
-    ahd_huella.agregarValoresAuditoria(ahsr_req);
-    Boolean lb_estado = iihb_huellaBusiness.enrolarHuella(ahd_huella);
+  public Response enrolar(HuellaDTO[] ahd_huellas, @Context HttpServletRequest ahsr_req) {
+    Boolean lb_estado;
+    for(HuellaDTO lhd_huella : ahd_huellas) {
+      lhd_huella.agregarValoresAuditoria(ahsr_req);
+      iihb_huellaBusiness.enrolarHuella(lhd_huella);
+    }
+
+    lb_estado = iihb_huellaBusiness.crearMegaTemplate(ahd_huellas[0]);
     return Response.status(200).entity(lb_estado).build();
   }
 
@@ -68,6 +72,36 @@ public class BiometriaRS extends Application {
   public Response crearUsuario(UsuarioDTO aud_usuario, @Context HttpServletRequest ahsr_req) {
     aud_usuario.agregarValoresAuditoria(ahsr_req);
     String ls_resultado = iiub_usuarioBusiness.crearUsuario(aud_usuario);
+    return Response.status(200).entity(ls_resultado).build();
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param aud_usuario DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @PUT
+  @Path("/usuario")
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response actualizarClave(UsuarioDTO aud_usuario, @Context HttpServletRequest ahsr_req) {
+    aud_usuario.agregarValoresAuditoria(ahsr_req);
+    String ls_resultado = iiub_usuarioBusiness.actualizarClave(aud_usuario);
+    return Response.status(200).entity(ls_resultado).build();
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param aud_usuario DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @DELETE
+  @Path("/huella")
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response borrarHuellas(UsuarioDTO aud_usuario, @Context HttpServletRequest ahsr_req) {
+    aud_usuario.agregarValoresAuditoria(ahsr_req);
+    String ls_resultado = iihb_huellaBusiness.borrarHuellas(aud_usuario);
     return Response.status(200).entity(ls_resultado).build();
   }
 

@@ -21,6 +21,13 @@ public interface IUsuarioDAO {
   Boolean crearUsuario(Usuario au_usuario);
 
   /**
+   * Metodo que actualiza la clave de usuario en la tabla de usuarios.
+   * @param au_usuario Modelo que sera almacenado en la base de datos.
+   * @return true si el usuario es registrado con exito.
+   */
+  Boolean actualizarClave(Usuario au_usuario);
+
+  /**
    * Metodo que consulta un usuario en la tabla de usuarios.
    * @param idUsuario id del usuario consultado.
    * @return el usuario consultado

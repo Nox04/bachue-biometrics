@@ -2,6 +2,7 @@ package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ILogBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
@@ -12,14 +13,15 @@ import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IUsuarioDAO
 import com.bachue.snr.biometrico.admon.persistence.helper.HuellaHelper;
 import com.bachue.snr.biometrico.admon.persistence.helper.LogHelper;
 import com.bachue.snr.biometrico.admon.persistence.helper.SesionHelper;
-import com.bachue.snr.biometrico.biometrics.Enrolador;
-import com.bachue.snr.biometrico.biometrics.MotorBiometrico;
-import com.bachue.snr.biometrico.biometrics.Identificador;
-import com.bachue.snr.biometrico.biometrics.Verificador;
+import com.bachue.snr.biometrico.biometrics.*;
+import com.bachue.snr.biometrico.biometrics.util.Utils;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import java.io.File;
 
 /**
  *
@@ -45,16 +47,10 @@ public class HuellaBusiness implements IHuellaBusiness {
 
   @Override
   public Boolean enrolarHuella(HuellaDTO ahd_huella) {
-    MotorBiometrico.getInstance();
-    Enrolador le_enrolador = new Enrolador(ahd_huella);
-    boolean lb_enrolamiento = le_enrolador.enrolarUsuario();
-    if(lb_enrolamiento) {
-      iild_logDao.crearEvento(LogHelper.crearLogDeEnrolamiento(ahd_huella, true));
-      return iihd_huellaDao.crearHuella(HuellaHelper.toEntity(ahd_huella, iiud_usuarioDao.consultarUsuario(ahd_huella.getUsuarioId())));
-    } else {
-      iild_logDao.crearEvento(LogHelper.crearLogDeEnrolamiento(ahd_huella, false));
+    if(!Utils.crearImagen(ahd_huella)) {
       return false;
     }
+    return iihd_huellaDao.crearHuella(HuellaHelper.toEntity(ahd_huella, iiud_usuarioDao.consultarUsuario(ahd_huella.getUsuarioId())));
   }
 
   @Override
@@ -65,5 +61,25 @@ public class HuellaBusiness implements IHuellaBusiness {
     iisd_sesionDao.crearSesion(SesionHelper.createSesion(avd_verificacion, lb_resultado));
     iild_logDao.crearEvento(LogHelper.crearLogDeVerificacion(avd_verificacion, lb_resultado));
     return true;
+  }
+
+  @Override
+  public String borrarHuellas(UsuarioDTO aud_usuario) {
+    MotorBiometrico.getInstance();
+    Utils.limpiarDirectorio("biometria/huellas/" + Criptografia.encrypt(aud_usuario.getIdUsuario()));
+    Enrolador le_enrolador = new Enrolador(null);
+    le_enrolador.eliminarHuellas(Criptografia.encrypt(aud_usuario.getIdUsuario()));
+    iihd_huellaDao.borrarHuellas(Criptografia.encrypt(aud_usuario.getIdUsuario()));
+    iild_logDao.crearEvento(LogHelper.crearLogDeBorrado(aud_usuario));
+    return String.valueOf(true);
+  }
+
+  @Override
+  public Boolean crearMegaTemplate(HuellaDTO ahd_huella) {
+    MotorBiometrico.getInstance();
+    Enrolador le_enrolador = new Enrolador(ahd_huella);
+    boolean lb_enrolamiento = le_enrolador.enrolarUsuario();
+    iild_logDao.crearEvento(LogHelper.crearLogDeEnrolamiento(ahd_huella, lb_enrolamiento));
+    return lb_enrolamiento;
   }
 }

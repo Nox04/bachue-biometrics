@@ -1,8 +1,7 @@
 package com.bachue.snr.biometrico.biometrics;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
-import com.neurotec.biometrics.NBiometricStatus;
-import com.neurotec.biometrics.NSubject;
+import com.neurotec.biometrics.*;
 import com.neurotec.io.NBuffer;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
@@ -12,6 +11,7 @@ import java.io.File;
 public class Enrolador {
   private NSubject ins_subject;
   private NBuffer inb_buffer;
+  private NFTemplate inft_nfTemplate;
   private HuellaDTO ihd_huellaDTO;
 
   public Enrolador(HuellaDTO ahd_huellaDTO) {
@@ -26,17 +26,24 @@ public class Enrolador {
     boolean lb_estado = false;
     try {
       crearCarpeta();
-      byte[] data = Base64.decodeBase64(this.ihd_huellaDTO.getTemplate());
-      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + this.ihd_huellaDTO.getUsuarioId()+ ".bmp"), data);
-      if(new Identificador().identificar("biometria/cache/" + this.ihd_huellaDTO.getUsuarioId()+ ".bmp")){
-        return false;
+
+      inft_nfTemplate = new NFTemplate();
+
+      for (File lf_file: FileUtils.listFiles(new File("biometria/huellas/" + this.ihd_huellaDTO.getUsuarioId()), new String[] { "bmp" }, false)) {
+        inb_buffer = Extractor.crearTemplate(lf_file.getAbsolutePath());
+        NTemplate template = new NTemplate(inb_buffer);
+        if (template.getFingers() != null) {
+          for (NFRecord record : template.getFingers().getRecords()) {
+            inft_nfTemplate.getRecords().add(record);
+          }
+        }
+        template.dispose();
+        inb_buffer.dispose();
       }
-      FileUtils.writeByteArrayToFile(new File("biometria/huellas/" + this.ihd_huellaDTO.getUsuarioId()+ ".bmp"), data);
-      inb_buffer = Extractor.crearTemplate("biometria/huellas/" + this.ihd_huellaDTO.getUsuarioId() + ".bmp");
-      if (inb_buffer != null) {
-        crearSubject();
-        lb_estado = enrolarTemplate();
-      }
+
+      crearSubject();
+      lb_estado = enrolarTemplate();
+
     } catch (Exception le_excepcion) {
       le_excepcion.printStackTrace();
     } finally {
@@ -45,10 +52,17 @@ public class Enrolador {
     return lb_estado;
   }
 
+  public boolean eliminarHuellas(String as_id) {
+    NBiometricStatus lnbs_estado = MotorBiometrico.getInstance().getCliente().delete(as_id);
+    return lnbs_estado != NBiometricStatus.OK;
+  }
+
   private void crearSubject() {
     ins_subject = new NSubject();
-    ins_subject.setTemplateBuffer(inb_buffer);
-    ins_subject.setId(this.ihd_huellaDTO.getUsuarioId());
+    if (inft_nfTemplate != null) {
+      ins_subject.setTemplate(new NTemplate(inft_nfTemplate.save()));
+      ins_subject.setId(this.ihd_huellaDTO.getUsuarioId());
+    }
   }
 
   private boolean enrolarTemplate() throws Exception {

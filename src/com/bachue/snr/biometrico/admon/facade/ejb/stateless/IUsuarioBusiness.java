@@ -16,4 +16,11 @@ public interface IUsuarioBusiness {
    * @return true si el usuario es registrado con exito.
    */
   String crearUsuario(UsuarioDTO aud_usuario);
+
+  /**
+   * Metodo que cambia la clave del usuario.
+   * @param aud_usuario DTO con la informacion del usuario.
+   * @return true si el usuario es registrado con exito.
+   */
+  String actualizarClave(UsuarioDTO aud_usuario);
 }

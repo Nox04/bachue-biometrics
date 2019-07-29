@@ -21,7 +21,7 @@ import javax.jws.WebService;
 @WebService(serviceName = "SesionController")
 public class SesionWS {
 
-  @EJB(mappedName = "ejb/SesionBusiness")
+  @EJB
   ISesionBusiness iisb_sesionBusiness;
 
   /**
