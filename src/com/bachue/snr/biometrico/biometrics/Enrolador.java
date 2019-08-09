@@ -29,7 +29,7 @@ public class Enrolador {
 
       inft_nfTemplate = new NFTemplate();
 
-      for (File lf_file: FileUtils.listFiles(new File("biometria/huellas/" + this.ihd_huellaDTO.getUsuarioId()), new String[] { "bmp" }, false)) {
+      for (File lf_file: FileUtils.listFiles(new File("biometria/huellas/" + Criptografia.decrypt(this.ihd_huellaDTO.getUsuarioId())), new String[] { "bmp" }, false)) {
         inb_buffer = Extractor.crearTemplate(lf_file.getAbsolutePath());
         NTemplate template = new NTemplate(inb_buffer);
         if (template.getFingers() != null) {

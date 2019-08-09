@@ -17,9 +17,9 @@ public class Verificador {
     try {
       crearCarpeta();
       byte[] data = Base64.decodeBase64(avd_verificacion.getTemplate());
-      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + avd_verificacion.getUsuarioId()+ ".bmp"), data);
-      NBuffer lnb_bufferCandidate = Extractor.crearTemplate("biometria/cache/" + avd_verificacion.getUsuarioId()+ ".bmp");
-      for (File lf_file: FileUtils.listFiles(new File("biometria/huellas/" + avd_verificacion.getUsuarioId()), new String[] { "bmp" }, false)) {
+      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ ".bmp"), data);
+      NBuffer lnb_bufferCandidate = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ ".bmp");
+      for (File lf_file: FileUtils.listFiles(new File("biometria/huellas/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())), new String[] { "bmp" }, false)) {
         NBuffer lnb_bufferProbe = Extractor.crearTemplate(lf_file.getAbsolutePath());
         if(lnb_bufferProbe != null && lnb_bufferCandidate != null){
           lns_subjectCandidate.setTemplateBuffer(lnb_bufferCandidate);

@@ -59,4 +59,13 @@ public class UsuarioDAOImpl implements IUsuarioDAO {
 		lem_entityManager.close();
 		return lu_usuario;
 	}
+
+	@Override
+	public Boolean borrarUsuario(String idUsuario) {
+		EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
+		Usuario lu_usuario = lem_entityManager.find(Usuario.class, idUsuario);
+		lem_entityManager.remove(lu_usuario);
+		lem_entityManager.close();
+		return true;
+	}
 }

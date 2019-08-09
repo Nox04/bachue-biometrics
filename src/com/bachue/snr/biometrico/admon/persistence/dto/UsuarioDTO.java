@@ -1,5 +1,7 @@
 package com.bachue.snr.biometrico.admon.persistence.dto;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -14,10 +16,19 @@ public class UsuarioDTO extends BaseDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
+  @Valid
+  @NotNull
   private String is_idUsuario;
+
+  @Valid
+  @NotNull
   private String is_clave;
+
   private Timestamp it_fechaVencimiento;
   private char ic_claveActiva;
+
+  @Valid
+  @NotNull
   private String is_idUsuarioCreacion;
 
 

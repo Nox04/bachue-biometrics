@@ -33,4 +33,11 @@ public interface IUsuarioDAO {
    * @return el usuario consultado
    */
   Usuario consultarUsuario(String idUsuario);
+
+  /**
+   * Metodo que actualiza la clave de usuario en la tabla de usuarios.
+   * @param idUsuario Modelo que sera almacenado en la base de datos.
+   * @return true si el usuario es registrado con exito.
+   */
+  Boolean borrarUsuario(String idUsuario);
 }

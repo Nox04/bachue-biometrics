@@ -7,6 +7,7 @@ import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
+import com.bachue.snr.biometrico.biometrics.util.ManejadorDeLibrerias;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

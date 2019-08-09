@@ -70,6 +70,7 @@ public class HuellaBusiness implements IHuellaBusiness {
     Enrolador le_enrolador = new Enrolador(null);
     le_enrolador.eliminarHuellas(Criptografia.encrypt(aud_usuario.getIdUsuario()));
     iihd_huellaDao.borrarHuellas(Criptografia.encrypt(aud_usuario.getIdUsuario()));
+    iiud_usuarioDao.borrarUsuario(Criptografia.encrypt(aud_usuario.getIdUsuario()));
     iild_logDao.crearEvento(LogHelper.crearLogDeBorrado(aud_usuario));
     return String.valueOf(true);
   }
