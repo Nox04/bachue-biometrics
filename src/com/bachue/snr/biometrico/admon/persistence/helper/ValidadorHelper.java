@@ -13,7 +13,7 @@ public class ValidadorHelper {
 
   public static String validarClave(String as_clave) {
 
-    String ls_patron = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+    String ls_patron = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[-*@#$%^&+=])(?=\\S+$).{8,}";
 
     if (as_clave.length() < 8) {
       return ValidacionesEnum.CLAVE_CORTA.consultarMensaje();
