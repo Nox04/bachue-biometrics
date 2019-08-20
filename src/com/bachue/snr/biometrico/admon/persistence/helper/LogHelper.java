@@ -1,9 +1,6 @@
 package com.bachue.snr.biometrico.admon.persistence.helper;
 
-import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.*;
 import com.bachue.snr.biometrico.admon.persistence.model.Log;
 import com.bachue.snr.biometrico.biometrics.Criptografia;
 
@@ -71,6 +68,26 @@ public class LogHelper {
     ll_log.setIdUsuarioCreacion(avd_verificacionDTO.getUsuarioCreacionId());
     ll_log.setIpCreacion(avd_verificacionDTO.getIp());
     ll_log.setFechaCreacion(avd_verificacionDTO.getTime());
+
+    return ll_log;
+  }
+
+  /**
+   * Metodo que mapea un DTO a su entidad correspondiente.
+   * @param acd_claveDTO que sera convertido a la entidad correspondiente.
+   * @return entidad mapeada desde el DTO recibido.
+   */
+  public static Log crearLogDeVerificacionConClave(ClaveDTO acd_claveDTO, boolean ab_resultado) {
+
+    Log ll_log = new Log();
+
+    ll_log.setEvento("VERIFICACION");
+    String ls_detalle = ab_resultado ? "Usuario verificado exitosamente" : "El usuario no se pudo verificar";
+    ll_log.setDetalle(ls_detalle);
+    ll_log.setIdEntidad(acd_claveDTO.getIdUsuario());
+    ll_log.setIdUsuarioCreacion(acd_claveDTO.getIdUsuarioCreacion());
+    ll_log.setIpCreacion(acd_claveDTO.getIp());
+    ll_log.setFechaCreacion(acd_claveDTO.getTime());
 
     return ll_log;
   }

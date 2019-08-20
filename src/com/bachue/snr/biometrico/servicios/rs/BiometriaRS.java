@@ -3,10 +3,7 @@ package com.bachue.snr.biometrico.servicios.rs;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ILogBusiness;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IUsuarioBusiness;
-import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.*;
 import com.bachue.snr.biometrico.biometrics.util.ManejadorDeLibrerias;
 
 import javax.ejb.EJB;
@@ -93,6 +90,19 @@ public class BiometriaRS extends Application {
 
   /**
    * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param as_id DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @GET
+  @Path("/usuario/{id}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response obtenerUsuario(@PathParam("id") String as_id, @Context HttpServletRequest ahsr_req) {
+    Boolean ls_resultado = iiub_usuarioBusiness.obtenerUsuario(as_id);
+    return Response.status(200).entity(ls_resultado).build();
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
    * @param aud_usuario DTO con la informacion del usuario.
    * @return respuesta HTTP con el resultado de la creación del usuario.
    */
@@ -118,6 +128,21 @@ public class BiometriaRS extends Application {
     avd_verificacion.agregarValoresAuditoria(ahsr_req);
     Boolean lb_estado = iihb_huellaBusiness.verificarHuella(avd_verificacion);
     return Response.status(200).entity(lb_estado).build();
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param acd_clave DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @POST
+  @Path("/usuario/verificar")
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response verificarClave(ClaveDTO acd_clave, @Context HttpServletRequest ahsr_req) {
+    acd_clave.agregarValoresAuditoria(ahsr_req);
+    Boolean ls_resultado = iiub_usuarioBusiness.verificarUsuario(acd_clave);
+    return Response.status(200).entity(ls_resultado).build();
   }
 
   /**
