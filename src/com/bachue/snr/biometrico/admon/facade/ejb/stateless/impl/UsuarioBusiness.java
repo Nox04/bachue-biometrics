@@ -16,6 +16,8 @@ import com.bachue.snr.biometrico.biometrics.Criptografia;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  *
@@ -65,7 +67,7 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   @Override
   public Boolean verificarUsuario(ClaveDTO acd_clave) {
     Usuario lu_usuario = iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(acd_clave.getIdUsuario()));
-    boolean lb_resultado = lu_usuario.getClaveHash().equals(Criptografia.encrypt(acd_clave.getClave()));
+    boolean lb_resultado = (lu_usuario.getClaveHash().equals(Criptografia.encrypt(acd_clave.getClave())) && lu_usuario.getFechaVencimiento().after(new Date()));
     iisd_sesionDao.crearSesion(SesionHelper.crearSesionConClave(acd_clave, lb_resultado));
     iild_logDao.crearEvento(LogHelper.crearLogDeVerificacionConClave(acd_clave, lb_resultado));
     return true;
