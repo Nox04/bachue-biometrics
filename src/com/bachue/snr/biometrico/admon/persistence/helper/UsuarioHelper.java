@@ -7,6 +7,8 @@ import com.bachue.snr.biometrico.admon.persistence.model.Usuario;
 import com.bachue.snr.biometrico.biometrics.Criptografia;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -47,7 +49,7 @@ public class UsuarioHelper {
 
       lu_usuario.setIdUsuario(Criptografia.encrypt(aud_usuarioDTO.getIdUsuario()));
       lu_usuario.setClaveHash(Criptografia.encrypt(aud_usuarioDTO.getClave()));
-      lu_usuario.setFechaVencimiento(new Timestamp(aud_usuarioDTO.getFechaVencimiento().getTime()));
+      lu_usuario.setFechaVencimiento(Timestamp.valueOf(LocalDate.now().plusDays(45).atStartOfDay()));
       lu_usuario.setClaveActiva(aud_usuarioDTO.getClaveActiva());
       lu_usuario.setIdUsuarioCreacion(aud_usuarioDTO.getIdUsuarioCreacion());
       lu_usuario.setIpCreacion(aud_usuarioDTO.getIp());
