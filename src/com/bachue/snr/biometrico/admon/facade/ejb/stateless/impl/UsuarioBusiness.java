@@ -52,8 +52,13 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   public String actualizarClave(UsuarioDTO aud_usuario) {
     String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave());
     if(ls_resultado.equals("Validado exitosamente")) {
-      iild_logDao.crearEvento(LogHelper.crearLogDeActualizacionDeClave(aud_usuario));
-      return String.valueOf(iiud_usuarioDao.actualizarClave(UsuarioHelper.usuarioConClave(aud_usuario)));
+      Usuario lu_usuarioActual = iiud_usuarioDao.consultarUsuario(aud_usuario.getIdUsuario());
+      if(lu_usuarioActual.getClaveHash().equals(Criptografia.encrypt(aud_usuario.getClave()))) {
+        return "La clave ingresada debe ser diferente a la actual";
+      } else {
+        iild_logDao.crearEvento(LogHelper.crearLogDeActualizacionDeClave(aud_usuario));
+        return String.valueOf(iiud_usuarioDao.actualizarClave(UsuarioHelper.usuarioConClave(aud_usuario)));
+      }
     } else {
       return ls_resultado;
     }
