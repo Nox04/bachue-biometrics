@@ -3,6 +3,8 @@ package com.bachue.snr.biometrico.admon.persistence.dto;
 import com.bachue.snr.biometrico.admon.enums.DedosEnum;
 import com.bachue.snr.biometrico.biometrics.Criptografia;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 
 /**
@@ -22,6 +24,7 @@ public class HuellaDTO extends BaseDTO implements Serializable{
   private String is_usuarioId;
   private String is_usuarioCreacionId;
 
+  @XmlTransient
   public Integer getId() {
     return ii_id;
   }
@@ -30,6 +33,7 @@ public class HuellaDTO extends BaseDTO implements Serializable{
     this.ii_id = ai_id;
   }
 
+  @XmlElement(required = true)
   public DedosEnum getPosicion() {
     return ide_posicion;
   }
@@ -38,6 +42,7 @@ public class HuellaDTO extends BaseDTO implements Serializable{
     this.ide_posicion = ade_posicion;
   }
 
+  @XmlElement(required = true)
   public String getTemplate() {
     return is_template;
   }
@@ -46,6 +51,7 @@ public class HuellaDTO extends BaseDTO implements Serializable{
     this.is_template = as_template;
   }
 
+  @XmlElement(required = true)
   public String getUsuarioId() {
     return is_usuarioId;
   }
@@ -54,6 +60,7 @@ public class HuellaDTO extends BaseDTO implements Serializable{
     this.is_usuarioId = Criptografia.encrypt(as_usuarioId);
   }
 
+  @XmlElement(required = true)
   public String getUsuarioCreacionId() {
     return is_usuarioCreacionId;
   }

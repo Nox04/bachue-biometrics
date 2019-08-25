@@ -1,12 +1,8 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
-import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ILogBusiness;
-import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.*;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
-import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ISesionDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IUsuarioDAO;
@@ -15,14 +11,10 @@ import com.bachue.snr.biometrico.admon.persistence.helper.LogHelper;
 import com.bachue.snr.biometrico.admon.persistence.helper.SesionHelper;
 import com.bachue.snr.biometrico.biometrics.*;
 import com.bachue.snr.biometrico.biometrics.util.Utils;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.FileUtils;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import java.io.File;
-
 /**
  *
  * @version 1.0
@@ -64,14 +56,14 @@ public class HuellaBusiness implements IHuellaBusiness {
   }
 
   @Override
-  public String borrarHuellas(UsuarioDTO aud_usuario) {
+  public String borrarHuellas(BorrarHuellasDTO bhd_usuario) {
     MotorBiometrico.getInstance();
-    Utils.limpiarDirectorio("biometria/huellas/" + aud_usuario.getIdUsuario());
+    Utils.limpiarDirectorio("biometria/huellas/" + bhd_usuario.getIdUsuario());
     Enrolador le_enrolador = new Enrolador(null);
-    le_enrolador.eliminarHuellas(Criptografia.encrypt(aud_usuario.getIdUsuario()));
-    iihd_huellaDao.borrarHuellas(Criptografia.encrypt(aud_usuario.getIdUsuario()));
-    iiud_usuarioDao.borrarUsuario(Criptografia.encrypt(aud_usuario.getIdUsuario()));
-    iild_logDao.crearEvento(LogHelper.crearLogDeBorrado(aud_usuario));
+    le_enrolador.eliminarHuellas(Criptografia.encrypt(bhd_usuario.getIdUsuario()));
+    iihd_huellaDao.borrarHuellas(Criptografia.encrypt(bhd_usuario.getIdUsuario()));
+    iiud_usuarioDao.borrarUsuario(Criptografia.encrypt(bhd_usuario.getIdUsuario()));
+    iild_logDao.crearEvento(LogHelper.crearLogDeBorrado(bhd_usuario));
     return String.valueOf(true);
   }
 

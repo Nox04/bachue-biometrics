@@ -16,7 +16,6 @@ import javax.jws.WebService;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
-import javax.servlet.ServletContext;
 
 /**
  *
@@ -134,16 +133,16 @@ public class BiometriaWS {
 
   /**
    * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
-   * @param aud_usuario DTO con la informacion del usuario.
+   * @param bhd_usuario DTO con la informacion del usuario.
    * @return respuesta HTTP con el resultado de la creación del usuario.
    */
   @WebMethod(action = "borrarHuellas")
   @WebResult(name = "resultado")
-  public String borrarHuellas(@WebParam(name = "usuario") UsuarioDTO aud_usuario) {
+  public String borrarHuellas(@WebParam(name = "usuario") BorrarHuellasDTO bhd_usuario) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
-    aud_usuario.agregarValoresAuditoria(ahsr_req);
-    return iihb_huellaBusiness.borrarHuellas(aud_usuario);
+    bhd_usuario.agregarValoresAuditoria(ahsr_req);
+    return iihb_huellaBusiness.borrarHuellas(bhd_usuario);
   }
 
   /**

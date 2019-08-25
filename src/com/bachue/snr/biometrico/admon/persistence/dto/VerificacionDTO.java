@@ -1,7 +1,7 @@
 package com.bachue.snr.biometrico.admon.persistence.dto;
 
-import com.bachue.snr.biometrico.admon.enums.DedosEnum;
 
+import javax.xml.bind.annotation.XmlElement;
 import java.io.Serializable;
 
 /**
@@ -17,7 +17,7 @@ public class VerificacionDTO extends HuellaDTO implements Serializable {
 
   private String is_sesion;
 
-
+  @XmlElement(required = true)
   public String getSesion() {
     return is_sesion;
   }

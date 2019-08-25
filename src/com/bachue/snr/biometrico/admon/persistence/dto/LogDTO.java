@@ -1,5 +1,7 @@
 package com.bachue.snr.biometrico.admon.persistence.dto;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 
 /**
@@ -23,6 +25,7 @@ public class LogDTO extends BaseDTO implements Serializable {
 
   private String is_idUsuario;
 
+  @XmlTransient
   public String getId() {
     return is_id;
   }
@@ -31,6 +34,7 @@ public class LogDTO extends BaseDTO implements Serializable {
     this.is_id = as_id;
   }
 
+  @XmlElement(required = true)
   public String getDetalle() {
     return is_detalle;
   }
@@ -39,6 +43,7 @@ public class LogDTO extends BaseDTO implements Serializable {
     this.is_detalle = as_detalle;
   }
 
+  @XmlElement(required = true)
   public String getEvento() {
     return is_evento;
   }
@@ -47,6 +52,7 @@ public class LogDTO extends BaseDTO implements Serializable {
     this.is_evento = as_evento;
   }
 
+  @XmlElement(required = true)
   public String getIdEntidad() {
     return is_idEntidad;
   }
@@ -55,6 +61,7 @@ public class LogDTO extends BaseDTO implements Serializable {
     this.is_idEntidad = as_idEntidad;
   }
 
+  @XmlElement(required = true)
   public String getIdUsuario() {
     return is_idUsuario;
   }

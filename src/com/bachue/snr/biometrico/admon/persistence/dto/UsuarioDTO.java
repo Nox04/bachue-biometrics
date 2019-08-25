@@ -2,8 +2,8 @@ package com.bachue.snr.biometrico.admon.persistence.dto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlElement;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -32,7 +32,7 @@ public class UsuarioDTO extends BaseDTO implements Serializable {
   @NotNull
   private String is_idUsuarioCreacion;
 
-
+  @XmlElement(required = true)
   public String getIdUsuario() {
     return is_idUsuario;
   }
@@ -41,6 +41,7 @@ public class UsuarioDTO extends BaseDTO implements Serializable {
     this.is_idUsuario = as_idUsuario;
   }
 
+  @XmlElement(required = true)
   public String getClave() {
     return is_clave;
   }
@@ -49,6 +50,7 @@ public class UsuarioDTO extends BaseDTO implements Serializable {
     this.is_clave = as_clave;
   }
 
+  @XmlElement(required = true)
   public Date getFechaVencimiento() {
     return it_fechaVencimiento;
   }
@@ -57,6 +59,7 @@ public class UsuarioDTO extends BaseDTO implements Serializable {
     this.it_fechaVencimiento = at_fechaVencimiento;
   }
 
+  @XmlElement(required = true)
   public char getClaveActiva() {
     return ic_claveActiva;
   }
@@ -65,6 +68,7 @@ public class UsuarioDTO extends BaseDTO implements Serializable {
     this.ic_claveActiva = ac_claveActiva;
   }
 
+  @XmlElement(required = true)
   public String getIdUsuarioCreacion() {
     return is_idUsuarioCreacion;
   }

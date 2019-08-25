@@ -133,19 +133,19 @@ public class LogHelper {
 
   /**
    * Metodo que mapea un DTO a su entidad correspondiente.
-   * @param aud_usuarioDTO que sera convertido a la entidad correspondiente.
+   * @param bhd_usuario que sera convertido a la entidad correspondiente.
    * @return entidad mapeada desde el DTO recibido.
    */
-  public static Log crearLogDeBorrado(UsuarioDTO aud_usuarioDTO) {
+  public static Log crearLogDeBorrado(BorrarHuellasDTO bhd_usuario) {
 
     Log ll_log = new Log();
 
     ll_log.setEvento("HUELLA");
     ll_log.setDetalle("Huellas borradas exitosamente");
-    ll_log.setIdEntidad(aud_usuarioDTO.getIdUsuario());
-    ll_log.setIdUsuarioCreacion(aud_usuarioDTO.getIdUsuarioCreacion());
-    ll_log.setIpCreacion(aud_usuarioDTO.getIp());
-    ll_log.setFechaCreacion(aud_usuarioDTO.getTime());
+    ll_log.setIdEntidad(bhd_usuario.getIdUsuario());
+    ll_log.setIdUsuarioCreacion(bhd_usuario.getIdUsuarioCreacion());
+    ll_log.setIpCreacion(bhd_usuario.getIp());
+    ll_log.setFechaCreacion(bhd_usuario.getTime());
 
     return ll_log;
   }

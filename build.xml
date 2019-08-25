@@ -7,7 +7,7 @@
 <project basedir="." default="build" name="BACHUE-BIOMETRIA">
 	<property environment="env" />
 	<property name="ECLIPSE_HOME" value="../../../eclipse/jee-2018-122/eclipse/" />
-	<property name="WEBLOGIC_HOME" value="E:/WeblogicServer/" />
+	<property name="WEBLOGIC_HOME" value="/home/nox/WeblogicServer/" />
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.8" />
 	<property name="source" value="1.8" />

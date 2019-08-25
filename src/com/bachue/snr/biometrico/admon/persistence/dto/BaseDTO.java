@@ -4,6 +4,8 @@ package com.bachue.snr.biometrico.admon.persistence.dto;
 import java.sql.Timestamp;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @version 1.0
@@ -17,6 +19,7 @@ public class BaseDTO {
 
   protected Timestamp it_time;
 
+  @XmlTransient
   public String getIp() {
     return is_ip;
   }
@@ -25,6 +28,7 @@ public class BaseDTO {
     this.is_ip = as_ip;
   }
 
+  @XmlTransient
   public Timestamp getTime() {
     return it_time;
   }
