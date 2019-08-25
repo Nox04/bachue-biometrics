@@ -4,6 +4,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  *
@@ -24,7 +25,7 @@ public class UsuarioDTO extends BaseDTO implements Serializable {
   @NotNull
   private String is_clave;
 
-  private Timestamp it_fechaVencimiento;
+  private Date it_fechaVencimiento;
   private char ic_claveActiva;
 
   @Valid
@@ -48,11 +49,11 @@ public class UsuarioDTO extends BaseDTO implements Serializable {
     this.is_clave = as_clave;
   }
 
-  public Timestamp getFechaVencimiento() {
+  public Date getFechaVencimiento() {
     return it_fechaVencimiento;
   }
 
-  public void setFechaVencimiento(Timestamp at_fechaVencimiento) {
+  public void setFechaVencimiento(Date at_fechaVencimiento) {
     this.it_fechaVencimiento = at_fechaVencimiento;
   }
 

@@ -4,8 +4,7 @@ import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ILogBusiness;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ISesionBusiness;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IUsuarioBusiness;
-import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.SesionDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.*;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -82,15 +81,110 @@ public class BiometriaWS {
   public Boolean enrolarUsuario(@WebParam(name = "huellas") HuellaDTO[] ahd_huellas) {
 
     MessageContext mc = context.getMessageContext();
-    HttpServletRequest req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
+    HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
 
     Boolean lb_estado;
     for(HuellaDTO lhd_huella : ahd_huellas) {
-      lhd_huella.agregarValoresAuditoria(req);
+      lhd_huella.agregarValoresAuditoria(ahsr_req);
       iihb_huellaBusiness.enrolarHuella(lhd_huella);
     }
 
     lb_estado = iihb_huellaBusiness.crearMegaTemplate(ahd_huellas[0]);
     return lb_estado;
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param aud_usuario DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @WebMethod(action = "crearUsuario")
+  @WebResult(name = "resultado")
+  public String crearUsuario(@WebParam(name = "usuario") UsuarioDTO aud_usuario) {
+    MessageContext mc = context.getMessageContext();
+    HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
+    aud_usuario.agregarValoresAuditoria(ahsr_req);
+    return iiub_usuarioBusiness.crearUsuario(aud_usuario);
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param aud_usuario DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @WebMethod(action = "actualizarClave")
+  @WebResult(name = "resultado")
+  public String actualizarClave(@WebParam(name = "usuario") UsuarioDTO aud_usuario) {
+    MessageContext mc = context.getMessageContext();
+    HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
+    aud_usuario.agregarValoresAuditoria(ahsr_req);
+    return iiub_usuarioBusiness.actualizarClave(aud_usuario);
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param as_id DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @WebMethod(action = "obtenerUsuario")
+  @WebResult(name = "resultado")
+  public Boolean obtenerUsuario(@WebParam(name = "id") String as_id) {
+    return iiub_usuarioBusiness.obtenerUsuario(as_id);
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param aud_usuario DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @WebMethod(action = "borrarHuellas")
+  @WebResult(name = "resultado")
+  public String borrarHuellas(@WebParam(name = "usuario") UsuarioDTO aud_usuario) {
+    MessageContext mc = context.getMessageContext();
+    HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
+    aud_usuario.agregarValoresAuditoria(ahsr_req);
+    return iihb_huellaBusiness.borrarHuellas(aud_usuario);
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de verificacion y la mapea al DTO.
+   * @param avd_verificacion DTO con la informacion de la huella.
+   * @return respuesta HTTP con el resultado de la verificacion.
+   */
+  @WebMethod(action = "verificarUsuario")
+  @WebResult(name = "resultado")
+  public Boolean verificarUsuario(@WebParam(name = "verificacion") VerificacionDTO avd_verificacion) {
+    MessageContext mc = context.getMessageContext();
+    HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
+    avd_verificacion.agregarValoresAuditoria(ahsr_req);
+    return iihb_huellaBusiness.verificarHuella(avd_verificacion);
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param acd_clave DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @WebMethod(action = "verificarClave")
+  @WebResult(name = "resultado")
+  public Boolean verificarClave(@WebParam(name = "clave") ClaveDTO acd_clave) {
+    MessageContext mc = context.getMessageContext();
+    HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
+    acd_clave.agregarValoresAuditoria(ahsr_req);
+    return iiub_usuarioBusiness.verificarUsuario(acd_clave);
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de log y la mapea al DTO.
+   * @param ald_log DTO con la informacion del evento a loguear.
+   * @return respuesta HTTP con el resultado de la operacion.
+   */
+  @WebMethod(action = "registrarEvento")
+  @WebResult(name = "resultado")
+  public Boolean registrarEvento(@WebParam(name = "log") LogDTO ald_log) {
+    MessageContext mc = context.getMessageContext();
+    HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
+    ald_log.agregarValoresAuditoria(ahsr_req);
+    return iilb_logBusiness.registrarEvento(ald_log);
   }
 }
