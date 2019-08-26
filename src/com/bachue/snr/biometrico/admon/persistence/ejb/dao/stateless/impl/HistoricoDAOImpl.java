@@ -39,7 +39,7 @@ public class HistoricoDAOImpl implements IHistoricoDAO {
 	public List<Historico> consultarUltimasCincoClaves(String idUsuario) {
 		EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
 
-		String query = "SELECT u FROM Historico u WHERE u.idUsuario =:usuarioId order by u.fechaCreacion";
+		String query = "SELECT u FROM Historico u WHERE u.idUsuario =:usuarioId order by u.fechaCreacion desc ";
 		return lem_entityManager.createQuery(query, Historico.class).setParameter("usuarioId", idUsuario).setMaxResults(5).getResultList();
 	}
 

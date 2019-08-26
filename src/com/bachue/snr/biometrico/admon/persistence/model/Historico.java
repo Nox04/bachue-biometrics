@@ -19,6 +19,10 @@ public class Historico extends BaseModel implements Serializable {
   public Historico() {}
 
   @Id()
+  @Column(name = "ID_HISTORICO", length = 20)
+  @GeneratedValue
+  private String idHistorico;
+
   @Column(name = "ID_USUARIO_HASH", length = 200, nullable = false)
   private String idUsuario;
 
@@ -39,5 +43,13 @@ public class Historico extends BaseModel implements Serializable {
 
   public void setClaveHash(String claveHash) {
     this.claveHash = claveHash;
+  }
+
+  public String getIdHistorico() {
+    return idHistorico;
+  }
+
+  public void setIdHistorico(String idHistorico) {
+    this.idHistorico = idHistorico;
   }
 }
