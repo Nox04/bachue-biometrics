@@ -49,4 +49,17 @@ public class HuellaDAOImpl implements IHuellaDAO {
 		}
 		return true;
 	}
+
+	@Override
+	public int contarHuellas(String as_idUsuario) {
+		try {
+			EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
+			String query = "SELECT u FROM Huella u WHERE u.usuario.idUsuario =:usuarioId";
+			List<Huella> llh_huellas = lem_entityManager.createQuery(query, Huella.class).setParameter("usuarioId", as_idUsuario).getResultList();
+			lem_entityManager.close();
+			return llh_huellas.size();
+		} catch (Exception le_e) {
+			return 0;
+		}
+	}
 }

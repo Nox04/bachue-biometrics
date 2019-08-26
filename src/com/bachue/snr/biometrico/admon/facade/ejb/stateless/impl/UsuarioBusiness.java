@@ -1,12 +1,10 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
+import com.bachue.snr.biometrico.admon.enums.RespuestaUsuarioEnum;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IUsuarioBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.ClaveDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHistoricoDAO;
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ISesionDAO;
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IUsuarioDAO;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.*;
 import com.bachue.snr.biometrico.admon.persistence.helper.*;
 import com.bachue.snr.biometrico.admon.persistence.model.Historico;
 import com.bachue.snr.biometrico.admon.persistence.model.Usuario;
@@ -35,6 +33,9 @@ public class UsuarioBusiness implements IUsuarioBusiness {
 
   @EJB
   private IHistoricoDAO iihd_historicoDao;
+
+  @EJB
+  private IHuellaDAO iihd_huellaDao;
 
   @EJB
   private ISesionDAO iisd_sesionDao;
@@ -84,8 +85,18 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   }
 
   @Override
-  public Boolean obtenerUsuario(String as_id) {
-    return iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(as_id)) != null;
+  public String obtenerUsuario(String as_id) {
+    boolean lb_usuarioExiste = iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(as_id)) != null;
+    if(lb_usuarioExiste) {
+      int li_cuenta = iihd_huellaDao.contarHuellas(as_id);
+      if(li_cuenta > 0) {
+        return RespuestaUsuarioEnum.USUARIO_EXISTE.toString();
+      } else {
+        return RespuestaUsuarioEnum.USUARIO_NO_TIENE_HUELLAS.toString();
+      }
+    } else {
+      return RespuestaUsuarioEnum.USUARIO_NO_EXISTE.toString();
+    }
   }
 
   @Override

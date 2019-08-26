@@ -30,7 +30,7 @@ public interface IUsuarioBusiness {
    * @param as_id id del usuario.
    * @return true si el usuario existe.
    */
-  Boolean obtenerUsuario(String as_id);
+  String obtenerUsuario(String as_id);
 
   /**
    * Metodo que verifica la sesion de un usuario usando clave.

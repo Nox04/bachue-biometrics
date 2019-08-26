@@ -13,6 +13,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface IHuellaDAO {
+
   /**
    * Metodo que agrega los campos de auditoria que son obtenibles desde el request.
    * @param ah_huella Request con la informacion HTTP de la peticion recibida.
@@ -20,5 +21,17 @@ public interface IHuellaDAO {
    */
   Boolean crearHuella(Huella ah_huella);
 
+  /**
+   * Metodo que borra las huellas de la base de datos.
+   * @param as_idUsuario String con el id del usuario.
+   * @return true si la huella es eliminada con exito.
+   */
   Boolean borrarHuellas(String as_idUsuario);
+
+  /**
+   * Metodo que cuenta las huellas de un usuario en la base de datos.
+   * @param as_idUsuario String con el id del usuario.
+   * @return numero de huellas del usuario en el sistema.
+   */
+  int contarHuellas(String as_idUsuario);
 }

@@ -127,7 +127,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "obtenerUsuario")
   @WebResult(name = "resultado")
-  public Boolean obtenerUsuario(@WebParam(name = "id") String as_id) {
+  public String obtenerUsuario(@WebParam(name = "id") String as_id) {
     return iiub_usuarioBusiness.obtenerUsuario(as_id);
   }
 
