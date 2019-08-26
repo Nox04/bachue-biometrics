@@ -2,7 +2,6 @@ package com.bachue.snr.biometrico.admon.facade.ejb.stateless;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.BorrarHuellasDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
 
 /**

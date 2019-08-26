@@ -1,14 +1,11 @@
 package com.bachue.snr.biometrico.admon.persistence.helper;
 
-import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
-import com.bachue.snr.biometrico.admon.persistence.model.Log;
 import com.bachue.snr.biometrico.admon.persistence.model.Usuario;
 import com.bachue.snr.biometrico.biometrics.Criptografia;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
