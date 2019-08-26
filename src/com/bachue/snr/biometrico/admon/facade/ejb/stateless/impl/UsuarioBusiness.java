@@ -88,7 +88,7 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   public String obtenerUsuario(String as_id) {
     boolean lb_usuarioExiste = iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(as_id)) != null;
     if(lb_usuarioExiste) {
-      int li_cuenta = iihd_huellaDao.contarHuellas(as_id);
+      int li_cuenta = iihd_huellaDao.contarHuellas(Criptografia.encrypt(as_id));
       if(li_cuenta > 0) {
         return RespuestaUsuarioEnum.USUARIO_EXISTE.toString();
       } else {
