@@ -15,7 +15,7 @@ import java.sql.Timestamp;
  *
  */
 @Entity
-@Table(name = "SDB_AUT_USUARIO")
+@Table(name = "SDB_AUT_USUARIO_BIO")
 public class Usuario extends BaseModel implements Serializable {
   private static final long serialVersionUID = 1L;
 
