@@ -24,6 +24,6 @@ public class EntityManagerFactoryImpl implements IEntityManagerFactory {
 
 	@Override
 	public EntityManager getEntityManager(){
-		return 	 iemf_factory.createEntityManager();
+		return iemf_factory.createEntityManager();
 	}
 }

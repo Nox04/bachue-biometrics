@@ -21,7 +21,8 @@ public class Enrolador {
    * Enrola el usuario en la base de datos
    * @return Resultado de la operacion de enrolamiento
    */
-  public boolean enrolarUsuario() {
+  @SuppressWarnings("resource")
+public boolean enrolarUsuario() {
     boolean lb_estado = false;
     try {
       crearCarpeta();

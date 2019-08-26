@@ -10,7 +10,8 @@ import java.util.EnumSet;
 
 public class Identificador {
 
-  public boolean identificar(String as_uri) {
+  @SuppressWarnings("resource")
+public boolean identificar(String as_uri) {
     NSubject lns_subject = new NSubject();
     NBiometricTask lnbt_tarea;
 
