@@ -1,10 +1,7 @@
 package com.bachue.snr.biometrico.admon.persistence.dto;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 /**
  *

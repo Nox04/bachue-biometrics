@@ -1,10 +1,10 @@
 package com.bachue.snr.biometrico.admon.persistence.dto;
 
 
-import java.sql.Timestamp;
-import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.bind.annotation.XmlTransient;
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  *

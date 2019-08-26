@@ -1,7 +1,7 @@
 package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl;
 
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IEntityManagerFactory;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
 import com.bachue.snr.biometrico.admon.persistence.model.Huella;
 
 import javax.ejb.EJB;

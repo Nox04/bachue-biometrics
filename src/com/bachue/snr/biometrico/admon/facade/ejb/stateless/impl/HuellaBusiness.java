@@ -1,15 +1,20 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
-import com.bachue.snr.biometrico.admon.persistence.dto.*;
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
+import com.bachue.snr.biometrico.admon.persistence.dto.BorrarHuellasDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ISesionDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IUsuarioDAO;
 import com.bachue.snr.biometrico.admon.persistence.helper.HuellaHelper;
 import com.bachue.snr.biometrico.admon.persistence.helper.LogHelper;
 import com.bachue.snr.biometrico.admon.persistence.helper.SesionHelper;
-import com.bachue.snr.biometrico.biometrics.*;
+import com.bachue.snr.biometrico.biometrics.Criptografia;
+import com.bachue.snr.biometrico.biometrics.Enrolador;
+import com.bachue.snr.biometrico.biometrics.MotorBiometrico;
+import com.bachue.snr.biometrico.biometrics.Verificador;
 import com.bachue.snr.biometrico.biometrics.util.Utils;
 
 import javax.ejb.EJB;

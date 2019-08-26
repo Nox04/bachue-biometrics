@@ -1,7 +1,6 @@
 package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless;
 
 import com.bachue.snr.biometrico.admon.persistence.model.Historico;
-import com.bachue.snr.biometrico.admon.persistence.model.Usuario;
 
 import javax.ejb.Local;
 import java.util.List;

@@ -3,6 +3,7 @@ package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IEntityManagerFactory;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHistoricoDAO;
 import com.bachue.snr.biometrico.admon.persistence.model.Historico;
+
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;

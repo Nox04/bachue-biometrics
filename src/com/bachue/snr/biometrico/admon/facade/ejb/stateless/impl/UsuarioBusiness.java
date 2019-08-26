@@ -13,7 +13,6 @@ import com.bachue.snr.biometrico.biometrics.Criptografia;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;

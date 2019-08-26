@@ -1,7 +1,7 @@
 package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless;
 
-import javax.persistence.EntityManager;
 import javax.ejb.Local;
+import javax.persistence.EntityManager;
 
 /**
  *

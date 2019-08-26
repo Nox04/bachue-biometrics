@@ -1,7 +1,9 @@
 package com.bachue.snr.biometrico.biometrics;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
-import com.neurotec.biometrics.*;
+import com.neurotec.biometrics.NBiometricStatus;
+import com.neurotec.biometrics.NMatchingSpeed;
+import com.neurotec.biometrics.NSubject;
 import com.neurotec.io.NBuffer;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;

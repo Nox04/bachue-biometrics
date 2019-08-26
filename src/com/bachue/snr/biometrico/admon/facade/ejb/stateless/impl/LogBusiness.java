@@ -1,8 +1,8 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ILogBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
 import com.bachue.snr.biometrico.admon.persistence.helper.LogHelper;
 
 import javax.ejb.EJB;
