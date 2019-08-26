@@ -3,13 +3,11 @@ package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IUsuarioBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.ClaveDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHistoricoDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ISesionDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IUsuarioDAO;
-import com.bachue.snr.biometrico.admon.persistence.helper.LogHelper;
-import com.bachue.snr.biometrico.admon.persistence.helper.SesionHelper;
-import com.bachue.snr.biometrico.admon.persistence.helper.UsuarioHelper;
-import com.bachue.snr.biometrico.admon.persistence.helper.ValidadorHelper;
+import com.bachue.snr.biometrico.admon.persistence.helper.*;
 import com.bachue.snr.biometrico.admon.persistence.model.Usuario;
 import com.bachue.snr.biometrico.biometrics.Criptografia;
 
@@ -33,6 +31,9 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   private IUsuarioDAO iiud_usuarioDao;
 
   @EJB
+  private IHistoricoDAO iihd_historicoDao;
+
+  @EJB
   private ISesionDAO iisd_sesionDao;
 
   @EJB
@@ -42,7 +43,8 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   public String crearUsuario(UsuarioDTO aud_usuario) {
     String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave());
     if(ls_resultado.equals("Validado exitosamente")) {
-      return String.valueOf(iiud_usuarioDao.crearUsuario(UsuarioHelper.toEntity(aud_usuario)));
+      iiud_usuarioDao.crearUsuario(UsuarioHelper.toEntity(aud_usuario));
+      return String.valueOf(iihd_historicoDao.crearHistorico(HistoricoHelper.userToHistorico(aud_usuario)));
     } else {
       return ls_resultado;
     }
@@ -57,6 +59,7 @@ public class UsuarioBusiness implements IUsuarioBusiness {
         return "La clave ingresada debe ser diferente a la actual";
       } else {
         iild_logDao.crearEvento(LogHelper.crearLogDeActualizacionDeClave(aud_usuario));
+        iihd_historicoDao.crearHistorico(HistoricoHelper.userToHistorico(aud_usuario));
         return String.valueOf(iiud_usuarioDao.actualizarClave(UsuarioHelper.usuarioConClave(aud_usuario)));
       }
     } else {
