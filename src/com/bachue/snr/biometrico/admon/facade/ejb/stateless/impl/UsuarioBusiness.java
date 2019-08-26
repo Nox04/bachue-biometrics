@@ -8,6 +8,7 @@ import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ISesionDAO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IUsuarioDAO;
 import com.bachue.snr.biometrico.admon.persistence.helper.*;
+import com.bachue.snr.biometrico.admon.persistence.model.Historico;
 import com.bachue.snr.biometrico.admon.persistence.model.Usuario;
 import com.bachue.snr.biometrico.biometrics.Criptografia;
 
@@ -16,6 +17,8 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -58,9 +61,22 @@ public class UsuarioBusiness implements IUsuarioBusiness {
       if(lu_usuarioActual.getClaveHash().equals(Criptografia.encrypt(aud_usuario.getClave()))) {
         return "La clave ingresada debe ser diferente a la actual";
       } else {
-        iild_logDao.crearEvento(LogHelper.crearLogDeActualizacionDeClave(aud_usuario));
-        iihd_historicoDao.crearHistorico(HistoricoHelper.userToHistorico(aud_usuario));
-        return String.valueOf(iiud_usuarioDao.actualizarClave(UsuarioHelper.usuarioConClave(aud_usuario)));
+        List<Historico> llh_historico = iihd_historicoDao.consultarUltimasCincoClaves(aud_usuario.getIdUsuario());
+        boolean lb_claveUsada = false;
+
+        for(Historico claveActual : llh_historico) {
+          if(Objects.equals(Criptografia.encrypt(aud_usuario.getClave()), claveActual.getClaveHash())) {
+            lb_claveUsada = true;
+          }
+        }
+
+        if(lb_claveUsada) {
+          return "La clave ingresada debe ser diferente a las últimas cinco utilizadas";
+        } else {
+          iild_logDao.crearEvento(LogHelper.crearLogDeActualizacionDeClave(aud_usuario));
+          iihd_historicoDao.crearHistorico(HistoricoHelper.userToHistorico(aud_usuario));
+          return String.valueOf(iiud_usuarioDao.actualizarClave(UsuarioHelper.usuarioConClave(aud_usuario)));
+        }
       }
     } else {
       return ls_resultado;
