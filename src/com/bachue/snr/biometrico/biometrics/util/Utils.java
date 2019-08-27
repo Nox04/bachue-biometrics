@@ -41,11 +41,7 @@ public class Utils {
       byte[] data = Base64.decodeBase64(ahd_huella.getTemplate());
       FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(ahd_huella.getUsuarioId()) + ".bmp"), data);
       MotorBiometrico.getInstance();
-      if (new Identificador().identificar("biometria/cache/" + Criptografia.decrypt(ahd_huella.getUsuarioId()) + ".bmp")) {
-        return false;
-      }
-      FileUtils.writeByteArrayToFile(new File("biometria/huellas/" + Criptografia.decrypt(ahd_huella.getUsuarioId()) + "/" + ahd_huella.getPosicion().consultarPosicion() + ".bmp"), data);
-      return true;
+      return !new Identificador().identificar("biometria/cache/" + Criptografia.decrypt(ahd_huella.getUsuarioId()) + ".bmp");
     } catch (Exception le_excepcion) {
       return false;
     }

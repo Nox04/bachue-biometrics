@@ -1,6 +1,8 @@
 package com.bachue.snr.biometrico.biometrics;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
+import com.bachue.snr.biometrico.admon.persistence.model.Huella;
 import com.neurotec.biometrics.NBiometricStatus;
 import com.neurotec.biometrics.NMatchingSpeed;
 import com.neurotec.biometrics.NSubject;
@@ -8,21 +10,31 @@ import com.neurotec.io.NBuffer;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 
+import javax.ejb.EJB;
 import java.io.File;
+import java.util.List;
 
 public class Verificador {
+
+  @EJB
+  private IHuellaDAO iihd_huellaDao;
 
   public boolean verificar(VerificacionDTO avd_verificacion) {
     NSubject lns_subjectCandidate = new NSubject();
     NSubject lns_subjectProbe = new NSubject();
 
     try {
-      crearCarpeta();
-      byte[] data = Base64.decodeBase64(avd_verificacion.getTemplate());
-      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ ".bmp"), data);
-      NBuffer lnb_bufferCandidate = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ ".bmp");
-      for (File lf_file: FileUtils.listFiles(new File("biometria/huellas/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())), new String[] { "bmp" }, false)) {
-        NBuffer lnb_bufferProbe = Extractor.crearTemplate(lf_file.getAbsolutePath());
+      crearCarpeta(avd_verificacion.getUsuarioId());
+      byte[] lb_data = Base64.decodeBase64(avd_verificacion.getTemplate());
+
+      List<Huella> llh_huellas = iihd_huellaDao.obtenerHuellas(Criptografia.decrypt(avd_verificacion.getUsuarioId()));
+
+      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ ".bmp"), lb_data);
+      NBuffer lnb_bufferCandidate = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId()) + ".bmp");
+
+      for (Huella lh_huella: llh_huellas) {
+        FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ "/cache.bmp"), lh_huella.getTemplate());
+        NBuffer lnb_bufferProbe = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ "/cache.bmp");
         if(lnb_bufferProbe != null && lnb_bufferCandidate != null){
           lns_subjectCandidate.setTemplateBuffer(lnb_bufferCandidate);
           lns_subjectProbe.setTemplateBuffer(lnb_bufferProbe);
@@ -42,8 +54,10 @@ public class Verificador {
       return false;
     }
   }
-  private void crearCarpeta() {
+  private void crearCarpeta(String as_idUsuario) {
     File lf_carpeta = new File("biometria/cache");
+    File lf_carpetaUsuario = new File("biometria/cache/" + Criptografia.decrypt(as_idUsuario));
     if (!lf_carpeta.exists()) lf_carpeta.mkdirs();
+    if (!lf_carpetaUsuario.exists()) lf_carpetaUsuario.mkdirs();
   }
 }
