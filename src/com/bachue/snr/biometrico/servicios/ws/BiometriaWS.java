@@ -150,7 +150,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "obtenerTipoSegundoFactor")
   @WebResult(name = "resultado")
-  public List<Constante> obteneConstantes() {
+  public List<Constante> obtenerConstantes() {
     return iicb_constanteBusiness.obtenerConstantes();
   }
 

@@ -14,7 +14,7 @@ import java.io.Serializable;
  *
  */
 @Entity
-@Table(name = "SDB_AUT_USUARIO")
+@Table(name = "SDB_PGN_CONSTANTES")
 public class Constante implements Serializable {
   private static final long serialVersionUID = 1L;
 
