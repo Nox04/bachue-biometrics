@@ -148,7 +148,7 @@ public class BiometriaWS {
    * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
    * @return respuesta HTTP con el resultado de la creación del usuario.
    */
-  @WebMethod(action = "obtenerTipoSegundoFactor")
+  @WebMethod(action = "obtenerConstantes")
   @WebResult(name = "resultado")
   public List<Constante> obtenerConstantes() {
     return iicb_constanteBusiness.obtenerConstantes();
