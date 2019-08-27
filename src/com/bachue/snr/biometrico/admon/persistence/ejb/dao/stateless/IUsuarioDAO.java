@@ -8,7 +8,7 @@ import javax.ejb.Local;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Interface de DAO de logs.
+ * Nota: Interface de DAO de usuarios.
  *
  */
 @Local
@@ -35,9 +35,9 @@ public interface IUsuarioDAO {
   Usuario consultarUsuario(String idUsuario);
 
   /**
-   * Metodo que actualiza la clave de usuario en la tabla de usuarios.
-   * @param idUsuario Modelo que sera almacenado en la base de datos.
-   * @return true si el usuario es registrado con exito.
+   * Metodo que borra el usuario de la tabla de usuarios.
+   * @param idUsuario Modelo que sera borrado de la base de datos.
+   * @return true si el usuario es borrado con exito.
    */
   Boolean borrarUsuario(String idUsuario);
 }

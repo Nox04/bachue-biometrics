@@ -4,7 +4,7 @@ package com.bachue.snr.biometrico.admon.enums;
  *
  * @version 1.0
  * @author Barras y Recaudos.
- * Nota: Enum que relaciona los mensajes de valicacion
+ * Nota: Enum que relaciona los mensajes de validacion
  *
  */
 public enum ValidacionesEnum {

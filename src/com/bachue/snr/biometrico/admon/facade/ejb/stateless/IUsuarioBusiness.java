@@ -39,5 +39,10 @@ public interface IUsuarioBusiness {
    */
   Boolean verificarUsuario(ClaveDTO acd_clave);
 
+  /**
+   * Metodo que obtiene el tipo de segundo factor.
+   * @param as_id id del usuario.
+   * @return segundo factor de autenticacion.
+   */
   String obtenerTipoSegundoFactor(String as_id);
 }

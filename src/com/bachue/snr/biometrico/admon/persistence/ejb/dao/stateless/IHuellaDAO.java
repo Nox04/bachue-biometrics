@@ -15,9 +15,9 @@ import javax.ejb.Local;
 public interface IHuellaDAO {
 
   /**
-   * Metodo que agrega los campos de auditoria que son obtenibles desde el request.
+   * Metodo que agrega los campos de huella que son obtenibles desde el request.
    * @param ah_huella Request con la informacion HTTP de la peticion recibida.
-   * @return true si la huella es consultada con exito.
+   * @return true si la huella es creada con exito.
    */
   Boolean crearHuella(Huella ah_huella);
 

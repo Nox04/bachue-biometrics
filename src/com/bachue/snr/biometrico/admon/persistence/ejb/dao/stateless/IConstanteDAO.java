@@ -15,8 +15,8 @@ import java.util.List;
 @Local
 public interface IConstanteDAO {
   /**
-   * Metodo que registra el usuario en la tabla de usuarios.
-   * @return true si el usuario es registrado con exito.
+   * Metodo que obtiene las constantes en la tabla de constantes.
+   * @return lista de las constantes.
    */
   List<Constante> obtenerConstantes();
 }

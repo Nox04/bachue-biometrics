@@ -10,17 +10,17 @@ public class HistoricoHelper {
 
   /**
    * Metodo que mapea una entidad a su DTO correspondiente.
-   * @param ud_entidad que sera convertida a DTO.
-   * @return DTO mapeado desde la entidad.
+   * @param ud_usuarioDTO que sera convertida a entidad.
+   * @return entidad historico.
    */
-  public static Historico userToHistorico(UsuarioDTO ud_entidad) {
+  public static Historico userToHistorico(UsuarioDTO ud_usuarioDTO) {
 
     Historico lh_historico = new Historico();
-    lh_historico.setIdUsuario(Criptografia.encrypt(ud_entidad.getIdUsuario()));
-    lh_historico.setClaveHash(Criptografia.encrypt(ud_entidad.getClave()));
-    lh_historico.setFechaCreacion(ud_entidad.getTime());
-    lh_historico.setIpCreacion(ud_entidad.getIp());
-    lh_historico.setIdUsuarioCreacion(ud_entidad.getIdUsuarioCreacion());
+    lh_historico.setIdUsuario(Criptografia.encrypt(ud_usuarioDTO.getIdUsuario()));
+    lh_historico.setClaveHash(Criptografia.encrypt(ud_usuarioDTO.getClave()));
+    lh_historico.setFechaCreacion(ud_usuarioDTO.getTime());
+    lh_historico.setIpCreacion(ud_usuarioDTO.getIp());
+    lh_historico.setIdUsuarioCreacion(ud_usuarioDTO.getIdUsuarioCreacion());
 
     return lh_historico;
   }

@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -74,9 +73,9 @@ public class BiometriaWS {
 
 
   /**
-   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * Metodo que enrola las huellas de un usuario previamente creado.
    * @param ahd_huellas DTO con la informacion de las huellas.
-   * @return respuesta HTTP con el resultado del enrolamiento.
+   * @return el resultado de la operacion.
    */
   @WebMethod(action = "enrolarUsuario")
   @WebResult(name = "resultado")
@@ -96,9 +95,9 @@ public class BiometriaWS {
   }
 
   /**
-   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * Metodo que crea un usuario en la base de datos.
    * @param aud_usuario DTO con la informacion del usuario.
-   * @return respuesta HTTP con el resultado de la creación del usuario.
+   * @return el resultado de la operacion.
    */
   @WebMethod(action = "crearUsuario")
   @WebResult(name = "resultado")
@@ -110,9 +109,9 @@ public class BiometriaWS {
   }
 
   /**
-   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * Metodo que actualiza la clave en la base de datos.
    * @param aud_usuario DTO con la informacion del usuario.
-   * @return respuesta HTTP con el resultado de la creación del usuario.
+   * @return el resultado de la operacion.
    */
   @WebMethod(action = "actualizarClave")
   @WebResult(name = "resultado")
@@ -124,9 +123,9 @@ public class BiometriaWS {
   }
 
   /**
-   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
-   * @param as_id DTO con la informacion del usuario.
-   * @return respuesta HTTP con el resultado de la creación del usuario.
+   * Metodo que obtiene un usuario de la base de datos.
+   * @param as_id id del usuario.
+   * @return el estado del usuario.
    */
   @WebMethod(action = "obtenerUsuario")
   @WebResult(name = "resultado")
@@ -135,9 +134,9 @@ public class BiometriaWS {
   }
 
   /**
-   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
-   * @param as_id DTO con la informacion del usuario.
-   * @return respuesta HTTP con el resultado de la creación del usuario.
+   * Metodo que obtiene el tipo de segundo factor de un usuario.
+   * @param as_id id del usuario.
+   * @return el resultado de la operacion.
    */
   @WebMethod(action = "obtenerTipoSegundoFactor")
   @WebResult(name = "resultado")
@@ -146,8 +145,8 @@ public class BiometriaWS {
   }
 
   /**
-   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
-   * @return respuesta HTTP con el resultado de la creación del usuario.
+   * Metodo obtiene las constantes de la base de datos.
+   * @return el resultado de la operacion.
    */
   @WebMethod(action = "obtenerConstantes")
   @WebResult(name = "resultado")
@@ -156,9 +155,9 @@ public class BiometriaWS {
   }
 
   /**
-   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * Metodo que borra la informacion biometrica del usuario.
    * @param bhd_usuario DTO con la informacion del usuario.
-   * @return respuesta HTTP con el resultado de la creación del usuario.
+   * @return el resultado de la operacion.
    */
   @WebMethod(action = "borrarHuellas")
   @WebResult(name = "resultado")
@@ -170,9 +169,9 @@ public class BiometriaWS {
   }
 
   /**
-   * Metodo que recibe la peticion HTTP de verificacion y la mapea al DTO.
+   * Metodo que verifica un usuario con biometria.
    * @param avd_verificacion DTO con la informacion de la huella.
-   * @return respuesta HTTP con el resultado de la verificacion.
+   * @return el resultado de la operacion.
    */
   @WebMethod(action = "verificarUsuario")
   @WebResult(name = "resultado")
@@ -184,9 +183,9 @@ public class BiometriaWS {
   }
 
   /**
-   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
-   * @param acd_clave DTO con la informacion del usuario.
-   * @return respuesta HTTP con el resultado de la creación del usuario.
+   * Metodo que verifica un usuario con segunda clave.
+   * @param acd_clave DTO con la informacion de la clave.
+   * @return el resultado de la operacion.
    */
   @WebMethod(action = "verificarClave")
   @WebResult(name = "resultado")
@@ -198,9 +197,9 @@ public class BiometriaWS {
   }
 
   /**
-   * Metodo que recibe la peticion HTTP de log y la mapea al DTO.
+   * Metodo que registra un evento en la base de datos.
    * @param ald_log DTO con la informacion del evento a loguear.
-   * @return respuesta HTTP con el resultado de la operacion.
+   * @return el resultado de la operacion.
    */
   @WebMethod(action = "registrarEvento")
   @WebResult(name = "resultado")

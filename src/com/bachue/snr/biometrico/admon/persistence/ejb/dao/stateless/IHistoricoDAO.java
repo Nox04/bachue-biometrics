@@ -15,7 +15,7 @@ import java.util.List;
 @Local
 public interface IHistoricoDAO {
   /**
-   * Metodo que registra el usuario en la tabla de usuarios.
+   * Metodo que registra el historico de clave.
    * @param ah_historico Modelo que sera almacenado en la base de datos.
    * @return true si el usuario es registrado con exito.
    */
@@ -23,7 +23,7 @@ public interface IHistoricoDAO {
 
 
   /**
-   * Metodo que consulta un usuario en la tabla de usuarios.
+   * Metodo que consulta las ultimas cinco claves en la tabla de historico.
    * @param idUsuario id del usuario consultado.
    * @return las ultimas cinco claves
    */

@@ -11,6 +11,6 @@ public enum RespuestaUsuarioEnum {
 
   USUARIO_NO_EXISTE,
   USUARIO_NO_TIENE_HUELLAS,
-  USUARIO_EXISTE;
+  USUARIO_EXISTE
 
 }
