@@ -16,7 +16,7 @@ import java.util.List;
  * Nota: Implementacion de logica de negocio de usuario.
  *
  */
-@Stateless(name="UsuarioBusiness")
+@Stateless(name="ConstanteBusiness")
 @Local
 public class ConstanteBusiness implements IConstanteBusiness {
   @EJB
