@@ -14,6 +14,7 @@ import javax.jws.WebService;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -150,8 +151,8 @@ public class BiometriaWS {
    */
   @WebMethod(action = "obtenerConstantes")
   @WebResult(name = "resultado")
-  public List<Constante> obtenerConstantes() {
-    return iicb_constanteBusiness.obtenerConstantes();
+  public ArrayList<Constante> obtenerConstantes() {
+    return new ArrayList<>(iicb_constanteBusiness.obtenerConstantes());
   }
 
   /**
