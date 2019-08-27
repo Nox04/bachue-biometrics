@@ -38,4 +38,6 @@ public interface IUsuarioBusiness {
    * @return true si el usuario existe.
    */
   Boolean verificarUsuario(ClaveDTO acd_clave);
+
+  String obtenerTipoSegundoFactor(String as_id);
 }

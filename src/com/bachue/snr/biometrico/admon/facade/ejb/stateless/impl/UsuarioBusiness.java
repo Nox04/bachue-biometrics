@@ -31,6 +31,9 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   private IUsuarioDAO iiud_usuarioDao;
 
   @EJB
+  private IUsuarioBachueDAO iiud_usuarioBachueDao;
+
+  @EJB
   private IHistoricoDAO iihd_historicoDao;
 
   @EJB
@@ -105,5 +108,10 @@ public class UsuarioBusiness implements IUsuarioBusiness {
     iisd_sesionDao.crearSesion(SesionHelper.crearSesionConClave(acd_clave, lb_resultado));
     iild_logDao.crearEvento(LogHelper.crearLogDeVerificacionConClave(acd_clave, lb_resultado));
     return true;
+  }
+
+  @Override
+  public String obtenerTipoSegundoFactor(String as_id) {
+    return iiud_usuarioBachueDao.obtenerSegundoFactor(as_id);
   }
 }

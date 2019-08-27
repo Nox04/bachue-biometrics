@@ -1,10 +1,8 @@
 package com.bachue.snr.biometrico.servicios.ws;
 
-import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
-import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ILogBusiness;
-import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ISesionBusiness;
-import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IUsuarioBusiness;
+import com.bachue.snr.biometrico.admon.facade.ejb.stateless.*;
 import com.bachue.snr.biometrico.admon.persistence.dto.*;
+import com.bachue.snr.biometrico.admon.persistence.model.Constante;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -16,6 +14,7 @@ import javax.jws.WebService;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
+import java.util.List;
 
 /**
  *
@@ -39,6 +38,9 @@ public class BiometriaWS {
 
   @EJB
   IUsuarioBusiness iiub_usuarioBusiness;
+
+  @EJB
+  IConstanteBusiness iicb_constanteBusiness;
 
   @Resource
   private WebServiceContext context;
@@ -129,6 +131,27 @@ public class BiometriaWS {
   @WebResult(name = "resultado")
   public String obtenerUsuario(@WebParam(name = "id") String as_id) {
     return iiub_usuarioBusiness.obtenerUsuario(as_id);
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @param as_id DTO con la informacion del usuario.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @WebMethod(action = "obtenerTipoSegundoFactor")
+  @WebResult(name = "resultado")
+  public String obtenerTipoSegundoFactor(@WebParam(name = "id") String as_id) {
+    return iiub_usuarioBusiness.obtenerTipoSegundoFactor(as_id);
+  }
+
+  /**
+   * Metodo que recibe la peticion HTTP de enrolamiento y la mapea al DTO.
+   * @return respuesta HTTP con el resultado de la creación del usuario.
+   */
+  @WebMethod(action = "obtenerTipoSegundoFactor")
+  @WebResult(name = "resultado")
+  public List<Constante> obteneConstantes() {
+    return iicb_constanteBusiness.obtenerConstantes();
   }
 
   /**
