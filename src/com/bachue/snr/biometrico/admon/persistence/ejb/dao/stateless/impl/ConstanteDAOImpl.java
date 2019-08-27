@@ -28,7 +28,7 @@ public class ConstanteDAOImpl implements IConstanteDAO {
 	public List<Constante> obtenerConstantes() {
 		EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
 
-		String query = "SELECT u.idConstante, u.caracter FROM Constante u";
+		String query = "SELECT p FROM Constante p";
 		List<Constante> llc_constante = lem_entityManager.createQuery(query, Constante.class).getResultList();
 		lem_entityManager.close();
 		return llc_constante;

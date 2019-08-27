@@ -25,6 +25,9 @@ public class ConstanteBusiness implements IConstanteBusiness {
 
   @Override
   public List<Constante> obtenerConstantes() {
+    iicd_constanteDao.obtenerConstantes().forEach( e -> {
+      System.out.println("1" + e.getCaracter());
+    });
     return iicd_constanteDao.obtenerConstantes();
   }
 }
