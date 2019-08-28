@@ -7,7 +7,6 @@ import com.neurotec.biometrics.*;
 import com.neurotec.io.NBuffer;
 import org.apache.commons.io.FileUtils;
 
-import javax.ejb.EJB;
 import java.io.File;
 import java.util.List;
 
@@ -16,12 +15,11 @@ public class Enrolador {
   private NBuffer inb_buffer;
   private NFTemplate inft_nfTemplate;
   private HuellaDTO ihd_huellaDTO;
-
-  @EJB
   private IHuellaDAO iihd_huellaDao;
 
-  public Enrolador(HuellaDTO ahd_huellaDTO) {
+  public Enrolador(HuellaDTO ahd_huellaDTO, IHuellaDAO aihd_huellaDao) {
     this.ihd_huellaDTO = ahd_huellaDTO;
+    this.iihd_huellaDao = aihd_huellaDao;
   }
 
   /**

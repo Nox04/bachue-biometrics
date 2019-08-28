@@ -53,7 +53,7 @@ public class HuellaBusiness implements IHuellaBusiness {
   @Override
   public Boolean verificarHuella(VerificacionDTO avd_verificacion) {
     MotorBiometrico.getInstance();
-    Verificador lv_verificador = new Verificador();
+    Verificador lv_verificador = new Verificador(iihd_huellaDao);
     boolean lb_resultado = lv_verificador.verificar(avd_verificacion);
     iisd_sesionDao.crearSesion(SesionHelper.createSesion(avd_verificacion, lb_resultado));
     iild_logDao.crearEvento(LogHelper.crearLogDeVerificacion(avd_verificacion, lb_resultado));
@@ -63,7 +63,7 @@ public class HuellaBusiness implements IHuellaBusiness {
   @Override
   public String borrarHuellas(BorrarHuellasDTO bhd_usuario) {
     MotorBiometrico.getInstance();
-    Enrolador le_enrolador = new Enrolador(null);
+    Enrolador le_enrolador = new Enrolador(null, iihd_huellaDao);
     le_enrolador.eliminarHuellas(Criptografia.encrypt(bhd_usuario.getIdUsuario()));
     iihd_huellaDao.borrarHuellas(Criptografia.encrypt(bhd_usuario.getIdUsuario()));
     iild_logDao.crearEvento(LogHelper.crearLogDeBorrado(bhd_usuario));
@@ -73,7 +73,7 @@ public class HuellaBusiness implements IHuellaBusiness {
   @Override
   public Boolean crearMegaTemplate(HuellaDTO ahd_huella) {
     MotorBiometrico.getInstance();
-    Enrolador le_enrolador = new Enrolador(ahd_huella);
+    Enrolador le_enrolador = new Enrolador(ahd_huella, iihd_huellaDao);
     boolean lb_enrolamiento = le_enrolador.enrolarUsuario();
     iild_logDao.crearEvento(LogHelper.crearLogDeEnrolamiento(ahd_huella, lb_enrolamiento));
     return lb_enrolamiento;

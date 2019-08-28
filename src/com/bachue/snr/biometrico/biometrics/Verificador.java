@@ -10,14 +10,16 @@ import com.neurotec.io.NBuffer;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 
-import javax.ejb.EJB;
 import java.io.File;
 import java.util.List;
 
 public class Verificador {
 
-  @EJB
   private IHuellaDAO iihd_huellaDao;
+
+  public Verificador(IHuellaDAO aihd_huellaDao) {
+    this.iihd_huellaDao = aihd_huellaDao;
+  }
 
   public boolean verificar(VerificacionDTO avd_verificacion) {
     NSubject lns_subjectCandidate = new NSubject();
