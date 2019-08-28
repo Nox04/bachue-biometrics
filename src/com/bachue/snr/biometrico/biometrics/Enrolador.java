@@ -15,11 +15,9 @@ public class Enrolador {
   private NBuffer inb_buffer;
   private NFTemplate inft_nfTemplate;
   private HuellaDTO ihd_huellaDTO;
-  private IHuellaDAO iihd_huellaDao;
 
-  public Enrolador(HuellaDTO ahd_huellaDTO, IHuellaDAO aihd_huellaDao) {
+  public Enrolador(HuellaDTO ahd_huellaDTO) {
     this.ihd_huellaDTO = ahd_huellaDTO;
-    this.iihd_huellaDao = aihd_huellaDao;
   }
 
   /**
@@ -27,15 +25,13 @@ public class Enrolador {
    * @return Resultado de la operacion de enrolamiento
    */
   @SuppressWarnings("resource")
-public boolean enrolarUsuario() {
+public boolean enrolarUsuario(List<Huella> alh_huellas) {
     boolean lb_estado = false;
     try {
       crearCarpeta(ihd_huellaDTO.getUsuarioId());
       inft_nfTemplate = new NFTemplate();
 
-      List<Huella> llh_huellas = iihd_huellaDao.obtenerHuellas(Criptografia.decrypt(ihd_huellaDTO.getUsuarioId()));
-
-      for (Huella lh_huella: llh_huellas) {
+      for (Huella lh_huella: alh_huellas) {
         FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(ihd_huellaDTO.getUsuarioId())+ "/cache.bmp"), lh_huella.getTemplate());
         inb_buffer = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(ihd_huellaDTO.getUsuarioId())+ "/cache.bmp");
         NTemplate template = new NTemplate(inb_buffer);

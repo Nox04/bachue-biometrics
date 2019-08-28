@@ -15,13 +15,8 @@ import java.util.List;
 
 public class Verificador {
 
-  private IHuellaDAO iihd_huellaDao;
 
-  public Verificador(IHuellaDAO aihd_huellaDao) {
-    this.iihd_huellaDao = aihd_huellaDao;
-  }
-
-  public boolean verificar(VerificacionDTO avd_verificacion) {
+  public boolean verificar(VerificacionDTO avd_verificacion, List<Huella> alh_huellas) {
     NSubject lns_subjectCandidate = new NSubject();
     NSubject lns_subjectProbe = new NSubject();
 
@@ -29,12 +24,10 @@ public class Verificador {
       crearCarpeta(avd_verificacion.getUsuarioId());
       byte[] lb_data = Base64.decodeBase64(avd_verificacion.getTemplate());
 
-      List<Huella> llh_huellas = iihd_huellaDao.obtenerHuellas(Criptografia.decrypt(avd_verificacion.getUsuarioId()));
-
       FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ ".bmp"), lb_data);
       NBuffer lnb_bufferCandidate = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId()) + ".bmp");
 
-      for (Huella lh_huella: llh_huellas) {
+      for (Huella lh_huella: alh_huellas) {
         FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ "/cache.bmp"), lh_huella.getTemplate());
         NBuffer lnb_bufferProbe = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ "/cache.bmp");
         if(lnb_bufferProbe != null && lnb_bufferCandidate != null){
