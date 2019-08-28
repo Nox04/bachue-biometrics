@@ -11,15 +11,13 @@ import com.bachue.snr.biometrico.admon.enums.ValidacionesEnum;
  */
 public class ValidadorHelper {
 
-  public static String validarClave(String as_clave) {
+  public static String validarClave(String as_clave, String as_patron, String as_minimo, String as_maximo) {
 
-    String ls_patron = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[-*@#$%^&+=])(?=\\S+$).{8,}";
-
-    if (as_clave.length() < 8) {
+    if (as_clave.length() < Integer.parseInt(as_minimo)) {
       return ValidacionesEnum.CLAVE_CORTA.consultarMensaje();
-    } else if (as_clave.length() > 32) {
+    } else if (as_clave.length() > Integer.parseInt(as_maximo)) {
       return ValidacionesEnum.CLAVE_LARGA.consultarMensaje();
-    } else if(!as_clave.matches(ls_patron)) {
+    } else if(!as_clave.matches(as_patron)) {
       return ValidacionesEnum.POCA_COMPLEJIDAD.consultarMensaje();
     }
 

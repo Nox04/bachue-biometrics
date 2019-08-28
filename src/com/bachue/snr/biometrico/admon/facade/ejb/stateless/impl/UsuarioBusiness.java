@@ -6,6 +6,7 @@ import com.bachue.snr.biometrico.admon.persistence.dto.ClaveDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.*;
 import com.bachue.snr.biometrico.admon.persistence.helper.*;
+import com.bachue.snr.biometrico.admon.persistence.model.Constante;
 import com.bachue.snr.biometrico.admon.persistence.model.Historico;
 import com.bachue.snr.biometrico.admon.persistence.model.Usuario;
 import com.bachue.snr.biometrico.biometrics.Criptografia;
@@ -45,9 +46,17 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   @EJB
   private ILogDAO iild_logDao;
 
+  @EJB
+  private IConstanteDAO iicd_constanteDao;
+
+  private String is_clavePatron = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[-*@#$%^&+=])(?=\\S+$).{8,}";
+  private String is_claveMinimo = "8";
+  private String is_claveMaximo = "32";
+
   @Override
   public String crearUsuario(UsuarioDTO aud_usuario) {
-    String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave());
+    leerConstantes();
+    String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave(), is_clavePatron, is_claveMinimo, is_claveMaximo);
     if(ls_resultado.equals("Validado exitosamente")) {
       iiud_usuarioDao.crearUsuario(UsuarioHelper.toEntity(aud_usuario));
       return String.valueOf(iihd_historicoDao.crearHistorico(HistoricoHelper.userToHistorico(aud_usuario)));
@@ -58,7 +67,8 @@ public class UsuarioBusiness implements IUsuarioBusiness {
 
   @Override
   public String actualizarClave(UsuarioDTO aud_usuario) {
-    String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave());
+    leerConstantes();
+    String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave(), is_clavePatron, is_claveMinimo, is_claveMaximo);
     if(ls_resultado.equals("Validado exitosamente")) {
       Usuario lu_usuarioActual = iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(aud_usuario.getIdUsuario()));
       if(lu_usuarioActual.getClaveHash().equals(Criptografia.encrypt(aud_usuario.getClave()))) {
@@ -113,5 +123,22 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   @Override
   public String obtenerTipoSegundoFactor(String as_id) {
     return iiud_usuarioBachueDao.obtenerSegundoFactor(as_id);
+  }
+
+  private void leerConstantes() {
+    List<Constante> llc_constantes = iicd_constanteDao.obtenerConstantes();
+    llc_constantes.forEach(e -> {
+      switch (e.getIdConstante()) {
+        case "CARACTERES_MINIMOS_CLAVE_SEGUNDO_FACTOR":
+          is_claveMinimo = e.getCaracter();
+          break;
+        case "CARACTERES_MAXIMOS_CLAVE_SEGUNDO_FACTOR":
+          is_claveMaximo = e.getCaracter();
+          break;
+        case "PATRON_CLAVE_SEGUNDO_FACTOR":
+          is_clavePatron = e.getCaracter();
+          break;
+      }
+    });
   }
 }

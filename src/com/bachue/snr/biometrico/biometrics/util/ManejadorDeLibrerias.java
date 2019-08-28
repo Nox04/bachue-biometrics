@@ -59,7 +59,6 @@ public class ManejadorDeLibrerias {
         lsb_path.append(Platform.is64Bit() ? LINUX_X86_64 : LINUX_X86);
       }
     }
-    System.out.println("Ruta menor: " + lsb_path.toString());
     return lsb_path.toString();
   }
 }
