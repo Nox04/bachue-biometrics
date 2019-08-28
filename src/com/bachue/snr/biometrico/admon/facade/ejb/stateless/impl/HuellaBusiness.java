@@ -63,7 +63,6 @@ public class HuellaBusiness implements IHuellaBusiness {
   @Override
   public String borrarHuellas(BorrarHuellasDTO bhd_usuario) {
     MotorBiometrico.getInstance();
-    Utils.limpiarDirectorio("biometria/huellas/" + bhd_usuario.getIdUsuario());
     Enrolador le_enrolador = new Enrolador(null);
     le_enrolador.eliminarHuellas(Criptografia.encrypt(bhd_usuario.getIdUsuario()));
     iihd_huellaDao.borrarHuellas(Criptografia.encrypt(bhd_usuario.getIdUsuario()));

@@ -1,17 +1,24 @@
 package com.bachue.snr.biometrico.biometrics;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
+import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
+import com.bachue.snr.biometrico.admon.persistence.model.Huella;
 import com.neurotec.biometrics.*;
 import com.neurotec.io.NBuffer;
 import org.apache.commons.io.FileUtils;
 
+import javax.ejb.EJB;
 import java.io.File;
+import java.util.List;
 
 public class Enrolador {
   private NSubject ins_subject;
   private NBuffer inb_buffer;
   private NFTemplate inft_nfTemplate;
   private HuellaDTO ihd_huellaDTO;
+
+  @EJB
+  private IHuellaDAO iihd_huellaDao;
 
   public Enrolador(HuellaDTO ahd_huellaDTO) {
     this.ihd_huellaDTO = ahd_huellaDTO;
@@ -25,12 +32,14 @@ public class Enrolador {
 public boolean enrolarUsuario() {
     boolean lb_estado = false;
     try {
-      crearCarpeta();
-
+      crearCarpeta(ihd_huellaDTO.getUsuarioId());
       inft_nfTemplate = new NFTemplate();
 
-      for (File lf_file: FileUtils.listFiles(new File("biometria/huellas/" + Criptografia.decrypt(this.ihd_huellaDTO.getUsuarioId())), new String[] { "bmp" }, false)) {
-        inb_buffer = Extractor.crearTemplate(lf_file.getAbsolutePath());
+      List<Huella> llh_huellas = iihd_huellaDao.obtenerHuellas(Criptografia.decrypt(ihd_huellaDTO.getUsuarioId()));
+
+      for (Huella lh_huella: llh_huellas) {
+        FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(ihd_huellaDTO.getUsuarioId())+ "/cache.bmp"), lh_huella.getTemplate());
+        inb_buffer = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(ihd_huellaDTO.getUsuarioId())+ "/cache.bmp");
         NTemplate template = new NTemplate(inb_buffer);
         if (template.getFingers() != null) {
           for (NFRecord record : template.getFingers().getRecords()) {
@@ -80,9 +89,9 @@ public boolean enrolarUsuario() {
     }
   }
 
-  private void crearCarpeta() {
-    File lf_carpeta = new File("biometria/huellas");
-    if (!lf_carpeta.exists()) lf_carpeta.mkdirs();
+  private void crearCarpeta(String as_idUsuario) {
+    File lf_carpetaUsuario = new File("biometria/cache/" + Criptografia.decrypt(as_idUsuario));
+    if (!lf_carpetaUsuario.exists()) lf_carpetaUsuario.mkdirs();
   }
 
   private void limpiar() {
