@@ -46,48 +46,20 @@ public class ManejadorDeLibrerias {
   }
 
   public static String obtenerRutaDelSistema() {
-    String ls_dominio = "biometria";
-    try {
-      Context lc_env = (Context) new InitialContext().lookup("java:comp/env");
-      ls_dominio = (String)lc_env.lookup("dominio");
-    } catch (NamingException lne_excepcion) {
-      lne_excepcion.printStackTrace();
-    }
+    String domainDir = System.getenv("DOMAIN_HOME");
 
     StringBuilder lsb_path = new StringBuilder();
-    int li_index = Utils.obtenerDirectorioActivo().lastIndexOf(Utils.SEPARADOR_DE_ARCHIVOS);
-    if (li_index == -1) {
-      return null;
-    }
-    String ls_part = Utils.obtenerDirectorioActivo().substring(0, li_index);
+    lsb_path.append(domainDir).append(Utils.SEPARADOR_DE_ARCHIVOS).append("bin").append(Utils.SEPARADOR_DE_ARCHIVOS);
     if (Platform.isWindows()) {
-      if (ls_part.endsWith("Bin")) {
-        lsb_path.append(ls_part);
-        lsb_path.append(Utils.SEPARADOR_DE_ARCHIVOS);
-        lsb_path.append(Platform.is64Bit() ? WIN64_X64 : WIN32_X86);
-      } else {
-        lsb_path.append(ls_part).append(Utils.SEPARADOR_DE_ARCHIVOS).append(ls_dominio).append(Utils.SEPARADOR_DE_ARCHIVOS).append("bin");
-        lsb_path.append(Utils.SEPARADOR_DE_ARCHIVOS);
-        lsb_path.append(Platform.is64Bit() ? WIN64_X64 : WIN32_X86);
-      }
+      lsb_path.append(Platform.is64Bit() ? WIN64_X64 : WIN32_X86);
     } else if (Platform.isLinux()) {
-      li_index = ls_part.lastIndexOf(Utils.SEPARADOR_DE_ARCHIVOS);
-      if (li_index == -1) {
-        return null;
-      }
-      ls_part = ls_part.substring(0, li_index);
-      lsb_path.append(ls_part);
-      lsb_path.append(Utils.SEPARADOR_DE_ARCHIVOS);
-      lsb_path.append("Lib");
-      lsb_path.append(Utils.SEPARADOR_DE_ARCHIVOS);
       if (Platform.isARM()) {
         lsb_path.append(Platform.is64Bit() ? ARM_64 : ARM_32);
       } else {
         lsb_path.append(Platform.is64Bit() ? LINUX_X86_64 : LINUX_X86);
       }
-    } else if (Platform.isMac()) {
-      lsb_path.append(MAC_OS);
     }
+    System.out.println("Ruta menor: " + lsb_path.toString());
     return lsb_path.toString();
   }
 }
