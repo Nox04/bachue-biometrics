@@ -33,7 +33,7 @@ public class HuellaDTO extends BaseDTO implements Serializable{
     this.ii_id = ai_id;
   }
 
-  @XmlElement(required = true)
+  @XmlElement
   public DedosEnum getPosicion() {
     return ide_posicion;
   }
