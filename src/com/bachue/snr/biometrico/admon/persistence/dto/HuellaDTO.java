@@ -42,7 +42,7 @@ public class HuellaDTO extends BaseDTO implements Serializable{
     this.ide_posicion = ade_posicion;
   }
 
-  @XmlElement(required = true)
+  @XmlElement(required = true, name = "imagenHuella")
   public String getTemplate() {
     return is_template;
   }
