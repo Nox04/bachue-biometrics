@@ -2,9 +2,6 @@ package com.bachue.snr.biometrico.biometrics.util;
 
 import com.sun.jna.Platform;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import java.lang.reflect.Field;
 
 public class ManejadorDeLibrerias {
@@ -18,7 +15,6 @@ public class ManejadorDeLibrerias {
   private static final String LINUX_X86_64 = "Linux_x86_64";
   private static final String ARM_32 = "Linux_armhf";
   private static final String ARM_64 = "Linux_arm64";
-  private static final String MAC_OS = "/Library/Frameworks/";
 
   /**
    * Cargar librerias de Neurotechnology.

@@ -2,8 +2,6 @@ package com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.impl;
 
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IEntityManagerFactory;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IUsuarioBachueDAO;
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IUsuarioDAO;
-import com.bachue.snr.biometrico.admon.persistence.model.Usuario;
 import com.bachue.snr.biometrico.admon.persistence.model.UsuarioBachue;
 
 import javax.ejb.EJB;

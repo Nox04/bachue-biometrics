@@ -1,7 +1,6 @@
 package com.bachue.snr.biometrico.biometrics;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
-import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.IHuellaDAO;
 import com.bachue.snr.biometrico.admon.persistence.model.Huella;
 import com.neurotec.biometrics.NBiometricStatus;
 import com.neurotec.biometrics.NMatchingSpeed;
