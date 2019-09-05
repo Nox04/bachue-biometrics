@@ -79,7 +79,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "enrolarUsuario")
   @WebResult(name = "salidaResultado")
-  public Boolean enrolarUsuario(@WebParam(name = "huellas") HuellaDTO[] ahd_huellas) {
+  public Boolean enrolarUsuario(@WebParam(name = "entradaHuella") HuellaDTO[] ahd_huellas) {
 
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
@@ -101,7 +101,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "crearUsuario")
   @WebResult(name = "salidaResultado")
-  public String crearUsuario(@WebParam(name = "usuario") UsuarioDTO aud_usuario) {
+  public String crearUsuario(@WebParam(name = "entradaUsuario") UsuarioDTO aud_usuario) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     aud_usuario.agregarValoresAuditoria(ahsr_req);
@@ -115,7 +115,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "actualizarClave")
   @WebResult(name = "salidaResultado")
-  public String actualizarClave(@WebParam(name = "usuario") UsuarioDTO aud_usuario) {
+  public String actualizarClave(@WebParam(name = "entradaClave") UsuarioDTO aud_usuario) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     aud_usuario.agregarValoresAuditoria(ahsr_req);
@@ -129,7 +129,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "obtenerUsuario")
   @WebResult(name = "salidaResultado")
-  public String obtenerUsuario(@WebParam(name = "id") String as_id) {
+  public String obtenerUsuario(@WebParam(name = "idUsuario") String as_id) {
     return iiub_usuarioBusiness.obtenerUsuario(as_id);
   }
 
@@ -140,7 +140,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "obtenerTipoSegundoFactor")
   @WebResult(name = "salidaResultado")
-  public String obtenerTipoSegundoFactor(@WebParam(name = "id") String as_id) {
+  public String obtenerTipoSegundoFactor(@WebParam(name = "idUsuario") String as_id) {
     return iiub_usuarioBusiness.obtenerTipoSegundoFactor(as_id);
   }
 
@@ -161,7 +161,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "borrarHuellas")
   @WebResult(name = "salidaResultado")
-  public String borrarHuellas(@WebParam(name = "usuario") BorrarHuellasDTO bhd_usuario) {
+  public String borrarHuellas(@WebParam(name = "entradaUsuario") BorrarHuellasDTO bhd_usuario) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     bhd_usuario.agregarValoresAuditoria(ahsr_req);
@@ -175,7 +175,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "verificarUsuario")
   @WebResult(name = "salidaResultado")
-  public Boolean verificarUsuario(@WebParam(name = "verificacion") VerificacionDTO avd_verificacion) {
+  public Boolean verificarUsuario(@WebParam(name = "entradaVerificacion") VerificacionDTO avd_verificacion) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     avd_verificacion.agregarValoresAuditoria(ahsr_req);
@@ -189,7 +189,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "verificarClave")
   @WebResult(name = "salidaResultado")
-  public Boolean verificarClave(@WebParam(name = "clave") ClaveDTO acd_clave) {
+  public Boolean verificarClave(@WebParam(name = "entradaClave") ClaveDTO acd_clave) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     acd_clave.agregarValoresAuditoria(ahsr_req);
@@ -203,7 +203,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "registrarEvento")
   @WebResult(name = "salidaResultado")
-  public Boolean registrarEvento(@WebParam(name = "log") LogDTO ald_log) {
+  public Boolean registrarEvento(@WebParam(name = "entradaLog") LogDTO ald_log) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     ald_log.agregarValoresAuditoria(ahsr_req);
