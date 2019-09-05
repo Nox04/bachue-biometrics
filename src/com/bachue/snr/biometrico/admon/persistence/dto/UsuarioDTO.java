@@ -3,6 +3,7 @@ package com.bachue.snr.biometrico.admon.persistence.dto;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,6 +14,7 @@ import java.util.Date;
  * Nota: DTO de usuarios.
  *
  */
+@XmlRootElement(name = "entradaUsuario")
 public class UsuarioDTO extends BaseDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;

@@ -53,8 +53,8 @@ public class BiometriaWS {
    * @return DTO con la sesion y su estado.
    */
   @WebMethod(action = "consultarSesion")
-  @WebResult(name = "sesion")
-  public SesionDTO consultarSesion(@WebParam(name = "sesion") String as_sesion) {
+  @WebResult(name = "salidaSesion")
+  public SesionDTO consultarSesion(@WebParam(name = "entradaSesion") String as_sesion) {
     return iisb_sesionBusiness.consultarSesion(as_sesion);
   }
 
@@ -66,8 +66,8 @@ public class BiometriaWS {
    * @return DTO con la sesion y su estado.
    */
   @WebMethod(action = "consultarEstadisticas")
-  @WebResult(name = "estadisticas")
-  public int consultarEstadisticas(@WebParam(name = "tipo" ) String as_tipo, @WebParam(name = "id" ) String as_id) {
+  @WebResult(name = "salidaEstadisticas")
+  public int consultarEstadisticas(@WebParam(name = "tipo" ) String as_tipo, @WebParam(name = "idEntidad" ) String as_id) {
     return iilb_logBusiness.consultarStats(as_tipo, as_id);
   }
 
