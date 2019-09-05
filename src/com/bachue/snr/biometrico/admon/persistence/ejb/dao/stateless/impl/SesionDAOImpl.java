@@ -8,6 +8,8 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -27,7 +29,10 @@ public class SesionDAOImpl implements ISesionDAO {
 	public Sesion consultarSesion(String as_sesion) {
 		EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
 		Sesion ls_sesion = lem_entityManager.find(Sesion.class, as_sesion);
-		lem_entityManager.remove(ls_sesion);
+		SimpleDateFormat lsdf_format = new SimpleDateFormat("yyyyMMdd");
+		if(!lsdf_format.format(ls_sesion.getFechaCreacion()).equals(lsdf_format.format(new Date()))) {
+			ls_sesion.setResultado(false);
+		}
 		lem_entityManager.close();
 		return ls_sesion;
 	}
