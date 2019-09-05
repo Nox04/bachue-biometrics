@@ -78,7 +78,7 @@ public class BiometriaWS {
    * @return el resultado de la operacion.
    */
   @WebMethod(action = "enrolarUsuario")
-  @WebResult(name = "resultado")
+  @WebResult(name = "salidaResultado")
   public Boolean enrolarUsuario(@WebParam(name = "huellas") HuellaDTO[] ahd_huellas) {
 
     MessageContext mc = context.getMessageContext();
@@ -100,7 +100,7 @@ public class BiometriaWS {
    * @return el resultado de la operacion.
    */
   @WebMethod(action = "crearUsuario")
-  @WebResult(name = "resultado")
+  @WebResult(name = "salidaResultado")
   public String crearUsuario(@WebParam(name = "usuario") UsuarioDTO aud_usuario) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
@@ -114,7 +114,7 @@ public class BiometriaWS {
    * @return el resultado de la operacion.
    */
   @WebMethod(action = "actualizarClave")
-  @WebResult(name = "resultado")
+  @WebResult(name = "salidaResultado")
   public String actualizarClave(@WebParam(name = "usuario") UsuarioDTO aud_usuario) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
@@ -128,7 +128,7 @@ public class BiometriaWS {
    * @return el estado del usuario.
    */
   @WebMethod(action = "obtenerUsuario")
-  @WebResult(name = "resultado")
+  @WebResult(name = "salidaResultado")
   public String obtenerUsuario(@WebParam(name = "id") String as_id) {
     return iiub_usuarioBusiness.obtenerUsuario(as_id);
   }
@@ -139,7 +139,7 @@ public class BiometriaWS {
    * @return el resultado de la operacion.
    */
   @WebMethod(action = "obtenerTipoSegundoFactor")
-  @WebResult(name = "resultado")
+  @WebResult(name = "salidaResultado")
   public String obtenerTipoSegundoFactor(@WebParam(name = "id") String as_id) {
     return iiub_usuarioBusiness.obtenerTipoSegundoFactor(as_id);
   }
@@ -149,7 +149,7 @@ public class BiometriaWS {
    * @return el resultado de la operacion.
    */
   @WebMethod(action = "obtenerConstantes")
-  @WebResult(name = "resultado")
+  @WebResult(name = "salidaResultado")
   public ArrayList<Constante> obtenerConstantes() {
     return new ArrayList<>(iicb_constanteBusiness.obtenerConstantes());
   }
@@ -160,7 +160,7 @@ public class BiometriaWS {
    * @return el resultado de la operacion.
    */
   @WebMethod(action = "borrarHuellas")
-  @WebResult(name = "resultado")
+  @WebResult(name = "salidaResultado")
   public String borrarHuellas(@WebParam(name = "usuario") BorrarHuellasDTO bhd_usuario) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
@@ -174,7 +174,7 @@ public class BiometriaWS {
    * @return el resultado de la operacion.
    */
   @WebMethod(action = "verificarUsuario")
-  @WebResult(name = "resultado")
+  @WebResult(name = "salidaResultado")
   public Boolean verificarUsuario(@WebParam(name = "verificacion") VerificacionDTO avd_verificacion) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
@@ -188,7 +188,7 @@ public class BiometriaWS {
    * @return el resultado de la operacion.
    */
   @WebMethod(action = "verificarClave")
-  @WebResult(name = "resultado")
+  @WebResult(name = "salidaResultado")
   public Boolean verificarClave(@WebParam(name = "clave") ClaveDTO acd_clave) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
@@ -202,7 +202,7 @@ public class BiometriaWS {
    * @return el resultado de la operacion.
    */
   @WebMethod(action = "registrarEvento")
-  @WebResult(name = "resultado")
+  @WebResult(name = "salidaResultado")
   public Boolean registrarEvento(@WebParam(name = "log") LogDTO ald_log) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
