@@ -149,8 +149,8 @@ public class BiometriaWS {
    */
   @WebMethod(action = "obtenerConstantes")
   @WebResult(name = "salidaResultado")
-  public ArrayList<Constante> obtenerConstantes() {
-    return new ArrayList<>(iicb_constanteBusiness.obtenerConstantes());
+  public ConstantesSalidaDTO obtenerConstantes() {
+    return iicb_constanteBusiness.obtenerConstantes();
   }
 
   /**

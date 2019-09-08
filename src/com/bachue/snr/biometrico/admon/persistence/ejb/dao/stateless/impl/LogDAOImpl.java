@@ -39,12 +39,12 @@ public class LogDAOImpl implements ILogDAO {
 	@Override
 	public int consultarStats(String as_tipo, String as_id) {
 		EntityManager lem_entityManager = iiemf_entityFactory.getEntityManager();
-		Query iq_query = lem_entityManager.createQuery(
+		Query lq_query = lem_entityManager.createQuery(
 						"SELECT COUNT(p) FROM Log p WHERE p.evento =:tipo AND p.idEntidad =:id"
 		);
-		iq_query.setParameter("tipo", as_tipo);
-		iq_query.setParameter("id", as_id);
-		int ii_conteo = ((Number) iq_query.getSingleResult()).intValue();
+		lq_query.setParameter("tipo", as_tipo);
+		lq_query.setParameter("id", as_id);
+		int ii_conteo = ((Number) lq_query.getSingleResult()).intValue();
 		lem_entityManager.close();
 		return ii_conteo;
 	}

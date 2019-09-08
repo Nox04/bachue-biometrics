@@ -1,9 +1,7 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless;
 
 
-import com.bachue.snr.biometrico.admon.persistence.model.Constante;
-
-import java.util.List;
+import com.bachue.snr.biometrico.admon.persistence.dto.ConstantesSalidaDTO;
 
 /**
  *
@@ -18,5 +16,5 @@ public interface IConstanteBusiness {
    * Metodo que obtiene las constantes de la base de datos.
    * @return lista de las constantes.
    */
-  List<Constante> obtenerConstantes();
+  ConstantesSalidaDTO obtenerConstantes();
 }
