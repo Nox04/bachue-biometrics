@@ -78,7 +78,7 @@ public class SesionHelper {
     ls_sesion.setSesion(acd_claveDTO.getSesion());
     ls_sesion.setResultado(ab_resultado);
     ls_sesion.setFechaCreacion(acd_claveDTO.getTime());
-    ls_sesion.setIdUsuarioCreacion(acd_claveDTO.getIdUsuarioCreacion());
+    ls_sesion.setIdUsuarioCreacion(acd_claveDTO.getIdUsuario());
     ls_sesion.setIpCreacion(acd_claveDTO.getIp());
 
     return ls_sesion;

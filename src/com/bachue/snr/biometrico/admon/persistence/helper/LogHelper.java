@@ -85,7 +85,7 @@ public class LogHelper {
     String ls_detalle = ab_resultado ? "Usuario verificado exitosamente" : "El usuario no se pudo verificar";
     ll_log.setDetalle(ls_detalle);
     ll_log.setIdEntidad(acd_claveDTO.getIdUsuario());
-    ll_log.setIdUsuarioCreacion(acd_claveDTO.getIdUsuarioCreacion());
+    ll_log.setIdUsuarioCreacion(acd_claveDTO.getIdUsuario());
     ll_log.setIpCreacion(acd_claveDTO.getIp());
     ll_log.setFechaCreacion(acd_claveDTO.getTime());
 
