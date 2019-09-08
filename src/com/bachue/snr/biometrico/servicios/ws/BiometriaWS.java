@@ -66,7 +66,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "consultarEstadisticas")
   @WebResult(name = "salidaEstadisticas")
-  public int consultarEstadisticas(@WebParam(name = "entradaEstadisticas" ) EstadisticasEntradaDTO aeed_estadisticas) {
+  public EstadisticasSalidaDTO consultarEstadisticas(@WebParam(name = "entradaEstadisticas" ) EstadisticasEntradaDTO aeed_estadisticas) {
     return iilb_logBusiness.consultarStats(aeed_estadisticas.getTipo(), aeed_estadisticas.getTipo());
   }
 

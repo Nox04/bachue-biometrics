@@ -1,5 +1,6 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless;
 
+import com.bachue.snr.biometrico.admon.persistence.dto.EstadisticasSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 
 /**
@@ -23,5 +24,5 @@ public interface ILogBusiness {
    * @param as_id id de la entidad a consultar.
    * @return int con el conteo de la entidad consultada.
    */
-  int consultarStats(String as_tipo, String as_id);
+  EstadisticasSalidaDTO consultarStats(String as_tipo, String as_id);
 }
