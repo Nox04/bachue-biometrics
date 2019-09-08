@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -15,6 +16,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "SDB_PGN_CONSTANTES")
+@XmlRootElement(name = "constante")
 public class Constante implements Serializable {
   private static final long serialVersionUID = 1L;
 
