@@ -60,7 +60,7 @@ public class SesionHelper {
     ls_sesion.setSesion(avd_verificacionDTO.getSesion());
     ls_sesion.setResultado(ab_resultado);
     ls_sesion.setFechaCreacion(avd_verificacionDTO.getTime());
-    ls_sesion.setIdUsuarioCreacion(avd_verificacionDTO.getUsuarioCreacionId());
+    ls_sesion.setIdUsuarioCreacion(avd_verificacionDTO.getIdUsuario());
     ls_sesion.setIpCreacion(avd_verificacionDTO.getIp());
 
     return ls_sesion;
