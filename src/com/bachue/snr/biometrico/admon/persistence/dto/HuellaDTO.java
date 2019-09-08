@@ -52,20 +52,20 @@ public class HuellaDTO extends BaseDTO implements Serializable{
   }
 
   @XmlElement(required = true)
-  public String getUsuarioId() {
+  public String getIdUsuario() {
     return is_idUsuario;
   }
 
-  public void setUsuarioId(String as_usuarioId) {
+  public void setIdUsuario(String as_usuarioId) {
     this.is_idUsuario = Criptografia.encrypt(as_usuarioId);
   }
 
   @XmlElement(required = true)
-  public String getUsuarioCreacionId() {
+  public String getIdUsuarioCreacion() {
     return is_idUsuarioCreacion;
   }
 
-  public void setUsuarioCreacionId(String as_usuarioCreacionId) {
+  public void setIdUsuarioCreacion(String as_usuarioCreacionId) {
     this.is_idUsuarioCreacion = as_usuarioCreacionId;
   }
 }

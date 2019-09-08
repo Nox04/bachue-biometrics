@@ -1,6 +1,8 @@
 package com.bachue.snr.biometrico.admon.persistence.dto;
 
 
+import com.bachue.snr.biometrico.biometrics.Criptografia;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
@@ -30,8 +32,14 @@ public class VerificacionDTO extends HuellaDTO implements Serializable {
 
   @Override
   @XmlTransient
-  public String getUsuarioCreacionId() {
+  public String getIdUsuarioCreacion() {
     return is_idUsuarioCreacion;
+  }
+
+  @Override
+  @XmlTransient
+  public void setIdUsuarioCreacion(String as_usuarioCreacionId) {
+    this.is_idUsuarioCreacion = as_usuarioCreacionId;
   }
 
 }

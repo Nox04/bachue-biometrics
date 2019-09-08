@@ -44,7 +44,7 @@ public class HuellaHelper {
       lh_huella.setUsuario(au_usuario);
       lh_huella.setFechaCreacion(ahd_huellaDTO.getTime());
       lh_huella.setIpCreacion(ahd_huellaDTO.getIp());
-      lh_huella.setIdUsuarioCreacion(ahd_huellaDTO.getUsuarioCreacionId());
+      lh_huella.setIdUsuarioCreacion(ahd_huellaDTO.getIdUsuarioCreacion());
 
       return lh_huella;
     }

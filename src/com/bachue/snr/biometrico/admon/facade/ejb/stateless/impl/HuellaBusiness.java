@@ -52,14 +52,14 @@ public class HuellaBusiness implements IHuellaBusiness {
     if(!Utils.crearImagen(ahd_huella)) {
       return false;
     }
-    return iihd_huellaDao.crearHuella(HuellaHelper.toEntity(ahd_huella, iiud_usuarioDao.consultarUsuario(ahd_huella.getUsuarioId())));
+    return iihd_huellaDao.crearHuella(HuellaHelper.toEntity(ahd_huella, iiud_usuarioDao.consultarUsuario(ahd_huella.getIdUsuario())));
   }
 
   @Override
   public Boolean verificarHuella(VerificacionDTO avd_verificacion) {
     leerConstantes();
     Verificador lv_verificador = new Verificador();
-    boolean lb_resultado = lv_verificador.verificar(avd_verificacion, iihd_huellaDao.obtenerHuellas(avd_verificacion.getUsuarioId()));
+    boolean lb_resultado = lv_verificador.verificar(avd_verificacion, iihd_huellaDao.obtenerHuellas(avd_verificacion.getIdUsuario()));
     iisd_sesionDao.crearSesion(SesionHelper.createSesion(avd_verificacion, lb_resultado));
     iild_logDao.crearEvento(LogHelper.crearLogDeVerificacion(avd_verificacion, lb_resultado));
     return true;
@@ -79,7 +79,7 @@ public class HuellaBusiness implements IHuellaBusiness {
   public Boolean crearMegaTemplate(HuellaDTO ahd_huella) {
     leerConstantes();
     Enrolador le_enrolador = new Enrolador(ahd_huella);
-    boolean lb_enrolamiento = le_enrolador.enrolarUsuario(iihd_huellaDao.obtenerHuellas(ahd_huella.getUsuarioId()));
+    boolean lb_enrolamiento = le_enrolador.enrolarUsuario(iihd_huellaDao.obtenerHuellas(ahd_huella.getIdUsuario()));
     iild_logDao.crearEvento(LogHelper.crearLogDeEnrolamiento(ahd_huella, lb_enrolamiento));
     return lb_enrolamiento;
   }

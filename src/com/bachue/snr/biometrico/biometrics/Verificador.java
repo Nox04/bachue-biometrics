@@ -20,15 +20,15 @@ public class Verificador {
     NSubject lns_subjectProbe = new NSubject();
 
     try {
-      crearCarpeta(avd_verificacion.getUsuarioId());
+      crearCarpeta(avd_verificacion.getIdUsuario());
       byte[] lb_data = Base64.decodeBase64(avd_verificacion.getTemplate());
 
-      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ ".bmp"), lb_data);
-      NBuffer lnb_bufferCandidate = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId()) + ".bmp");
+      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getIdUsuario())+ ".bmp"), lb_data);
+      NBuffer lnb_bufferCandidate = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getIdUsuario()) + ".bmp");
 
       for (Huella lh_huella: alh_huellas) {
-        FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ "/cache.bmp"), lh_huella.getTemplate());
-        NBuffer lnb_bufferProbe = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getUsuarioId())+ "/cache.bmp");
+        FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getIdUsuario())+ "/cache.bmp"), lh_huella.getTemplate());
+        NBuffer lnb_bufferProbe = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(avd_verificacion.getIdUsuario())+ "/cache.bmp");
         if(lnb_bufferProbe != null && lnb_bufferCandidate != null){
           lns_subjectCandidate.setTemplateBuffer(lnb_bufferCandidate);
           lns_subjectProbe.setTemplateBuffer(lnb_bufferProbe);

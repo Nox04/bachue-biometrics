@@ -39,9 +39,9 @@ public class Utils {
   public static boolean crearImagen(HuellaDTO ahd_huella) {
     try {
       byte[] data = Base64.decodeBase64(ahd_huella.getTemplate());
-      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(ahd_huella.getUsuarioId()) + ".bmp"), data);
+      FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(ahd_huella.getIdUsuario()) + ".bmp"), data);
       MotorBiometrico.getInstance();
-      return !new Identificador().identificar("biometria/cache/" + Criptografia.decrypt(ahd_huella.getUsuarioId()) + ".bmp");
+      return !new Identificador().identificar("biometria/cache/" + Criptografia.decrypt(ahd_huella.getIdUsuario()) + ".bmp");
     } catch (Exception le_excepcion) {
       return false;
     }

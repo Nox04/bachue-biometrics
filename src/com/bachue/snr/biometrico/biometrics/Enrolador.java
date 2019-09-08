@@ -27,12 +27,12 @@ public class Enrolador {
 public boolean enrolarUsuario(List<Huella> alh_huellas) {
     boolean lb_estado = false;
     try {
-      crearCarpeta(ihd_huellaDTO.getUsuarioId());
+      crearCarpeta(ihd_huellaDTO.getIdUsuario());
       inft_nfTemplate = new NFTemplate();
 
       for (Huella lh_huella: alh_huellas) {
-        FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(ihd_huellaDTO.getUsuarioId())+ "/cache.bmp"), lh_huella.getTemplate());
-        inb_buffer = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(ihd_huellaDTO.getUsuarioId())+ "/cache.bmp");
+        FileUtils.writeByteArrayToFile(new File("biometria/cache/" + Criptografia.decrypt(ihd_huellaDTO.getIdUsuario())+ "/cache.bmp"), lh_huella.getTemplate());
+        inb_buffer = Extractor.crearTemplate("biometria/cache/" + Criptografia.decrypt(ihd_huellaDTO.getIdUsuario())+ "/cache.bmp");
         NTemplate template = new NTemplate(inb_buffer);
         if (template.getFingers() != null) {
           for (NFRecord record : template.getFingers().getRecords()) {
@@ -63,7 +63,7 @@ public boolean enrolarUsuario(List<Huella> alh_huellas) {
     ins_subject = new NSubject();
     if (inft_nfTemplate != null) {
       ins_subject.setTemplate(new NTemplate(inft_nfTemplate.save()));
-      ins_subject.setId(this.ihd_huellaDTO.getUsuarioId());
+      ins_subject.setId(this.ihd_huellaDTO.getIdUsuario());
     }
   }
 
@@ -71,7 +71,7 @@ public boolean enrolarUsuario(List<Huella> alh_huellas) {
     NBiometricStatus lnbs_estado = MotorBiometrico.getInstance().getCliente().enroll(ins_subject);
     if (lnbs_estado != NBiometricStatus.OK) {
       if (lnbs_estado == NBiometricStatus.DUPLICATE_ID || lnbs_estado == NBiometricStatus.DUPLICATE_FOUND) {
-        MotorBiometrico.getInstance().getCliente().delete(this.ihd_huellaDTO.getUsuarioId());
+        MotorBiometrico.getInstance().getCliente().delete(this.ihd_huellaDTO.getIdUsuario());
         lnbs_estado = MotorBiometrico.getInstance().getCliente().enroll(ins_subject);
         return lnbs_estado == NBiometricStatus.OK;
       } else {
