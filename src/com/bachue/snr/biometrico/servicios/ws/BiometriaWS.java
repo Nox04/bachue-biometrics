@@ -49,26 +49,25 @@ public class BiometriaWS {
   /**
    * Metodo que recibe la peticion de verificacion de sesion.
    *
-   * @param as_sesion sesion que sera validada.
+   * @param ased_sesion sesion que sera validada.
    * @return DTO con la sesion y su estado.
    */
   @WebMethod(action = "consultarSesion")
   @WebResult(name = "salidaSesion")
-  public SesionDTO consultarSesion(@WebParam(name = "entradaSesion") String as_sesion) {
-    return iisb_sesionBusiness.consultarSesion(as_sesion);
+  public SesionDTO consultarSesion(@WebParam(name = "entradaSesion") SesionEntradaDTO ased_sesion) {
+    return iisb_sesionBusiness.consultarSesion(ased_sesion.getSesion());
   }
 
 
   /**
    * Metodo que recibe la peticion de estadisticas.
-   * @param as_tipo tipo de stat consultada.
-   * @param as_id id de la entidad asociada.
+   * @param aeed_estadisticas DTO de entrada.
    * @return DTO con la sesion y su estado.
    */
   @WebMethod(action = "consultarEstadisticas")
   @WebResult(name = "salidaEstadisticas")
-  public int consultarEstadisticas(@WebParam(name = "tipo" ) String as_tipo, @WebParam(name = "idEntidad" ) String as_id) {
-    return iilb_logBusiness.consultarStats(as_tipo, as_id);
+  public int consultarEstadisticas(@WebParam(name = "entradaEstadisticas" ) EstadisticasEntradaDTO aeed_estadisticas) {
+    return iilb_logBusiness.consultarStats(aeed_estadisticas.getTipo(), aeed_estadisticas.getTipo());
   }
 
 
@@ -124,24 +123,24 @@ public class BiometriaWS {
 
   /**
    * Metodo que obtiene un usuario de la base de datos.
-   * @param as_id id del usuario.
+   * @param aued_usuario id del usuario.
    * @return el estado del usuario.
    */
   @WebMethod(action = "obtenerUsuario")
   @WebResult(name = "salidaResultado")
-  public String obtenerUsuario(@WebParam(name = "idUsuario") String as_id) {
-    return iiub_usuarioBusiness.obtenerUsuario(as_id);
+  public String obtenerUsuario(@WebParam(name = "entradaUsuario") UsuarioEntradaDTO aued_usuario) {
+    return iiub_usuarioBusiness.obtenerUsuario(aued_usuario.getIdUsuario());
   }
 
   /**
    * Metodo que obtiene el tipo de segundo factor de un usuario.
-   * @param as_id id del usuario.
+   * @param aued_usuario id del usuario.
    * @return el resultado de la operacion.
    */
   @WebMethod(action = "obtenerTipoSegundoFactor")
   @WebResult(name = "salidaResultado")
-  public String obtenerTipoSegundoFactor(@WebParam(name = "idUsuario") String as_id) {
-    return iiub_usuarioBusiness.obtenerTipoSegundoFactor(as_id);
+  public String obtenerTipoSegundoFactor(@WebParam(name = "entradaUsuario") UsuarioEntradaDTO aued_usuario) {
+    return iiub_usuarioBusiness.obtenerTipoSegundoFactor(aued_usuario.getIdUsuario());
   }
 
   /**
