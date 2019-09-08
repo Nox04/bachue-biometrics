@@ -1,5 +1,6 @@
 package com.bachue.snr.biometrico.admon.persistence.helper;
 
+import com.bachue.snr.biometrico.admon.enums.SalidasEnum;
 import com.bachue.snr.biometrico.admon.persistence.dto.ClaveDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.SesionDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
@@ -27,6 +28,8 @@ public class SesionHelper {
 
       lsd_sesion.setSesion(as_entidad.getSesion());
       lsd_sesion.setResultado(as_entidad.getResultado());
+      lsd_sesion.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
+      lsd_sesion.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
 
       return lsd_sesion;
     }

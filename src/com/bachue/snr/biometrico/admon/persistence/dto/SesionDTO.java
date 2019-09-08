@@ -9,12 +9,14 @@ import java.io.Serializable;
  * Nota: DTO de huellas.
  *
  */
-public class SesionDTO extends BaseDTO implements Serializable{
+public class SesionDTO extends BaseDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   private String is_sesion;
   private Boolean ib_resultado;
+  private String is_codigo;
+  private String is_mensaje;
 
   public String getSesion() {
     return is_sesion;
@@ -31,5 +33,21 @@ public class SesionDTO extends BaseDTO implements Serializable{
 
   public void setResultado(Boolean ab_resultado) {
     this.ib_resultado = ab_resultado;
+  }
+
+  public String getCodigo() {
+    return is_codigo;
+  }
+
+  public void setCodigo(String as_codigo) {
+    this.is_codigo = as_codigo;
+  }
+
+  public String getMensaje() {
+    return is_mensaje;
+  }
+
+  public void setMensaje(String as_mensaje) {
+    this.is_mensaje = as_mensaje;
   }
 }

@@ -1,5 +1,6 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
+import com.bachue.snr.biometrico.admon.enums.SalidasEnum;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ISesionBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.SesionDTO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ISesionDAO;
@@ -24,6 +25,12 @@ public class SesionBusiness implements ISesionBusiness {
 
   @Override
   public SesionDTO consultarSesion(String as_sesion) {
-    return SesionHelper.toDto(iisd_sesionDao.consultarSesion(as_sesion));
+    try {
+      return SesionHelper.toDto(iisd_sesionDao.consultarSesion(as_sesion));
+    } catch (Exception le_exception) {
+      SesionDTO lsd_sesion = new SesionDTO();
+      lsd_sesion.setCodigo(SalidasEnum.RECURSO_NO_ENCONTRADO.consultarCodigo());
+      lsd_sesion.setMensaje(SalidasEnum.RECURSO_NO_ENCONTRADO.consultarMensaje());
+    }
   }
 }
