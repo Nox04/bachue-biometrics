@@ -10,6 +10,7 @@ import com.bachue.snr.biometrico.admon.persistence.helper.LogHelper;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -35,7 +36,12 @@ public class LogBusiness implements ILogBusiness {
     lesd_estadisticas.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
     lesd_estadisticas.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
     try {
-      lesd_estadisticas.setContador(iild_logDao.consultarStats(as_tipo, as_id));
+      int li_contador = iild_logDao.consultarStats(as_tipo, as_id);
+      if(li_contador > 0) {
+        lesd_estadisticas.setContador(li_contador);
+      } else {
+        throw new NoSuchElementException();
+      }
       return lesd_estadisticas;
     } catch (Exception le_exception) {
       lesd_estadisticas.setContador(0);
