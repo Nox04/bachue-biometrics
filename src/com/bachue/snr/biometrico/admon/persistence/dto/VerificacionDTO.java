@@ -2,6 +2,7 @@ package com.bachue.snr.biometrico.admon.persistence.dto;
 
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 
 /**
@@ -17,6 +18,7 @@ public class VerificacionDTO extends HuellaDTO implements Serializable {
 
   private String is_sesion;
 
+
   @XmlElement(required = true)
   public String getSesion() {
     return is_sesion;
@@ -24,6 +26,12 @@ public class VerificacionDTO extends HuellaDTO implements Serializable {
 
   public void setSesion(String as_sesion) {
     this.is_sesion = as_sesion;
+  }
+
+  @Override
+  @XmlTransient
+  public String getUsuarioCreacionId() {
+    return is_idUsuarioCreacion;
   }
 
 }

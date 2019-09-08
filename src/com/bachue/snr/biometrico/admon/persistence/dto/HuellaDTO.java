@@ -21,8 +21,8 @@ public class HuellaDTO extends BaseDTO implements Serializable{
   private Integer ii_id;
   private DedosEnum ide_posicion;
   private String is_template;
-  private String is_usuarioId;
-  private String is_usuarioCreacionId;
+  private String is_idUsuario;
+  protected String is_idUsuarioCreacion;
 
   @XmlTransient
   public Integer getId() {
@@ -53,19 +53,19 @@ public class HuellaDTO extends BaseDTO implements Serializable{
 
   @XmlElement(required = true)
   public String getUsuarioId() {
-    return is_usuarioId;
+    return is_idUsuario;
   }
 
   public void setUsuarioId(String as_usuarioId) {
-    this.is_usuarioId = Criptografia.encrypt(as_usuarioId);
+    this.is_idUsuario = Criptografia.encrypt(as_usuarioId);
   }
 
   @XmlElement(required = true)
   public String getUsuarioCreacionId() {
-    return is_usuarioCreacionId;
+    return is_idUsuarioCreacion;
   }
 
   public void setUsuarioCreacionId(String as_usuarioCreacionId) {
-    this.is_usuarioCreacionId = as_usuarioCreacionId;
+    this.is_idUsuarioCreacion = as_usuarioCreacionId;
   }
 }

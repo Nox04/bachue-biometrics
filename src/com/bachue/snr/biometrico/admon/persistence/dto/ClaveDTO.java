@@ -16,7 +16,6 @@ public class ClaveDTO extends BaseDTO implements Serializable {
 
   private String is_idUsuario;
   private String is_clave;
-  private String is_idUsuarioCreacion;
   private String is_sesion;
 
   @XmlElement(required = true)
@@ -35,15 +34,6 @@ public class ClaveDTO extends BaseDTO implements Serializable {
 
   public void setClave(String as_clave) {
     this.is_clave = as_clave;
-  }
-
-  @XmlElement(required = true)
-  public String getIdUsuarioCreacion() {
-    return is_idUsuarioCreacion;
-  }
-
-  public void setIdUsuarioCreacion(String as_idUsuarioCreacion) {
-    this.is_idUsuarioCreacion = as_idUsuarioCreacion;
   }
 
   @XmlElement(required = true)
