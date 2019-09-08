@@ -31,6 +31,7 @@ public class SesionBusiness implements ISesionBusiness {
       SesionDTO lsd_sesion = new SesionDTO();
       lsd_sesion.setCodigo(SalidasEnum.RECURSO_NO_ENCONTRADO.consultarCodigo());
       lsd_sesion.setMensaje(SalidasEnum.RECURSO_NO_ENCONTRADO.consultarMensaje());
+      return lsd_sesion;
     }
   }
 }
