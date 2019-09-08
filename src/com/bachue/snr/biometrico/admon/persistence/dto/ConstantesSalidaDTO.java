@@ -2,6 +2,7 @@ package com.bachue.snr.biometrico.admon.persistence.dto;
 
 import com.bachue.snr.biometrico.admon.persistence.model.Constante;
 
+import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class ConstantesSalidaDTO extends BaseSalidaDTO {
   private ArrayList<Constante> ilc_constantes;
 
+  @XmlElement(name = "constante")
   public ArrayList<Constante> getConstantes() {
     return ilc_constantes;
   }
