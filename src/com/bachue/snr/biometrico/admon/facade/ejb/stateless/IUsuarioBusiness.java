@@ -1,5 +1,6 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless;
 
+import com.bachue.snr.biometrico.admon.persistence.dto.BooleanSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.ClaveDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 
@@ -37,7 +38,7 @@ public interface IUsuarioBusiness {
    * @param acd_clave id del usuario.
    * @return true si el usuario existe.
    */
-  Boolean verificarUsuario(ClaveDTO acd_clave);
+  BooleanSalidaDTO verificarUsuario(ClaveDTO acd_clave);
 
   /**
    * Metodo que obtiene el tipo de segundo factor.

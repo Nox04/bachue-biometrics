@@ -1,6 +1,8 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
+import com.bachue.snr.biometrico.admon.enums.SalidasEnum;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
+import com.bachue.snr.biometrico.admon.persistence.dto.BooleanSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.BorrarHuellasDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
@@ -56,13 +58,27 @@ public class HuellaBusiness implements IHuellaBusiness {
   }
 
   @Override
-  public Boolean verificarHuella(VerificacionDTO avd_verificacion) {
-    leerConstantes();
-    Verificador lv_verificador = new Verificador();
-    boolean lb_resultado = lv_verificador.verificar(avd_verificacion, iihd_huellaDao.obtenerHuellas(avd_verificacion.getIdUsuario()));
-    iisd_sesionDao.crearSesion(SesionHelper.createSesion(avd_verificacion, lb_resultado));
-    iild_logDao.crearEvento(LogHelper.crearLogDeVerificacion(avd_verificacion, lb_resultado));
-    return true;
+  public BooleanSalidaDTO verificarHuella(VerificacionDTO avd_verificacion) {
+    BooleanSalidaDTO lbsd_salida = new BooleanSalidaDTO();
+    lbsd_salida.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
+    lbsd_salida.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
+
+    try {
+      leerConstantes();
+      Verificador lv_verificador = new Verificador();
+      boolean lb_resultado = lv_verificador.verificar(avd_verificacion, iihd_huellaDao.obtenerHuellas(avd_verificacion.getIdUsuario()));
+      iisd_sesionDao.crearSesion(SesionHelper.createSesion(avd_verificacion, lb_resultado));
+      iild_logDao.crearEvento(LogHelper.crearLogDeVerificacion(avd_verificacion, lb_resultado));
+      lbsd_salida.setResultado(true);
+
+      return lbsd_salida;
+    } catch (Exception le_exception) {
+      lbsd_salida.setCodigo(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarCodigo());
+      lbsd_salida.setMensaje(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarMensaje());
+      lbsd_salida.setResultado(false);
+
+      return lbsd_salida;
+    }
   }
 
   @Override
@@ -76,12 +92,26 @@ public class HuellaBusiness implements IHuellaBusiness {
   }
 
   @Override
-  public Boolean crearMegaTemplate(HuellaDTO ahd_huella) {
-    leerConstantes();
-    Enrolador le_enrolador = new Enrolador(ahd_huella);
-    boolean lb_enrolamiento = le_enrolador.enrolarUsuario(iihd_huellaDao.obtenerHuellas(ahd_huella.getIdUsuario()));
-    iild_logDao.crearEvento(LogHelper.crearLogDeEnrolamiento(ahd_huella, lb_enrolamiento));
-    return lb_enrolamiento;
+  public BooleanSalidaDTO crearMegaTemplate(HuellaDTO ahd_huella) {
+    BooleanSalidaDTO lbsd_salida = new BooleanSalidaDTO();
+    lbsd_salida.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
+    lbsd_salida.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
+
+    try {
+      leerConstantes();
+      Enrolador le_enrolador = new Enrolador(ahd_huella);
+      boolean lb_enrolamiento = le_enrolador.enrolarUsuario(iihd_huellaDao.obtenerHuellas(ahd_huella.getIdUsuario()));
+      iild_logDao.crearEvento(LogHelper.crearLogDeEnrolamiento(ahd_huella, lb_enrolamiento));
+      lbsd_salida.setResultado(true);
+
+      return lbsd_salida;
+    } catch (Exception le_exception) {
+      lbsd_salida.setCodigo(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarCodigo());
+      lbsd_salida.setMensaje(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarMensaje());
+      lbsd_salida.setResultado(false);
+
+      return lbsd_salida;
+    }
   }
 
   private void leerConstantes() {

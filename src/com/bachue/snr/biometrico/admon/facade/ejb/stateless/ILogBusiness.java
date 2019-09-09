@@ -1,5 +1,6 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless;
 
+import com.bachue.snr.biometrico.admon.persistence.dto.BooleanSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.EstadisticasSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 
@@ -16,7 +17,7 @@ public interface ILogBusiness {
    * @param ald_log DTO con la informacion del evento.
    * @return true si el evento es registrado con exito.
    */
-  Boolean registrarEvento(LogDTO ald_log);
+  BooleanSalidaDTO registrarEvento(LogDTO ald_log);
 
   /**
    * Metodo que envia los datos de la peticion de stat al DAO para ser consultado.

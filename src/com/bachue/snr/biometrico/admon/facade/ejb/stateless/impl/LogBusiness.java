@@ -2,6 +2,7 @@ package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
 import com.bachue.snr.biometrico.admon.enums.SalidasEnum;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.ILogBusiness;
+import com.bachue.snr.biometrico.admon.persistence.dto.BooleanSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.EstadisticasSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.LogDTO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.ILogDAO;
@@ -26,8 +27,18 @@ public class LogBusiness implements ILogBusiness {
   private ILogDAO iild_logDao;
 
   @Override
-  public Boolean registrarEvento(LogDTO ald_log) {
-    return iild_logDao.crearEvento(LogHelper.toEntity(ald_log));
+  public BooleanSalidaDTO registrarEvento(LogDTO ald_log) {
+    BooleanSalidaDTO lbsd_salida = new BooleanSalidaDTO();
+    lbsd_salida.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
+    lbsd_salida.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
+    try {
+      lbsd_salida.setResultado(iild_logDao.crearEvento(LogHelper.toEntity(ald_log)));
+      return lbsd_salida;
+    } catch (Exception le_exception) {
+      lbsd_salida.setCodigo(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarCodigo());
+      lbsd_salida.setMensaje(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarMensaje());
+      return lbsd_salida;
+    }
   }
 
   @Override

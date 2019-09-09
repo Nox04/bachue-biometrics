@@ -78,19 +78,19 @@ public class BiometriaWS {
    */
   @WebMethod(action = "enrolarUsuario")
   @WebResult(name = "salidaResultado")
-  public Boolean enrolarUsuario(@WebParam(name = "entradaHuella") HuellaDTO[] ahd_huellas) {
+  public BooleanSalidaDTO enrolarUsuario(@WebParam(name = "entradaHuella") HuellaDTO[] ahd_huellas) {
 
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
 
-    Boolean lb_estado;
+    BooleanSalidaDTO lbsd_estado;
     for(HuellaDTO lhd_huella : ahd_huellas) {
       lhd_huella.agregarValoresAuditoria(ahsr_req);
       iihb_huellaBusiness.enrolarHuella(lhd_huella);
     }
 
-    lb_estado = iihb_huellaBusiness.crearMegaTemplate(ahd_huellas[0]);
-    return lb_estado;
+    lbsd_estado = iihb_huellaBusiness.crearMegaTemplate(ahd_huellas[0]);
+    return lbsd_estado;
   }
 
   /**
@@ -174,7 +174,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "verificarUsuario")
   @WebResult(name = "salidaResultado")
-  public Boolean verificarUsuario(@WebParam(name = "entradaVerificacion") VerificacionDTO avd_verificacion) {
+  public BooleanSalidaDTO verificarUsuario(@WebParam(name = "entradaVerificacion") VerificacionDTO avd_verificacion) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     avd_verificacion.agregarValoresAuditoria(ahsr_req);
@@ -188,7 +188,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "verificarClave")
   @WebResult(name = "salidaResultado")
-  public Boolean verificarClave(@WebParam(name = "entradaClave") ClaveDTO acd_clave) {
+  public BooleanSalidaDTO verificarClave(@WebParam(name = "entradaClave") ClaveDTO acd_clave) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     acd_clave.agregarValoresAuditoria(ahsr_req);
@@ -202,7 +202,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "registrarEvento")
   @WebResult(name = "salidaResultado")
-  public Boolean registrarEvento(@WebParam(name = "entradaLog") LogDTO ald_log) {
+  public BooleanSalidaDTO registrarEvento(@WebParam(name = "entradaLog") LogDTO ald_log) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     ald_log.agregarValoresAuditoria(ahsr_req);

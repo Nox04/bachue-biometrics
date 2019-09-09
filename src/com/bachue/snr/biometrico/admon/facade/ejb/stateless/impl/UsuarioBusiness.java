@@ -1,7 +1,9 @@
 package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
 import com.bachue.snr.biometrico.admon.enums.RespuestaUsuarioEnum;
+import com.bachue.snr.biometrico.admon.enums.SalidasEnum;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IUsuarioBusiness;
+import com.bachue.snr.biometrico.admon.persistence.dto.BooleanSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.ClaveDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.*;
@@ -112,16 +114,30 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   }
 
   @Override
-  public Boolean verificarUsuario(ClaveDTO acd_clave) {
-    Usuario lu_usuario = iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(acd_clave.getIdUsuario()));
-    boolean lb_resultado = (
-            lu_usuario.getClaveHash().equals(Criptografia.encrypt(acd_clave.getClave())) &&
-            lu_usuario.getFechaVencimiento().after(new Date()) &&
-            lu_usuario.getClaveActiva() == '1'
-    );
-    iisd_sesionDao.crearSesion(SesionHelper.crearSesionConClave(acd_clave, lb_resultado));
-    iild_logDao.crearEvento(LogHelper.crearLogDeVerificacionConClave(acd_clave, lb_resultado));
-    return true;
+  public BooleanSalidaDTO verificarUsuario(ClaveDTO acd_clave) {
+    BooleanSalidaDTO lbsd_salida = new BooleanSalidaDTO();
+    lbsd_salida.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
+    lbsd_salida.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
+
+    try {
+      Usuario lu_usuario = iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(acd_clave.getIdUsuario()));
+      boolean lb_resultado = (
+              lu_usuario.getClaveHash().equals(Criptografia.encrypt(acd_clave.getClave())) &&
+                      lu_usuario.getFechaVencimiento().after(new Date()) &&
+                      lu_usuario.getClaveActiva() == '1'
+      );
+      iisd_sesionDao.crearSesion(SesionHelper.crearSesionConClave(acd_clave, lb_resultado));
+      iild_logDao.crearEvento(LogHelper.crearLogDeVerificacionConClave(acd_clave, lb_resultado));
+      lbsd_salida.setResultado(true);
+
+      return lbsd_salida;
+    } catch (Exception le_exception) {
+      lbsd_salida.setCodigo(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarCodigo());
+      lbsd_salida.setMensaje(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarMensaje());
+      lbsd_salida.setResultado(false);
+
+      return lbsd_salida;
+    }
   }
 
   @Override
