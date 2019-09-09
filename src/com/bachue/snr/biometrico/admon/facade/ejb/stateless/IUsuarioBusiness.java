@@ -2,6 +2,7 @@ package com.bachue.snr.biometrico.admon.facade.ejb.stateless;
 
 import com.bachue.snr.biometrico.admon.persistence.dto.BooleanSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.ClaveDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.StringSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 
 /**
@@ -17,21 +18,21 @@ public interface IUsuarioBusiness {
    * @param aud_usuario DTO con la informacion del usuario.
    * @return true si el usuario es registrado con exito.
    */
-  String crearUsuario(UsuarioDTO aud_usuario);
+  StringSalidaDTO crearUsuario(UsuarioDTO aud_usuario);
 
   /**
    * Metodo que cambia la clave del usuario.
    * @param aud_usuario DTO con la informacion del usuario.
    * @return true si el usuario es registrado con exito.
    */
-  String actualizarClave(UsuarioDTO aud_usuario);
+  StringSalidaDTO actualizarClave(UsuarioDTO aud_usuario);
 
   /**
    * Metodo que verifica la existencia de un usuario.
    * @param as_id id del usuario.
    * @return true si el usuario existe.
    */
-  String obtenerUsuario(String as_id);
+  StringSalidaDTO obtenerUsuario(String as_id);
 
   /**
    * Metodo que verifica la sesion de un usuario usando clave.
@@ -45,5 +46,5 @@ public interface IUsuarioBusiness {
    * @param as_id id del usuario.
    * @return segundo factor de autenticacion.
    */
-  String obtenerTipoSegundoFactor(String as_id);
+  StringSalidaDTO obtenerTipoSegundoFactor(String as_id);
 }

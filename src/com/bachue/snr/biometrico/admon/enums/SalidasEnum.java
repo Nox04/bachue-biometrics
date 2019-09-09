@@ -9,7 +9,7 @@ package com.bachue.snr.biometrico.admon.enums;
  */
 public enum SalidasEnum {
   RECURSO_EXITOSO("200", "OK"),
-  RECURSO_NO_AUTORIZADO("401", "Recurso no autorizado"),
+  RECURSO_NO_VALIDO("422", "Recurso no válido"),
   RECURSO_NO_ENCONTRADO("404", "Recurso no encontrado"),
   EXCEPCION_NO_CONTROLADA("500", "Excepción no controlada");
 

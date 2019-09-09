@@ -2,10 +2,7 @@ package com.bachue.snr.biometrico.admon.facade.ejb.stateless.impl;
 
 import com.bachue.snr.biometrico.admon.enums.SalidasEnum;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IHuellaBusiness;
-import com.bachue.snr.biometrico.admon.persistence.dto.BooleanSalidaDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.BorrarHuellasDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.HuellaDTO;
-import com.bachue.snr.biometrico.admon.persistence.dto.VerificacionDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.*;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.*;
 import com.bachue.snr.biometrico.admon.persistence.helper.HuellaHelper;
 import com.bachue.snr.biometrico.admon.persistence.helper.LogHelper;
@@ -82,13 +79,27 @@ public class HuellaBusiness implements IHuellaBusiness {
   }
 
   @Override
-  public String borrarHuellas(BorrarHuellasDTO bhd_usuario) {
-    leerConstantes();
-    Enrolador le_enrolador = new Enrolador(null);
-    le_enrolador.eliminarHuellas(Criptografia.encrypt(bhd_usuario.getIdUsuario()));
-    iihd_huellaDao.borrarHuellas(Criptografia.encrypt(bhd_usuario.getIdUsuario()));
-    iild_logDao.crearEvento(LogHelper.crearLogDeBorrado(bhd_usuario));
-    return String.valueOf(true);
+  public StringSalidaDTO borrarHuellas(BorrarHuellasDTO bhd_usuario) {
+    StringSalidaDTO lssd_salida = new StringSalidaDTO();
+    lssd_salida.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
+    lssd_salida.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
+
+    try {
+      leerConstantes();
+      Enrolador le_enrolador = new Enrolador(null);
+      le_enrolador.eliminarHuellas(Criptografia.encrypt(bhd_usuario.getIdUsuario()));
+      iihd_huellaDao.borrarHuellas(Criptografia.encrypt(bhd_usuario.getIdUsuario()));
+      iild_logDao.crearEvento(LogHelper.crearLogDeBorrado(bhd_usuario));
+      lssd_salida.setResultado(String.valueOf(true));
+
+      return lssd_salida;
+    } catch (Exception le_exception) {
+      lssd_salida.setCodigo(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarCodigo());
+      lssd_salida.setMensaje(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarMensaje());
+      lssd_salida.setResultado(String.valueOf(false));
+
+      return lssd_salida;
+    }
   }
 
   @Override

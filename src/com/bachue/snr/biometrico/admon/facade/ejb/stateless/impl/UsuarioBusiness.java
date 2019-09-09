@@ -5,6 +5,7 @@ import com.bachue.snr.biometrico.admon.enums.SalidasEnum;
 import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IUsuarioBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.BooleanSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.ClaveDTO;
+import com.bachue.snr.biometrico.admon.persistence.dto.StringSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.dto.UsuarioDTO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.*;
 import com.bachue.snr.biometrico.admon.persistence.helper.*;
@@ -56,60 +57,106 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   private String is_claveMaximo = "32";
 
   @Override
-  public String crearUsuario(UsuarioDTO aud_usuario) {
-    leerConstantes();
-    String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave(), is_clavePatron, is_claveMinimo, is_claveMaximo);
-    if(ls_resultado.equals("Validado exitosamente")) {
-      iiud_usuarioDao.crearUsuario(UsuarioHelper.toEntity(aud_usuario));
-      return String.valueOf(iihd_historicoDao.crearHistorico(HistoricoHelper.userToHistorico(aud_usuario)));
-    } else {
-      return ls_resultado;
+  public StringSalidaDTO crearUsuario(UsuarioDTO aud_usuario) {
+    StringSalidaDTO lssd_salida = new StringSalidaDTO();
+    lssd_salida.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
+    lssd_salida.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
+
+    try {
+      leerConstantes();
+      String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave(), is_clavePatron, is_claveMinimo, is_claveMaximo);
+      if (ls_resultado.equals("Validado exitosamente")) {
+        iiud_usuarioDao.crearUsuario(UsuarioHelper.toEntity(aud_usuario));
+        lssd_salida.setResultado(String.valueOf(iihd_historicoDao.crearHistorico(HistoricoHelper.userToHistorico(aud_usuario))));
+      } else {
+        lssd_salida.setResultado(ls_resultado);
+      }
+      return lssd_salida;
+    } catch (Exception le_exception) {
+      lssd_salida.setCodigo(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarCodigo());
+      lssd_salida.setMensaje(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarMensaje());
+
+      return lssd_salida;
     }
   }
 
   @Override
-  public String actualizarClave(UsuarioDTO aud_usuario) {
-    leerConstantes();
-    String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave(), is_clavePatron, is_claveMinimo, is_claveMaximo);
-    if(ls_resultado.equals("Validado exitosamente")) {
-      Usuario lu_usuarioActual = iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(aud_usuario.getIdUsuario()));
-      if(lu_usuarioActual.getClaveHash().equals(Criptografia.encrypt(aud_usuario.getClave()))) {
-        return "La clave ingresada debe ser diferente a la actual";
-      } else {
-        List<Historico> llh_historico = iihd_historicoDao.consultarUltimasCincoClaves(Criptografia.encrypt(aud_usuario.getIdUsuario()));
-        boolean lb_claveUsada = false;
+  public StringSalidaDTO actualizarClave(UsuarioDTO aud_usuario) {
+    StringSalidaDTO lssd_salida = new StringSalidaDTO();
+    lssd_salida.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
+    lssd_salida.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
 
-        for(Historico claveActual : llh_historico) {
-          if(Objects.equals(Criptografia.encrypt(aud_usuario.getClave()), claveActual.getClaveHash())) {
-            lb_claveUsada = true;
+    try {
+      leerConstantes();
+      String ls_resultado = ValidadorHelper.validarClave(aud_usuario.getClave(), is_clavePatron, is_claveMinimo, is_claveMaximo);
+      if(ls_resultado.equals("Validado exitosamente")) {
+        Usuario lu_usuarioActual = iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(aud_usuario.getIdUsuario()));
+        if(lu_usuarioActual.getClaveHash().equals(Criptografia.encrypt(aud_usuario.getClave()))) {
+          lssd_salida.setResultado("La clave ingresada debe ser diferente a la actual");
+          return lssd_salida;
+        } else {
+          List<Historico> llh_historico = iihd_historicoDao.consultarUltimasCincoClaves(Criptografia.encrypt(aud_usuario.getIdUsuario()));
+          boolean lb_claveUsada = false;
+
+          for(Historico claveActual : llh_historico) {
+            if(Objects.equals(Criptografia.encrypt(aud_usuario.getClave()), claveActual.getClaveHash())) {
+              lb_claveUsada = true;
+            }
+          }
+
+          if(lb_claveUsada) {
+            lssd_salida.setResultado("La clave ingresada debe ser diferente a las últimas cinco utilizadas");
+            return lssd_salida;
+          } else {
+            iild_logDao.crearEvento(LogHelper.crearLogDeActualizacionDeClave(aud_usuario));
+            iihd_historicoDao.crearHistorico(HistoricoHelper.userToHistorico(aud_usuario));
+
+            lssd_salida.setResultado(String.valueOf(iiud_usuarioDao.actualizarClave(UsuarioHelper.usuarioConClave(aud_usuario))));
+            return lssd_salida;
           }
         }
-
-        if(lb_claveUsada) {
-          return "La clave ingresada debe ser diferente a las últimas cinco utilizadas";
-        } else {
-          iild_logDao.crearEvento(LogHelper.crearLogDeActualizacionDeClave(aud_usuario));
-          iihd_historicoDao.crearHistorico(HistoricoHelper.userToHistorico(aud_usuario));
-          return String.valueOf(iiud_usuarioDao.actualizarClave(UsuarioHelper.usuarioConClave(aud_usuario)));
-        }
+      } else {
+        lssd_salida.setResultado(ls_resultado);
+        return lssd_salida;
       }
-    } else {
-      return ls_resultado;
+    } catch (Exception le_exception) {
+      lssd_salida.setCodigo(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarCodigo());
+      lssd_salida.setMensaje(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarMensaje());
+
+      return lssd_salida;
     }
   }
 
   @Override
-  public String obtenerUsuario(String as_id) {
-    boolean lb_usuarioExiste = iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(as_id)) != null;
-    if(lb_usuarioExiste) {
-      int li_cuenta = iihd_huellaDao.contarHuellas(Criptografia.encrypt(as_id));
-      if(li_cuenta > 0) {
-        return RespuestaUsuarioEnum.USUARIO_EXISTE.toString();
+  public StringSalidaDTO obtenerUsuario(String as_id) {
+    StringSalidaDTO lssd_salida = new StringSalidaDTO();
+    lssd_salida.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
+    lssd_salida.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
+
+    try {
+      boolean lb_usuarioExiste = iiud_usuarioDao.consultarUsuario(Criptografia.encrypt(as_id)) != null;
+      if(lb_usuarioExiste) {
+        int li_cuenta = iihd_huellaDao.contarHuellas(Criptografia.encrypt(as_id));
+        if(li_cuenta > 0) {
+          lssd_salida.setResultado(RespuestaUsuarioEnum.USUARIO_EXISTE.toString());
+          return lssd_salida;
+        } else {
+          lssd_salida.setCodigo(SalidasEnum.RECURSO_NO_VALIDO.consultarCodigo());
+          lssd_salida.setMensaje(SalidasEnum.RECURSO_NO_VALIDO.consultarMensaje());
+          lssd_salida.setResultado(RespuestaUsuarioEnum.USUARIO_NO_TIENE_HUELLAS.toString());
+          return lssd_salida;
+        }
       } else {
-        return RespuestaUsuarioEnum.USUARIO_NO_TIENE_HUELLAS.toString();
+        lssd_salida.setCodigo(SalidasEnum.RECURSO_NO_ENCONTRADO.consultarCodigo());
+        lssd_salida.setMensaje(SalidasEnum.RECURSO_NO_ENCONTRADO.consultarMensaje());
+        lssd_salida.setResultado(RespuestaUsuarioEnum.USUARIO_NO_EXISTE.toString());
+        return lssd_salida;
       }
-    } else {
-      return RespuestaUsuarioEnum.USUARIO_NO_EXISTE.toString();
+    } catch (Exception le_exception) {
+      lssd_salida.setCodigo(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarCodigo());
+      lssd_salida.setMensaje(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarMensaje());
+
+      return lssd_salida;
     }
   }
 
@@ -141,8 +188,20 @@ public class UsuarioBusiness implements IUsuarioBusiness {
   }
 
   @Override
-  public String obtenerTipoSegundoFactor(String as_id) {
-    return iiud_usuarioBachueDao.obtenerSegundoFactor(as_id);
+  public StringSalidaDTO obtenerTipoSegundoFactor(String as_id) {
+    StringSalidaDTO lssd_salida = new StringSalidaDTO();
+    lssd_salida.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
+    lssd_salida.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
+
+    try {
+      lssd_salida.setResultado(iiud_usuarioBachueDao.obtenerSegundoFactor(as_id));
+      return lssd_salida;
+    } catch (Exception le_exception) {
+      lssd_salida.setCodigo(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarCodigo());
+      lssd_salida.setMensaje(SalidasEnum.EXCEPCION_NO_CONTROLADA.consultarMensaje());
+
+      return lssd_salida;
+    }
   }
 
   private void leerConstantes() {

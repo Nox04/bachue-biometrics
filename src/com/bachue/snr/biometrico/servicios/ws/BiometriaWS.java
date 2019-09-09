@@ -100,7 +100,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "crearUsuario")
   @WebResult(name = "salidaResultado")
-  public String crearUsuario(@WebParam(name = "entradaUsuario") UsuarioDTO aud_usuario) {
+  public StringSalidaDTO crearUsuario(@WebParam(name = "entradaUsuario") UsuarioDTO aud_usuario) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     aud_usuario.agregarValoresAuditoria(ahsr_req);
@@ -114,7 +114,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "actualizarClave")
   @WebResult(name = "salidaResultado")
-  public String actualizarClave(@WebParam(name = "entradaClave") UsuarioDTO aud_usuario) {
+  public StringSalidaDTO actualizarClave(@WebParam(name = "entradaClave") UsuarioDTO aud_usuario) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     aud_usuario.agregarValoresAuditoria(ahsr_req);
@@ -128,7 +128,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "obtenerUsuario")
   @WebResult(name = "salidaResultado")
-  public String obtenerUsuario(@WebParam(name = "entradaUsuario") UsuarioEntradaDTO aued_usuario) {
+  public StringSalidaDTO obtenerUsuario(@WebParam(name = "entradaUsuario") UsuarioEntradaDTO aued_usuario) {
     return iiub_usuarioBusiness.obtenerUsuario(aued_usuario.getIdUsuario());
   }
 
@@ -139,7 +139,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "obtenerTipoSegundoFactor")
   @WebResult(name = "salidaResultado")
-  public String obtenerTipoSegundoFactor(@WebParam(name = "entradaUsuario") UsuarioEntradaDTO aued_usuario) {
+  public StringSalidaDTO obtenerTipoSegundoFactor(@WebParam(name = "entradaUsuario") UsuarioEntradaDTO aued_usuario) {
     return iiub_usuarioBusiness.obtenerTipoSegundoFactor(aued_usuario.getIdUsuario());
   }
 
@@ -160,7 +160,7 @@ public class BiometriaWS {
    */
   @WebMethod(action = "borrarHuellas")
   @WebResult(name = "salidaResultado")
-  public String borrarHuellas(@WebParam(name = "entradaUsuario") BorrarHuellasDTO bhd_usuario) {
+  public StringSalidaDTO borrarHuellas(@WebParam(name = "entradaUsuario") BorrarHuellasDTO bhd_usuario) {
     MessageContext mc = context.getMessageContext();
     HttpServletRequest ahsr_req = (HttpServletRequest)mc.get(MessageContext.SERVLET_REQUEST);
     bhd_usuario.agregarValoresAuditoria(ahsr_req);
