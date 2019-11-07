@@ -14,7 +14,7 @@ import java.io.Serializable;
  *
  */
 @Entity
-@Table(name = "SDB_AUT_USUARIO")
+@Table(name = "SDB_AUT_USUARIO", schema = "ADM_SDB")
 public class UsuarioBachue implements Serializable {
   private static final long serialVersionUID = 1L;
 
