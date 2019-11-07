@@ -32,6 +32,9 @@ public class ManejadorDeLibrerias {
             String.format("%s%s%s", System.getProperty("java.library.path"),
                     Utils.SEPARADOR_DE_CARPETAS, ls_libraryPath));
 
+    System.out.println("BR JNA Library path: " + System.getProperty("jna.library.path"));
+    System.out.println("BR Java Library path: " + System.getProperty("java.library.path"));
+
     try {
       Field lf_fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
       lf_fieldSysPath.setAccessible(true);
@@ -44,6 +47,8 @@ public class ManejadorDeLibrerias {
   public static String obtenerRutaDelSistema() {
     String domainDir = System.getenv("DOMAIN_HOME");
 
+    System.out.println("BR Domain dir: " + domainDir);
+
     StringBuilder lsb_path = new StringBuilder();
     lsb_path.append(domainDir).append(Utils.SEPARADOR_DE_ARCHIVOS).append("bin").append(Utils.SEPARADOR_DE_ARCHIVOS);
     if (Platform.isWindows()) {
@@ -55,6 +60,7 @@ public class ManejadorDeLibrerias {
         lsb_path.append(Platform.is64Bit() ? LINUX_X86_64 : LINUX_X86);
       }
     }
+    System.out.println("BR Lib path: " + lsb_path);
     return lsb_path.toString();
   }
 }

@@ -37,7 +37,7 @@ public class MotorBiometrico {
   private  void configurarLicencias() {
     String[] ls_licencias = { "FingerMatcher", "FingerExtractor"};
     boolean lb_existeAlgunaLicencia = false;
-    NLicenseManager.setTrialMode(true);
+    NLicenseManager.setTrialMode(false);
     try {
       for (String ls_licencia : ls_licencias) {
         if (NLicense.obtain("/local", 5000, ls_licencia)) {

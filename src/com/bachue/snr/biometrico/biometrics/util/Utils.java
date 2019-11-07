@@ -33,7 +33,9 @@ public class Utils {
   public static void limpiarDirectorio(String as_carpeta) {
     try {
       FileUtils.cleanDirectory(new File(as_carpeta));
-    } catch (Exception ignored){}
+    } catch (Exception le_excepcion){
+      le_excepcion.printStackTrace();
+    }
   }
 
   public static boolean crearImagen(HuellaDTO ahd_huella) {
@@ -43,6 +45,7 @@ public class Utils {
       MotorBiometrico.getInstance();
       return !new Identificador().identificar("biometria/cache/" + Criptografia.decrypt(ahd_huella.getIdUsuario()) + ".bmp");
     } catch (Exception le_excepcion) {
+      le_excepcion.printStackTrace();
       return false;
     }
   }
