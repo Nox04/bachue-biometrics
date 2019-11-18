@@ -11,8 +11,8 @@ import java.io.File;
 
 public class Utils {
 
-  static final String SEPARADOR_DE_ARCHIVOS = System.getProperty("file.separator");
-  static final String SEPARADOR_DE_CARPETAS = System.getProperty("path.separator");
+  public static final String SEPARADOR_DE_ARCHIVOS = System.getProperty("file.separator");
+  public static final String SEPARADOR_DE_CARPETAS = System.getProperty("path.separator");
 
 
   private Utils() {}

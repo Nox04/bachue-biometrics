@@ -1,12 +1,16 @@
 package com.bachue.snr.biometrico.biometrics;
 
 import com.bachue.snr.biometrico.biometrics.util.ManejadorDeLibrerias;
+import com.bachue.snr.biometrico.biometrics.util.Utils;
 import com.neurotec.biometrics.NMatchingSpeed;
 import com.neurotec.biometrics.NTemplateSize;
 import com.neurotec.biometrics.client.NBiometricClient;
+import com.neurotec.biometrics.client.NDatabaseBiometricConnection;
 import com.neurotec.licensing.NLicense;
 import com.neurotec.licensing.NLicenseManager;
+import com.neurotec.plugins.NDataFile;
 import com.neurotec.plugins.NDataFileManager;
+import com.neurotec.samples.util.LicenseManager;
 
 public class MotorBiometrico {
 
@@ -21,7 +25,8 @@ public class MotorBiometrico {
     if(imb_instancia == null) {
       imb_instancia = new MotorBiometrico();
     }
-
+    imb_instancia.configurarLicencias();
+    imb_instancia.reconfigurarCliente();
     return imb_instancia;
   }
 
@@ -35,13 +40,12 @@ public class MotorBiometrico {
   }
 
   private  void configurarLicencias() {
-    String[] ls_licencias = { "FingerMatcher", "FingerExtractor"};
+    String[] ls_licencias = { "FingerMatcher", "FingerExtractor" };
     boolean lb_existeAlgunaLicencia = false;
-    NLicenseManager.setTrialMode(false);
     try {
       for (String ls_licencia : ls_licencias) {
         if (NLicense.obtain("/local", 5000, ls_licencia)) {
-          System.out.format("Obtained license: %s%n", ls_licencia);
+          System.err.format("Obtained license: %s%n", ls_licencia);
           lb_existeAlgunaLicencia = true;
         }
       }
@@ -60,7 +64,16 @@ public class MotorBiometrico {
     this.inbc_cliente.setMatchingThreshold(40);
     this.inbc_cliente.setFingersMatchingSpeed(NMatchingSpeed.HIGH);
     this.inbc_cliente.setMatchingMaximalResultCount(1);
-    NDataFileManager.getInstance().addFromDirectory("data", false);
+    reconfigurarCliente();
+  }
+
+  private void reconfigurarCliente() {
+    String domainDir = System.getenv("DOMAIN_HOME");
+    NDataFileManager.getInstance().addFromDirectory(domainDir + Utils.SEPARADOR_DE_ARCHIVOS + "bin" + Utils.SEPARADOR_DE_ARCHIVOS + "data", false);
+    NDataFile[] files = NDataFileManager.getInstance().getAllFiles();
+    for(NDataFile ndf : files) {
+      System.err.println("BRS Data files: " + ndf.getFileName());
+    }
   }
 
   public NBiometricClient getCliente() {

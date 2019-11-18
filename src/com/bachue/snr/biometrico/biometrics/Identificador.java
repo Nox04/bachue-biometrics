@@ -33,7 +33,7 @@ public boolean identificar(String as_uri) {
     MotorBiometrico.getInstance().getCliente().performTask(lnbt_tarea);
 
     if (lns_subject.getMatchingResults().size() > 0) {
-      System.out.println(lns_subject.getMatchingResults().get(0).getId());
+      System.err.println(lns_subject.getMatchingResults().get(0).getId());
       return true;
     } else {
       return false;

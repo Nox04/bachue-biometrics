@@ -23,7 +23,7 @@ public class Criptografia {
 
       return Base64.encodeBase64String(cipher.doFinal(strToEncrypt.getBytes()));
     } catch (Exception e) {
-      System.out.println("[Exception]:"+e.getMessage());
+      System.err.println("[Exception]:"+e.getMessage());
     }
     return null;
   }
@@ -38,7 +38,7 @@ public class Criptografia {
       byte[] decodedMessage = Base64.decodeBase64(encryptedMessage);
       return new String(cipher.doFinal(decodedMessage));
     } catch (Exception e) {
-      System.out.println("[Exception]:" + e.getMessage());
+      System.err.println("[Exception]:" + e.getMessage());
     }
     return null;
   }

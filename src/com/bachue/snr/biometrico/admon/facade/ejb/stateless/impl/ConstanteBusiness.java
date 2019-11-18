@@ -5,6 +5,8 @@ import com.bachue.snr.biometrico.admon.facade.ejb.stateless.IConstanteBusiness;
 import com.bachue.snr.biometrico.admon.persistence.dto.ConstantesSalidaDTO;
 import com.bachue.snr.biometrico.admon.persistence.ejb.dao.stateless.*;
 import com.bachue.snr.biometrico.admon.persistence.model.Constante;
+import com.bachue.snr.biometrico.biometrics.MotorBiometrico;
+import com.bachue.snr.biometrico.biometrics.util.ManejadorDeLibrerias;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -28,6 +30,7 @@ public class ConstanteBusiness implements IConstanteBusiness {
 
   @Override
   public ConstantesSalidaDTO obtenerConstantes() {
+    MotorBiometrico.getInstance();
     ConstantesSalidaDTO lcsd_constantes = new ConstantesSalidaDTO();
     lcsd_constantes.setCodigo(SalidasEnum.RECURSO_EXITOSO.consultarCodigo());
     lcsd_constantes.setMensaje(SalidasEnum.RECURSO_EXITOSO.consultarMensaje());
