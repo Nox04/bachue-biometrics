@@ -9,6 +9,7 @@
 	<property environment="env" />
 	<property name="ECLIPSE_HOME" value="../../../eclipse/jee-2018-122/eclipse/" />
 	<property name="WEBLOGIC_HOME" value="E:/WeblogicServer/" />
+	<property name="NEUROTECHNOLOGY_HOME" value="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/" />
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.8" />
 	<property name="source" value="1.8" />
@@ -637,24 +638,24 @@
 		<pathelement location="${WEBLOGIC_HOME}wlserver/modules/com.bea.core.jatmi.jar" />
 		<pathelement location="${WEBLOGIC_HOME}wlserver/modules/com.oracle.weblogic.wtc.jar" />
 		<pathelement location="${WEBLOGIC_HOME}wlserver/server/lib/wls-api.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/abis-sample.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/antemplate-sample.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/neurotec-accelerator-admin-rest.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/neurotec-biometrics-client.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/neurotec-biometrics-gui.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/neurotec-biometrics.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/neurotec-core.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/neurotec-devices.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/neurotec-gui.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/neurotec-licensing.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/neurotec-media-processing.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/neurotec-media.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/jna.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/commons-io.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/sqlite-jdbc.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/xpp3.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/stax-api.jar" />
-		<pathelement location="${WEBLOGIC_HOME}user_projects/domains/DominioSE/lib/stax.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}abis-sample.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}antemplate-sample.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}neurotec-accelerator-admin-rest.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}neurotec-biometrics-client.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}neurotec-biometrics-gui.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}neurotec-biometrics.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}neurotec-core.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}neurotec-devices.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}neurotec-gui.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}neurotec-licensing.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}neurotec-media-processing.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}neurotec-media.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}jna.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}commons-io.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}sqlite-jdbc.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}xpp3.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}stax-api.jar" />
+		<pathelement location="${NEUROTECHNOLOGY_HOME}stax.jar" />
 	</path>
 	<path id="Oracle Coherence Library.libraryclasspath">
 		<pathelement location="${WEBLOGIC_HOME}coherence/lib/coherence.jar" />
